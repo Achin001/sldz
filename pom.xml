@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.gxc.sldz</groupId>
+    <artifactId>sldz</artifactId>
+    <version>0.0.1</version>
+    <name>sldz</name>
+
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <!-- 在pom.xml的properties标签中添加 Docker镜像名称-->
+        <docker.image.prefix>springboot</docker.image.prefix>
+
+        <java.version>1.8</java.version>
+        <knife4j.version>2.0.4</knife4j.version>
+        <hutool.version>5.0.7</hutool.version>
+        <diboot.version>2.2.0</diboot.version>
+        <druid.version>1.1.21</druid.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <aliyun.oss.version>3.8.0</aliyun.oss.version>
+    </properties>
+
+    <dependencies>
+        <!-- 阿里oss -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>${aliyun.oss.version}</version>
+        </dependency>
+
+        <!--diboot核心-->
+        <dependency>
+            <groupId>com.diboot</groupId>
+            <artifactId>diboot-core-spring-boot-starter</artifactId>
+            <version>${diboot.version}</version>
+        </dependency>
+        <!--diboot开发助手-->
+        <dependency>
+            <groupId>com.diboot</groupId>
+            <artifactId>diboot-devtools-spring-boot-starter</artifactId>
+            <version>${diboot.version}</version>
+            <scope>provided</scope>
+            <!-- 打war包时剔除，
+            注: 某些IDEA版本存在provided的支持问题，可通过需要生成时手动启用，打包或不需要时注释掉的方式剔除devtools依赖 -->
+        </dependency>
+
+        <!--        alibaba druid-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+
+        <!--整合Knife4j-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+
+        <!--hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- docker 插件 开始-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <!-- 指的是镜像构建后，docker 仓库中镜像的名字 -->
+                    <imageName>achin001/${project.artifactId}</imageName>
+                    <!-- 指的是DockerFile 文件在此项目中的路径 -->
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <!-- docker 插件 结束-->
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="/usr/local/maven" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1sjmy0sZEBFqix4DhgBNSDSMGEX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gxc.sldz.config.Druid" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SldzApplication">
+    <configuration name="SldzApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sldz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gxc.sldz.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gxc.sldz" />
+      <option name="MAIN_CLASS_NAME" value="com.gxc.sldz.SldzApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SldzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sldz" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gxc.sldz.SldzApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SldzApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="" />
+      <created>1621394623563</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621394623563</updated>
+      <workItem from="1621394626632" duration="7399000" />
+      <workItem from="1621488839821" duration="11423000" />
+      <workItem from="1621850549921" duration="73000" />
+      <workItem from="1621919753788" duration="4240000" />
+      <workItem from="1622008285494" duration="11000" />
+      <workItem from="1622010210526" duration="9737000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="第一次提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一次提交" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="318" y="136" key="#Project_Structure" timestamp="1621582307881">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="318" y="136" key="#Project_Structure/0.23.1680.981@0.23.1680.981" timestamp="1621582307881" />
+    <state x="568" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1621511678391">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="568" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.981@0.23.1680.981" timestamp="1621511678391" />
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom" timestamp="1622094372513">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622094372513" />
+    <state width="1556" height="332" key="GridCell.Tab.0.center" timestamp="1622094372513">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1622094372513" />
+    <state width="1556" height="332" key="GridCell.Tab.0.left" timestamp="1622094372512">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1622094372512" />
+    <state width="1556" height="332" key="GridCell.Tab.0.right" timestamp="1622094372513">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1622094372513" />
+    <state width="1556" height="332" key="GridCell.Tab.1.bottom" timestamp="1622094372514">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.1.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622094372514" />
+    <state width="1556" height="332" key="GridCell.Tab.1.center" timestamp="1622094372514">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.1.center/0.23.1680.981@0.23.1680.981" timestamp="1622094372514" />
+    <state width="1556" height="332" key="GridCell.Tab.1.left" timestamp="1622094372514">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.1.left/0.23.1680.981@0.23.1680.981" timestamp="1622094372514" />
+    <state width="1556" height="332" key="GridCell.Tab.1.right" timestamp="1622094372514">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state width="1556" height="332" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1622094372514" />
+    <state x="382" y="205" key="SettingsEditor" timestamp="1621394671256">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="382" y="205" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1621394671256" />
+    <state x="657" y="397" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622269222374">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="657" y="397" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.981@0.23.1680.981" timestamp="1622269222374" />
+  </component>
+</project>
