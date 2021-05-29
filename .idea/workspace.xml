@@ -16,7 +16,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +68,9 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.gxc.sldz.config.Druid" />
     </key>
@@ -122,7 +125,7 @@
       <workItem from="1621850549921" duration="73000" />
       <workItem from="1621919753788" duration="4240000" />
       <workItem from="1622008285494" duration="11000" />
-      <workItem from="1622010210526" duration="9737000" />
+      <workItem from="1622010210526" duration="10360000" />
     </task>
     <servers />
   </component>
