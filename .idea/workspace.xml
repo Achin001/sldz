@@ -16,10 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/sldz.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/image_info.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -68,7 +67,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -78,6 +77,7 @@
       <recent name="com.gxc.sldz.config.Druid" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main" />
@@ -128,7 +128,7 @@
       <workItem from="1621850549921" duration="73000" />
       <workItem from="1621919753788" duration="4240000" />
       <workItem from="1622008285494" duration="11000" />
-      <workItem from="1622010210526" duration="10887000" />
+      <workItem from="1622010210526" duration="12332000" />
     </task>
     <servers />
   </component>
@@ -156,6 +156,10 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state x="318" y="136" key="#Project_Structure/0.23.1680.981@0.23.1680.981" timestamp="1621582307881" />
+    <state x="593" y="285" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1622273205728">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="593" y="285" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.981@0.23.1680.981" timestamp="1622273205728" />
     <state x="568" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1621511678391">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
@@ -192,10 +196,10 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state width="1556" height="332" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
-    <state x="382" y="205" key="SettingsEditor" timestamp="1621394671256">
+    <state x="382" y="205" key="SettingsEditor" timestamp="1622273500048">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state x="382" y="205" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1621394671256" />
+    <state x="382" y="205" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1622273500048" />
     <state x="657" y="397" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622269222374">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
