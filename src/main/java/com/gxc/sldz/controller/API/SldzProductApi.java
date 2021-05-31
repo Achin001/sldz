@@ -35,4 +35,11 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
         return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 
+
+
+    @ApiOperation(value = "login")
+    @GetMapping("/login")
+    public JsonResult login(String s) throws Exception {
+        return JsonResult.OK(s);
+    }
 }

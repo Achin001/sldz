@@ -11,67 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pushToGitHub.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pushToGitHub.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/SldzApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Druid/DruidConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/OssConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Swagger2Configuration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/BaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/CorsInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JWT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JwtInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBannerApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductCategoryApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/BaseCustomCrudRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/DictionaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzBannerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBannerDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductCategoryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/BaseCustomEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBanner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/handler/GeneralExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBannerMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductCategoryMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/BaseCustomService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBannerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductCategoryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/BaseCustomServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBannerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductCategoryServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/update_1.0.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/docker/sldz-0.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sldz-0.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/sldz-0.0.1.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.gxc.sldz.SldzApplicationTests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.gxc.sldz.SldzApplicationTests.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +146,7 @@
       <workItem from="1622435739162" duration="1150000" />
       <workItem from="1622437065575" duration="7000" />
       <workItem from="1622437075177" duration="22000" />
-      <workItem from="1622437367299" duration="540000" />
+      <workItem from="1622437367299" duration="1738000" />
     </task>
     <servers />
   </component>
@@ -249,38 +190,38 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state x="568" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.981@0.23.1680.981" timestamp="1621511678391" />
-    <state width="1556" height="332" key="GridCell.Tab.0.bottom" timestamp="1622437062460">
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom" timestamp="1622443224037">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622437062460" />
-    <state width="1556" height="332" key="GridCell.Tab.0.center" timestamp="1622437062459">
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622443224037" />
+    <state width="1556" height="332" key="GridCell.Tab.0.center" timestamp="1622443224036">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1622437062459" />
-    <state width="1556" height="332" key="GridCell.Tab.0.left" timestamp="1622437062459">
+    <state width="1556" height="332" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1622443224036" />
+    <state width="1556" height="332" key="GridCell.Tab.0.left" timestamp="1622443224035">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1622437062459" />
-    <state width="1556" height="332" key="GridCell.Tab.0.right" timestamp="1622437062460">
+    <state width="1556" height="332" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1622443224035" />
+    <state width="1556" height="332" key="GridCell.Tab.0.right" timestamp="1622443224037">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1622437062460" />
-    <state width="1556" height="332" key="GridCell.Tab.1.bottom" timestamp="1622272591601">
+    <state width="1556" height="332" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1622443224037" />
+    <state width="1556" height="332" key="GridCell.Tab.1.bottom" timestamp="1622443224038">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.1.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
-    <state width="1556" height="332" key="GridCell.Tab.1.center" timestamp="1622272591601">
+    <state width="1556" height="332" key="GridCell.Tab.1.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622443224038" />
+    <state width="1556" height="332" key="GridCell.Tab.1.center" timestamp="1622443224038">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.1.center/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
-    <state width="1556" height="332" key="GridCell.Tab.1.left" timestamp="1622272591601">
+    <state width="1556" height="332" key="GridCell.Tab.1.center/0.23.1680.981@0.23.1680.981" timestamp="1622443224038" />
+    <state width="1556" height="332" key="GridCell.Tab.1.left" timestamp="1622443224038">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.1.left/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
-    <state width="1556" height="332" key="GridCell.Tab.1.right" timestamp="1622272591601">
+    <state width="1556" height="332" key="GridCell.Tab.1.left/0.23.1680.981@0.23.1680.981" timestamp="1622443224038" />
+    <state width="1556" height="332" key="GridCell.Tab.1.right" timestamp="1622443224038">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
+    <state width="1556" height="332" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1622443224038" />
     <state x="382" y="205" key="SettingsEditor" timestamp="1622435719098">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
