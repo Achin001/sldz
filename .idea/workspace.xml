@@ -1,23 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pushToGitHub.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pushToGitHub.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/SldzApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Druid/DruidConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/OssConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Swagger2Configuration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/CorsInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JWT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JwtInterceptor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBannerApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductCategoryApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/BaseCustomCrudRestController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/DictionaryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzBannerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductCategoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBannerDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductCategoryDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/BaseCustomEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBanner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProduct.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/handler/GeneralExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBannerMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductCategoryMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/BaseCustomService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBannerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductCategoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/BaseCustomServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBannerServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductCategoryServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerDetailVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerListVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryDetailVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryListVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductDetailVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductListVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/update_1.0.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/docker/sldz-0.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/sldz-0.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/sldz-0.0.1.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.gxc.sldz.SldzApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.gxc.sldz.SldzApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +87,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="git@github.com:Achin001/sldz.git" />
+      </set>
+    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -69,17 +130,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.gxc.sldz.config.Druid" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.gxc.sldz.config.Druid" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SldzApplication">
@@ -99,6 +160,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="push.sh" type="ShConfigurationType" temporary="true">
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/PushToGitHub.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="SldzApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="sldz" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gxc.sldz.SldzApplication" />
@@ -108,6 +180,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Shell Script.push.sh" />
         <item itemvalue="JUnit.SldzApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -127,7 +200,12 @@
       <workItem from="1621850549921" duration="73000" />
       <workItem from="1621919753788" duration="4240000" />
       <workItem from="1622008285494" duration="11000" />
-      <workItem from="1622010210526" duration="13468000" />
+      <workItem from="1622010210526" duration="13890000" />
+      <workItem from="1622435639453" duration="95000" />
+      <workItem from="1622435739162" duration="1150000" />
+      <workItem from="1622437065575" duration="7000" />
+      <workItem from="1622437075177" duration="22000" />
+      <workItem from="1622437367299" duration="540000" />
     </task>
     <servers />
   </component>
@@ -151,6 +229,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="第一次提交" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="466" y="124" key="#Plugins" timestamp="1622435769538">
+      <screen x="0" y="23" width="1680" height="981" />
+    </state>
+    <state x="466" y="124" key="#Plugins/0.23.1680.981@0.23.1680.981" timestamp="1622435769538" />
     <state x="318" y="136" key="#Project_Structure" timestamp="1621582307881">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
@@ -167,22 +249,22 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state x="568" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.981@0.23.1680.981" timestamp="1621511678391" />
-    <state width="1556" height="332" key="GridCell.Tab.0.bottom" timestamp="1622272591600">
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom" timestamp="1622437062460">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622272591600" />
-    <state width="1556" height="332" key="GridCell.Tab.0.center" timestamp="1622272591599">
+    <state width="1556" height="332" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1622437062460" />
+    <state width="1556" height="332" key="GridCell.Tab.0.center" timestamp="1622437062459">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1622272591599" />
-    <state width="1556" height="332" key="GridCell.Tab.0.left" timestamp="1622272591598">
+    <state width="1556" height="332" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1622437062459" />
+    <state width="1556" height="332" key="GridCell.Tab.0.left" timestamp="1622437062459">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1622272591598" />
-    <state width="1556" height="332" key="GridCell.Tab.0.right" timestamp="1622272591600">
+    <state width="1556" height="332" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1622437062459" />
+    <state width="1556" height="332" key="GridCell.Tab.0.right" timestamp="1622437062460">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state width="1556" height="332" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1622272591600" />
+    <state width="1556" height="332" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1622437062460" />
     <state width="1556" height="332" key="GridCell.Tab.1.bottom" timestamp="1622272591601">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
@@ -199,10 +281,10 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state width="1556" height="332" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1622272591601" />
-    <state x="382" y="205" key="SettingsEditor" timestamp="1622378335367">
+    <state x="382" y="205" key="SettingsEditor" timestamp="1622435719098">
       <screen x="0" y="23" width="1680" height="981" />
     </state>
-    <state x="382" y="205" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1622378335367" />
+    <state x="382" y="205" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1622435719098" />
     <state x="657" y="397" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622269222374">
       <screen x="0" y="23" width="1680" height="981" />
     </state>

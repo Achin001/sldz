@@ -35,12 +35,4 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
         return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 
-
-    @ApiOperation(value = "模拟login")
-    @GetMapping("/login")
-    public JsonResult login(String phone,String password) throws Exception {
-        return JsonResult.OK().data("账号是："+phone+",密码是："+password);
-    }
-
-
 }
