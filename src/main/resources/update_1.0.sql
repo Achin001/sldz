@@ -34,3 +34,107 @@ ALTER TABLE `sldz_product` ADD COLUMN `product_stock` bigint DEFAULT 0 COMMENT '
 ALTER TABLE `sldz_product` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `product_stock`;
 -- 2021-05-21 14:03:31 by Achin
 CREATE TABLE `sldz_user`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '用户';
+-- 2021-05-31 21:32:24 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_name` varchar(100) COMMENT '代理商名字' AFTER `id`;
+-- 2021-05-31 21:32:24 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_phone` varchar(100) COMMENT '代理商手机' AFTER `agent_name`;
+-- 2021-05-31 21:32:24 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_pasword` varchar(100) COMMENT '代理商密码' AFTER `agent_phone`;
+-- 2021-05-31 21:32:24 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_gender` bigint DEFAULT 1 COMMENT '性别 1 为男 2为女' AFTER `agent_pasword`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_idcar` varchar(100) COMMENT '代理商身份证' AFTER `agent_gender`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_sheng` varchar(100) COMMENT '省' AFTER `agent_idcar`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_shi` varchar(100) COMMENT '市' AFTER `agent_sheng`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_qu` varchar(100) COMMENT '区/县' AFTER `agent_shi`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_jiedao` varchar(100) COMMENT '街道' AFTER `agent_qu`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `agent_grade` varchar(100) COMMENT '等级' AFTER `agent_jiedao`;
+-- 2021-05-31 21:32:25 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `openid` varchar(100) COMMENT '微信openid' AFTER `agent_grade`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `avatarUrl` varchar(100) COMMENT '微信头像' AFTER `openid`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `city` varchar(100) COMMENT '微信城市' AFTER `avatarUrl`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `country` varchar(100) COMMENT '微信国家' AFTER `city`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `gender` varchar(100) COMMENT '微信性别' AFTER `country`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `language` varchar(100) COMMENT '微信语言' AFTER `gender`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `nickName` varchar(100) COMMENT '微信昵称' AFTER `language`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `province` varchar(100) COMMENT '微信省份' AFTER `nickName`;
+-- 2021-05-31 21:32:26 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `province`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `openid` varchar(100) COMMENT '微信openid' AFTER `id`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` CHANGE COLUMN language `languager` varchar(100) COMMENT '微信语言' AFTER `gender`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `nickName` varchar(100) COMMENT '微信昵称' AFTER `languager`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_name`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_phone`;
+-- 2021-05-31 21:34:43 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_pasword`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_gender`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_idcar`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_sheng`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_shi`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_qu`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_jiedao`;
+-- 2021-05-31 21:34:44 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `agent_grade`;
+-- 2021-05-31 21:43:39 by Achin
+CREATE TABLE `sldz_agent`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商';
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_name` varchar(100) COMMENT '代理商名字' AFTER `id`;
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_phone` varchar(100) COMMENT '代理商手机' AFTER `agent_name`;
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_pasword` varchar(100) COMMENT '代理商密码' AFTER `agent_phone`;
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_gender` varchar(100) COMMENT '性别 1 为男 2为女' AFTER `agent_pasword`;
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_idcar` varchar(100) COMMENT '代理商身份证号码' AFTER `agent_gender`;
+-- 2021-05-31 21:48:59 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_sheng` varchar(100) COMMENT '省' AFTER `agent_idcar`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_shi` varchar(100) COMMENT '市' AFTER `agent_sheng`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_qu` varchar(100) COMMENT '区/县' AFTER `agent_shi`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_jiedao` varchar(100) COMMENT '街道' AFTER `agent_qu`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_grade` varchar(100) COMMENT '等级' AFTER `agent_jiedao`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `openid` varchar(100) COMMENT '微信openid' AFTER `agent_grade`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `avatarUrl` varchar(100) COMMENT '微信头像' AFTER `openid`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `city` varchar(100) COMMENT '微信城市' AFTER `avatarUrl`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `country` varchar(100) COMMENT '微信国家' AFTER `city`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `gender` varchar(100) COMMENT '微信性别' AFTER `country`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `languager` varchar(100) COMMENT '微信语言' AFTER `gender`;
+-- 2021-05-31 21:49:00 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `nickName` varchar(100) COMMENT '微信昵称' AFTER `languager`;
+-- 2021-05-31 21:49:01 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `province` varchar(100) COMMENT '微信省份' AFTER `nickName`;
+-- 2021-05-31 21:49:01 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `province`;

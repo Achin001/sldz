@@ -37,9 +37,4 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
 
 
 
-    @ApiOperation(value = "login")
-    @GetMapping("/login")
-    public JsonResult login(String s) throws Exception {
-        return JsonResult.OK(s);
-    }
 }
