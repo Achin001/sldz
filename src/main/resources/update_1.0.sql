@@ -138,3 +138,23 @@ ALTER TABLE `sldz_agent` ADD COLUMN `nickName` varchar(100) COMMENT '微信昵�
 ALTER TABLE `sldz_agent` ADD COLUMN `province` varchar(100) COMMENT '微信省份' AFTER `nickName`;
 -- 2021-05-31 21:49:01 by Achin
 ALTER TABLE `sldz_agent` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `province`;
+-- 2021-06-01 13:13:35 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `nickName` varchar(100) COMMENT '微信昵称' AFTER `gender`;
+-- 2021-06-01 13:13:35 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `languager`;
+-- 2021-06-01 13:13:49 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `nickName` varchar(100) COMMENT '微信昵称' AFTER `gender`;
+-- 2021-06-01 13:13:49 by Achin
+ALTER TABLE `sldz_agent` DROP COLUMN `languager`;
+-- 2021-06-01 15:09:51 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `openid` varchar(100) NOT NULL COMMENT '微信openid' AFTER `id`;
+-- 2021-06-01 15:09:51 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `avatarUrl` varchar(300) COMMENT '微信头像' AFTER `openid`;
+-- 2021-06-01 15:09:51 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `seesion_key` varchar(150) COMMENT 'seesion_key' AFTER `province`;
+-- 2021-06-01 15:09:51 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `seesion_key`;
+-- 2021-06-01 15:17:26 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `province`;
+-- 2021-06-01 15:17:26 by Achin
+ALTER TABLE `sldz_user` DROP COLUMN `seesion_key`;

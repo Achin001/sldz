@@ -105,6 +105,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
      */
     private static final String[] NOT_CHECK_URL = {
             "/admin/login",
+//            "/admin/**",
             "/api/**"
     };
 

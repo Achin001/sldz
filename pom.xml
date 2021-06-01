@@ -40,12 +40,7 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-<!--        轻量加密包-->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk16</artifactId>
-            <version>${bouncycastle.version}</version>
-        </dependency>
+
 
         <!-- 阿里oss -->
         <dependency>
