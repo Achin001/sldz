@@ -10,17 +10,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAdminLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/JwtInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzAgentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzAgentApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/dto/SldzAgentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/dto/SldzAgentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/entity/SldzAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/entity/SldzAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/vo/SldzAgentDetailVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/vo/SldzAgentDetailVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/vo/SldzAgentListVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/vo/SldzAgentListVO.java" afterDir="false" />
-    </list>
+    <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +149,7 @@
       <workItem from="1622437367299" duration="9975000" />
       <workItem from="1622523249187" duration="193000" />
       <workItem from="1622523445652" duration="125000" />
-      <workItem from="1622523602904" duration="20340000" />
+      <workItem from="1622523602904" duration="20891000" />
     </task>
     <servers />
   </component>
