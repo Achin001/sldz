@@ -1,6 +1,7 @@
 package com.gxc.sldz.controller;
 
 import cn.hutool.crypto.SecureUtil;
+import com.gxc.sldz.service.SldzAgentRelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -30,6 +31,9 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
 
     @Autowired
     private SldzAgentService sldzAgentService;
+
+    @Autowired
+    private SldzAgentRelService sldzAgentRelService;
 
     /**
      * 查询ViewObject的分页数据
@@ -63,7 +67,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
      * @return JsonResult
      * @throws Exception
      */
-    @ApiOperation(value = "新建数据")
+    @ApiOperation(value = "新建代理商数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgent entity) throws Exception {
         entity.setAgentPasword(SecureUtil.md5(entity.getAgentPhone()));
@@ -76,21 +80,22 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
      * @return JsonResult
      * @throws Exception
      */
-    @ApiOperation(value = "根据ID更新数据")
+    @ApiOperation(value = "根据ID更新代理商数据")
     @PutMapping("/{id}")
     public JsonResult updateEntityMapping(@PathVariable("id") Long id, @Valid @RequestBody SldzAgent entity) throws Exception {
         return super.updateEntity(id, entity);
     }
+    // /**
+    // * 根据id删除资源对象
+    // * @param id
+    // * @return
+    // * @throws Exception
+    // */
+    // @ApiOperation(value = "根据ID删除数据")
+    // @DeleteMapping("/{id}")
+    // public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
+    // return super.deleteEntity(id);
+    // }
 
-    /**
-     * 根据id删除资源对象
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    @ApiOperation(value = "根据ID删除数据")
-    @DeleteMapping("/{id}")
-    public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
-        return super.deleteEntity(id);
-    }
+
 }

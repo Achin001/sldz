@@ -158,3 +158,29 @@ ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0
 ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `province`;
 -- 2021-06-01 15:17:26 by Achin
 ALTER TABLE `sldz_user` DROP COLUMN `seesion_key`;
+-- 2021-06-01 18:19:51 by Achin
+CREATE TABLE `sldz_admin`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '管理员';
+-- 2021-06-01 18:20:23 by Achin
+ALTER TABLE `sldz_admin` ADD COLUMN `phone` varchar(100) COMMENT '账号' AFTER `id`;
+-- 2021-06-01 18:20:23 by Achin
+ALTER TABLE `sldz_admin` ADD COLUMN `password` varchar(150) COMMENT '密码' AFTER `phone`;
+-- 2021-06-01 18:20:23 by Achin
+ALTER TABLE `sldz_admin` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `password`;
+-- 2021-06-02 17:34:52 by Achin
+CREATE TABLE `sldz_agent_rel`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商关系表';
+-- 2021-06-02 17:35:55 by Achin
+ALTER TABLE `sldz_agent_rel` ADD COLUMN `sup_id` bigint COMMENT '上级id' AFTER `id`;
+-- 2021-06-02 17:35:56 by Achin
+ALTER TABLE `sldz_agent_rel` ADD COLUMN `sub_id` bigint COMMENT '下级id' AFTER `sup_id`;
+-- 2021-06-02 17:35:56 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `sub_id`;
+-- 2021-06-02 17:39:51 by Achin
+CREATE TABLE `sldz_agent_grade`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商等级';
+-- 2021-06-02 17:40:18 by Achin
+ALTER TABLE `sldz_agent_grade` ADD COLUMN `grade_name` varchar(100) COMMENT '等级名称' AFTER `id`;
+-- 2021-06-02 17:40:19 by Achin
+ALTER TABLE `sldz_agent_grade` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `grade_name`;
+-- 2021-06-02 17:42:14 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_grade_id` bigint COMMENT '等级id' AFTER `id`;
+-- 2021-06-02 17:42:14 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_name` varchar(100) COMMENT '代理商名字' AFTER `agent_grade_id`;

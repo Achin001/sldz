@@ -56,11 +56,10 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
         sldzAgent.setCountry(entity.getCountry());
         sldzAgent.setGender(entity.getGender());
         sldzAgent.setProvince(entity.getProvince());
-        boolean s=   sldzAgentService.updateEntity(sldzAgent,wrapper);
+        boolean s = sldzAgentService.updateEntity(sldzAgent,wrapper);
         if (s){
             return JsonResult.OK().data("绑定成功");
         }
-
         return JsonResult.FAIL_OPERATION("绑定失败,请稍后再试");
         }
     }

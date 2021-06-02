@@ -37,6 +37,13 @@ public class SldzAgent extends BaseCustomEntity {
     private static final long serialVersionUID = -5185016946485966419L;
 
     /**
+     * 等级id
+     */
+    @ApiModelProperty(value = "等级id", example = "")
+    @TableField()
+    private Long agentGradeId;
+
+    /**
      * 代理商名字
      */
     @ApiModelProperty(value = "代理商名字", example = "")

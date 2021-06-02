@@ -26,12 +26,12 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         String servletPath = request.getServletPath();
 //        log.info("ServletPath: " + servletPath);
-// 不需要验证,直接放行
+        // 不需要验证,直接放行
         boolean isNotCheck = isNotCheck(servletPath);
         if (isNotCheck) {
             return true;
         }
-// 需要验证
+        // 需要验证
         String token = getToken(request);
         if (StrUtil.isBlank(token)) {
             response.setContentType("text/html;charset=UTF-8");
@@ -40,10 +40,10 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             response.getWriter().print("<font size=6 color=red>登陆信息失效，请重新登录!</font>");
             return false;
         }
-// 获取签名信息
+        // 获取签名信息
         Claims claims = jwt.getClaimByToken(token);
-//        log.info("TOKEN: " + claims);
-// 判断签名是否存在或过期
+        // log.info("TOKEN: " + claims);
+        // 判断签名是否存在或过期
         boolean b = claims == null || claims.isEmpty() || jwt.isTokenExpired(claims.getExpiration());
         if (b) {
             response.setContentType("text/html;charset=UTF-8");
@@ -52,7 +52,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             response.getWriter().print("<font size=6 color=red>登陆信息失效，请重新登录!</font>");
             return false;
         }
-// 将签名中获取的用户信息放入request中;
+        // 将签名中获取的用户信息放入request中;
         request.setAttribute(USER_KEY, claims.getSubject());
         return true;
     }
