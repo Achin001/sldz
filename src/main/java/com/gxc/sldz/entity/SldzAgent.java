@@ -44,6 +44,14 @@ public class SldzAgent extends BaseCustomEntity {
     private Long agentGradeId;
 
     /**
+     * 唯一编号
+     */
+    @ApiModelProperty(value = "唯一编号", example = "")
+    @Length(max = 100, message = "唯一编号长度应小于100")
+    @TableField()
+    private String agentRandom;
+
+    /**
      * 代理商名字
      */
     @ApiModelProperty(value = "代理商名字", example = "")
@@ -124,12 +132,26 @@ public class SldzAgent extends BaseCustomEntity {
     private String agentGrade;
 
     /**
+     * 代理商奖励金
+     */
+    @ApiModelProperty(value = "代理商奖励金", example = "0.0")
+    @TableField()
+    private Double agentBonus;
+
+    /**
      * 微信openid
      */
     @ApiModelProperty(value = "微信openid", example = "")
     @Length(max = 100, message = "微信openid长度应小于100")
     @TableField()
     private String openid;
+
+    /**
+     * 代理商积分
+     */
+    @ApiModelProperty(value = "代理商积分", example = "0.0")
+    @TableField()
+    private Double agentIntegral;
 
     /**
      * 微信头像

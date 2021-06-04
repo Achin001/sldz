@@ -51,11 +51,11 @@ public class SldzAgentGradeController extends BaseCustomCrudRestController<SldzA
     * @return
     * @throws Exception
     */
-    @ApiOperation(value = "根据ID获取详情数据")
-    @GetMapping("/{id}")
-    public JsonResult getViewObjectMapping(@PathVariable("id")Long id) throws Exception{
-        return super.getViewObject(id, SldzAgentGradeDetailVO.class);
-    }
+//    @ApiOperation(value = "根据ID获取详情数据")
+//    @GetMapping("/{id}")
+//    public JsonResult getViewObjectMapping(@PathVariable("id")Long id) throws Exception{
+//        return super.getViewObject(id, SldzAgentGradeDetailVO.class);
+//    }
 
     /***
     * 创建资源对象
@@ -87,10 +87,10 @@ public class SldzAgentGradeController extends BaseCustomCrudRestController<SldzA
     * @return
     * @throws Exception
     */
-    @ApiOperation(value = "根据ID删除数据")
-    @DeleteMapping("/{id}")
-    public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
-        return super.deleteEntity(id);
-    }
+//    @ApiOperation(value = "根据ID删除数据")
+//    @DeleteMapping("/{id}")
+//    public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
+//        return super.deleteEntity(id);
+//    }
 
 } 

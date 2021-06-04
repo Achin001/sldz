@@ -12,6 +12,7 @@ import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.config.jwt.JWT;
 import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.service.RandomServer;
 import com.gxc.sldz.service.SldzAgentService;
 import com.gxc.sldz.service.SldzUserService;
 import io.swagger.annotations.Api;
@@ -37,6 +38,8 @@ public class SldzLoginApi {
 
     @Autowired
     private SldzAgentService sldzAgentService;
+    @Autowired
+    RandomServer RandomServer;
 
     @Autowired
     JWT JWT;
@@ -118,6 +121,7 @@ public class SldzLoginApi {
             map.put("successmsg","更新");
             return JsonResult.OK().data(map);
         }else {
+            entity.setRandom(RandomServer.getRandom());
             //新建个人资料
             boolean success = SldzUserService.createEntity(entity);
             //返回token

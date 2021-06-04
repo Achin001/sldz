@@ -184,3 +184,61 @@ ALTER TABLE `sldz_agent_grade` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DE
 ALTER TABLE `sldz_agent` ADD COLUMN `agent_grade_id` bigint COMMENT '等级id' AFTER `id`;
 -- 2021-06-02 17:42:14 by Achin
 ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_name` varchar(100) COMMENT '代理商名字' AFTER `agent_grade_id`;
+-- 2021-06-02 19:16:42 by Achin
+ALTER TABLE `sldz_agent_rel` CHANGE COLUMN sup_id `sup_random` bigint COMMENT '上级编号' AFTER `id`;
+-- 2021-06-02 19:16:42 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sup_random` bigint COMMENT '上级编号' AFTER `id`;
+-- 2021-06-02 19:16:42 by Achin
+ALTER TABLE `sldz_agent_rel` CHANGE COLUMN sub_id `sub_random` bigint COMMENT '下级编号' AFTER `sup_random`;
+-- 2021-06-02 19:16:42 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sub_random` bigint COMMENT '下级编号' AFTER `sup_random`;
+-- 2021-06-02 19:16:42 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `sub_random`;
+-- 2021-06-02 19:20:09 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_random` varchar(100) COMMENT '代理商唯一编号' AFTER `agent_grade_id`;
+-- 2021-06-02 19:20:09 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_name` varchar(100) COMMENT '代理商名字' AFTER `agent_random`;
+-- 2021-06-02 19:23:50 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_bonus` double NOT NULL DEFAULT 0 COMMENT '代理商奖励金' AFTER `agent_grade`;
+-- 2021-06-02 19:23:50 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_integral` double NOT NULL DEFAULT 0 COMMENT '代理商积分' AFTER `agent_bonus`;
+-- 2021-06-02 19:23:50 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `openid` varchar(100) COMMENT '微信openid' AFTER `agent_integral`;
+-- 2021-06-02 19:26:46 by Achin
+CREATE TABLE `sldz_agent_bonus_log`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商奖励金记录';
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` ADD COLUMN `agent_id` bigint COMMENT '代理商ID' AFTER `id`;
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` ADD COLUMN `ronus_type` bigint COMMENT '1是收入2是支出' AFTER `agent_id`;
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` ADD COLUMN `ronus_money` double NOT NULL DEFAULT 0 COMMENT '金额' AFTER `ronus_type`;
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` ADD COLUMN `ronus_event` varchar(150) COMMENT '事件' AFTER `ronus_money`;
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` ADD COLUMN `ronus_date` timestamp NULL COMMENT '日期' AFTER `ronus_event`;
+-- 2021-06-02 19:34:51 by Achin
+ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `ronus_date`;
+-- 2021-06-02 19:36:41 by Achin
+CREATE TABLE `sldz_agent_integral_log`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商积分纪录';
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` ADD COLUMN `agent_id` bigint COMMENT '代理商ID' AFTER `id`;
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` ADD COLUMN `integral_type` bigint COMMENT '1是收入2是支出' AFTER `agent_id`;
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` ADD COLUMN `integral_money` double COMMENT '金额' AFTER `integral_type`;
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` ADD COLUMN `integral_event` varchar(150) COMMENT '事件' AFTER `integral_money`;
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` ADD COLUMN `integral_date` date NULL COMMENT '日期' AFTER `integral_event`;
+-- 2021-06-02 19:39:05 by Achin
+ALTER TABLE `sldz_agent_integral_log` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `integral_date`;
+-- 2021-06-04 11:50:41 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_random` varchar(100) COMMENT '唯一编号' AFTER `agent_grade_id`;
+-- 2021-06-04 11:51:22 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `random` varchar(100) COMMENT '唯一编号' AFTER `province`;
+-- 2021-06-04 11:51:22 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `random`;
+-- 2021-06-04 13:10:35 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_bonus` double DEFAULT 0.00 COMMENT '代理商奖励金' AFTER `agent_grade`;
+-- 2021-06-04 13:10:35 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_integral` double DEFAULT 0.00 COMMENT '代理商积分' AFTER `agent_bonus`;

@@ -29,6 +29,7 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
     @Autowired
     private SldzUserService sldzUserService;
 
+
     /**
      * 查询ViewObject的分页数据
      * <p>
@@ -90,6 +91,5 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
     public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
         return super.deleteEntity(id);
     }
-
 
 }

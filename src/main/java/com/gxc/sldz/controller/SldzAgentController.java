@@ -1,6 +1,12 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.gxc.sldz.entity.SldzAdmin;
+import com.gxc.sldz.service.RandomServer;
 import com.gxc.sldz.service.SldzAgentRelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +41,9 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @Autowired
     private SldzAgentRelService sldzAgentRelService;
 
+    @Autowired
+    RandomServer RandomServer;
+
     /**
      * 查询ViewObject的分页数据
      * <p>
@@ -47,6 +56,17 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzAgentDTO queryDto, Pagination pagination) throws Exception {
         return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
+    }
+
+    @ApiOperation(value = "代理商模糊搜索")
+    @GetMapping("/keywords")
+    public JsonResult keywords(SldzAgentDTO queryDto, Pagination pagination) throws Exception {
+        String name = "agent_name";
+        QueryWrapper<SldzAgent> wrapper = new QueryWrapper();
+        wrapper.like(StrUtil.isNotBlank(queryDto.getAgentName()), name, queryDto.getAgentName());
+        // SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
+        return super.getEntityListWithPaging(wrapper, pagination);
+    // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
     }
 
     /**
@@ -71,6 +91,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgent entity) throws Exception {
         entity.setAgentPasword(SecureUtil.md5(entity.getAgentPhone()));
+        entity.setAgentRandom(RandomServer.getRandom());
         return super.createEntity(entity);
     }
 
@@ -96,6 +117,4 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     // public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
     // return super.deleteEntity(id);
     // }
-
-
 }

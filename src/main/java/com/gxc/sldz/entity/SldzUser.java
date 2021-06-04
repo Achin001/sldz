@@ -93,6 +93,14 @@ public class SldzUser extends BaseCustomEntity {
     @TableField()
     private String province;
 
+    /**
+     * 唯一编号
+     */
+    @ApiModelProperty(value = "唯一编号", example = "")
+    @Length(max = 100, message = "唯一编号长度应小于100")
+    @TableField()
+    private String random;
+
     @TableField(exist = false)
     private List<String> fileUuidList;
 }
