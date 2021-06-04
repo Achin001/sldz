@@ -29,7 +29,6 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
     @Autowired
     private SldzUserService sldzUserService;
 
-
     /**
      * 查询ViewObject的分页数据
      * <p>

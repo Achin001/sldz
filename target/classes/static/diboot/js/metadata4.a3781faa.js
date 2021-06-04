@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["metadata4"],{bef3:function(a,t,s){"use strict";s.r(t);var e=s("d348");t["default"]=e["a"]},d348:function(a,t,s){"use strict";t["a"]={metadata:{colList:[{span:12,moduleList:[]},{span:12,moduleList:[]}]}}}}]);

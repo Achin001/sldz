@@ -147,19 +147,19 @@ public class SldzAgent extends BaseCustomEntity {
     private String openid;
 
     /**
+     * 微信头像
+     */
+    @ApiModelProperty(value = "微信头像", example = "")
+    @Length(max = 600, message = "微信头像长度应小于600")
+    @TableField()
+    private String avatarurl;
+
+    /**
      * 代理商积分
      */
     @ApiModelProperty(value = "代理商积分", example = "0.0")
     @TableField()
     private Double agentIntegral;
-
-    /**
-     * 微信头像
-     */
-    @ApiModelProperty(value = "微信头像", example = "")
-    @Length(max = 100, message = "微信头像长度应小于100")
-    @TableField()
-    private String avatarurl;
 
     /**
      * 微信城市

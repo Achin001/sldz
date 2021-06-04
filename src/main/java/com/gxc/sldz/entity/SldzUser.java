@@ -48,8 +48,8 @@ public class SldzUser extends BaseCustomEntity {
     /**
      * 微信头像
      */
-    @ApiModelProperty(value = "微信头像", example = "")
-    @Length(max = 300, message = "微信头像长度应小于300")
+    @ApiModelProperty(value = "微信头像", example = "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJbOnwTr6w3Libq8bnE8SqjTica20BdHMRNr1CNTbSsibAh7x4FatSYBZHPN2jTWqHnLqmTr3153qVJQ/132")
+    @Length(max = 600, message = "微信头像长度应小于600")
     @TableField()
     private String avatarurl;
 

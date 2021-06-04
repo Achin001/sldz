@@ -242,3 +242,7 @@ ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0
 ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_bonus` double DEFAULT 0.00 COMMENT '代理商奖励金' AFTER `agent_grade`;
 -- 2021-06-04 13:10:35 by Achin
 ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_integral` double DEFAULT 0.00 COMMENT '代理商积分' AFTER `agent_bonus`;
+-- 2021-06-04 17:48:11 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `avatarUrl` varchar(600) COMMENT '微信头像' AFTER `openid`;
+-- 2021-06-04 17:48:23 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `avatarUrl` varchar(600) COMMENT '微信头像' AFTER `openid`;
