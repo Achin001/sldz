@@ -4,6 +4,6 @@ git init
 
 git add .
 
-git commit -m “新增了OSS签证接口”
+git commit -m “修改了头像可输入600”
 
 git push origin master
