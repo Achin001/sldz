@@ -62,6 +62,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @GetMapping("/keywords")
     public JsonResult keywords(SldzAgentDTO queryDto, Pagination pagination) throws Exception {
         String name = "agent_name";
+        String agent_grade_id = "agent_grade_id";
         QueryWrapper<SldzAgent> wrapper = new QueryWrapper();
         wrapper.like(StrUtil.isNotBlank(queryDto.getAgentName()), name, queryDto.getAgentName());
         // SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
@@ -105,6 +106,16 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @PutMapping("/{id}")
     public JsonResult updateEntityMapping(@PathVariable("id") Long id, @Valid @RequestBody SldzAgent entity) throws Exception {
         return super.updateEntity(id, entity);
+    }
+
+
+    @ApiOperation(value = "根据ID充值积分")
+    @PutMapping("Recharge/{id}")
+    public JsonResult RechargeByid(@PathVariable("id") Long id, @Valid @RequestBody SldzAgent entity) throws Exception {
+        if (sldzAgentService.RechargeByid(entity.getAgentIntegral(),id)){
+            return JsonResult.OK().data("添加成功");
+        }
+        return JsonResult.FAIL_OPERATION("添加失败");
     }
     // /**
     // * 根据id删除资源对象

@@ -5,7 +5,10 @@ import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.mapper.SldzAgentMapper;
 import com.gxc.sldz.service.SldzAgentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.xml.ws.Action;
 
 /**
 * 代理商相关Service实现
@@ -18,4 +21,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SldzAgentServiceImpl extends BaseCustomServiceImpl<SldzAgentMapper, SldzAgent> implements SldzAgentService {
 
+
+    @Autowired
+    SldzAgentMapper SldzAgentMapper;
+
+    @Override
+    public boolean RechargeByid(double integral, long id) {
+        return SldzAgentMapper.RechargeByid(integral,id);
+    }
 }

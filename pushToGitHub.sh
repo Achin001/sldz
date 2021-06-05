@@ -4,6 +4,6 @@ git init
 
 git add .
 
-git commit -m “修改了头像可输入600”
+git commit -m “添加了充值接口”
 
 git push origin master

@@ -23,7 +23,7 @@
 
         <java.version>1.8</java.version>
         <knife4j.version>2.0.4</knife4j.version>
-        <hutool.version>5.0.7</hutool.version>
+        <hutool.version>5.6.6</hutool.version>
         <diboot.version>2.2.0</diboot.version>
         <druid.version>1.1.21</druid.version>
         <jjwt.version>0.9.0</jjwt.version>
