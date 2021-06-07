@@ -63,14 +63,19 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
 
     /**
      * 根据id删除资源对象
-     * @param id
      * @return
      * @throws Exception
      */
     @ApiOperation(value = "根据ID删除数据")
-    @DeleteMapping("/{id}")
-    public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
-        return super.deleteEntity(id);
+    @DeleteMapping("/")
+    public JsonResult deleteEntityMapping(@Valid @RequestBody SldzAgentRel entity) throws Exception {
+        LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
+        wrapper.eq(SldzAgentRel::getSupRandom, entity.getSupRandom());
+         if(sldzAgentRelService.deleteEntities(wrapper)){
+             return JsonResult.OK().data("移除成功");
+         }
+        return JsonResult.FAIL_OPERATION("移除失败");
     }
 
 
@@ -97,11 +102,8 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @ApiOperation(value = "根据唯一编码获取二级代理商列表")
     @GetMapping("/relAgentListClassB")
     public JsonResult relAgentListClassB(SldzAgentRel queryDto) throws Exception {
-
         //所有二级
         List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.SldzAgentRels(queryDto.getSupRandom());
-
-
         List<SldzAgent> SldzAgentsList = new ArrayList<>();
         for(SldzAgentRel s :SldzAgentRel){
             LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
