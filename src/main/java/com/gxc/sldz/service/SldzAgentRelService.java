@@ -1,6 +1,9 @@
 package com.gxc.sldz.service;
 
 import com.gxc.sldz.entity.SldzAgentRel;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * 代理商关系表相关Service
@@ -10,5 +13,9 @@ import com.gxc.sldz.entity.SldzAgentRel;
  * Copyright © MyCompany
 */
 public interface SldzAgentRelService extends BaseCustomService<SldzAgentRel> {
+
+
+    List<SldzAgentRel> SldzAgentRels (@Param("sup_random") String sup_random);
+
 
 }

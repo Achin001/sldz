@@ -3,6 +3,10 @@ package com.gxc.sldz.mapper;
 import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzAgentRel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
 * 代理商关系表Mapper
@@ -14,5 +18,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SldzAgentRelMapper extends BaseCrudMapper<SldzAgentRel> {
 
+
+
+    //根据一级id查询出所有二级
+    @Select("SELECT * FROM sldz_agent_rel WHERE sup_random IN(SELECT sub_random FROM sldz_agent_rel WHERE sup_random = #{sup_random})")
+    List<SldzAgentRel> SldzAgentRels (@Param("sup_random") String sup_random);
 }
 

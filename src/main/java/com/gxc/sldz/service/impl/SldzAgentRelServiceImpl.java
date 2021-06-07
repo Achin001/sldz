@@ -5,7 +5,10 @@ import com.gxc.sldz.entity.SldzAgentRel;
 import com.gxc.sldz.mapper.SldzAgentRelMapper;
 import com.gxc.sldz.service.SldzAgentRelService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * 代理商关系表相关Service实现
@@ -17,5 +20,17 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class SldzAgentRelServiceImpl extends BaseCustomServiceImpl<SldzAgentRelMapper, SldzAgentRel> implements SldzAgentRelService {
+
+
+    @Autowired
+    SldzAgentRelMapper SldzAgentRelMapper;
+
+
+    @Override
+    public List<SldzAgentRel> SldzAgentRels(String sup_random) {
+        return SldzAgentRelMapper.SldzAgentRels(sup_random);
+    }
+
+
 
 }

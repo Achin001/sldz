@@ -78,7 +78,7 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @GetMapping("/relAgentListClassA")
     public JsonResult relAgentListClassA(SldzAgentRel queryDto) throws Exception {
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SldzAgentRel::getSubRandom, queryDto.getSubRandom());
+        wrapper.eq(SldzAgentRel::getSupRandom, queryDto.getSupRandom());
         List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.getEntityList(wrapper);
         List<SldzAgent> SldzAgentsList = new ArrayList<>();
         for(SldzAgentRel s :SldzAgentRel){
@@ -87,6 +87,9 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
             SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
             SldzAgentsList.add(SldzAgent);
         }
+        for(SldzAgent s :SldzAgentsList){
+            s.setAgentPasword("");
+        }
         return JsonResult.OK().data(SldzAgentsList);
     }
 
@@ -94,24 +97,20 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @ApiOperation(value = "根据唯一编码获取二级代理商列表")
     @GetMapping("/relAgentListClassB")
     public JsonResult relAgentListClassB(SldzAgentRel queryDto) throws Exception {
-        LambdaQueryWrapper<SldzAgentRel> wrapperA = new LambdaQueryWrapper<>();
-        wrapperA.eq(SldzAgentRel::getSubRandom, queryDto.getSubRandom());
-        //得到一级的列表
-        List<SldzAgentRel>  SldzAgentRelA = sldzAgentRelService.getEntityList(wrapperA);
-        List<SldzAgentRel>  SldzAgentRelB = new ArrayList<>();
-        for(SldzAgentRel s :SldzAgentRelA){
-            LambdaQueryWrapper<SldzAgentRel> wrapperB = new LambdaQueryWrapper<>();
-            wrapperB.eq(SldzAgentRel::getSubRandom, s.getSubRandom());
-            //得到二级的列表
-             SldzAgentRelB = sldzAgentRelService.getEntityList(wrapperB) ;
-        }
+
+        //所有二级
+        List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.SldzAgentRels(queryDto.getSupRandom());
+
 
         List<SldzAgent> SldzAgentsList = new ArrayList<>();
-        for(SldzAgentRel s :SldzAgentRelB){
+        for(SldzAgentRel s :SldzAgentRel){
             LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
             wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
             SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
             SldzAgentsList.add(SldzAgent);
+        }
+        for(SldzAgent s :SldzAgentsList){
+            s.setAgentPasword("");
         }
         return JsonResult.OK().data(SldzAgentsList);
     }
