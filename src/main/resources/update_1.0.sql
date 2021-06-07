@@ -246,3 +246,7 @@ ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_integral` double DEFAULT 0.00 COMM
 ALTER TABLE `sldz_user` MODIFY COLUMN `avatarUrl` varchar(600) COMMENT '微信头像' AFTER `openid`;
 -- 2021-06-04 17:48:23 by Achin
 ALTER TABLE `sldz_agent` MODIFY COLUMN `avatarUrl` varchar(600) COMMENT '微信头像' AFTER `openid`;
+-- 2021-06-07 14:29:27 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sup_random` varchar(100) COMMENT '上级编号' AFTER `id`;
+-- 2021-06-07 14:29:27 by Achin
+ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sub_random` varchar(100) COMMENT '下级编号' AFTER `sup_random`;

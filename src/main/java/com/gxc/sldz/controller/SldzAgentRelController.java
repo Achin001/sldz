@@ -3,8 +3,11 @@ package com.gxc.sldz.controller;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
+import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.service.RandomServer;
+import com.gxc.sldz.service.SldzAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -17,6 +20,7 @@ import com.gxc.sldz.vo.SldzAgentRelDetailVO;
 import com.gxc.sldz.service.SldzAgentRelService;
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,33 +39,8 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @Autowired
     private SldzAgentRelService sldzAgentRelService;
 
-
-
-    /**
-     * 查询ViewObject的分页数据
-     * <p>
-     * url请求参数示例: /list?field=abc&pageIndex=1&orderBy=abc:DESC
-     * </p>
-     * @return
-     * @throws Exception
-     */
-//    @ApiOperation(value = "获取列表分页数据")
-//    @GetMapping("/list")
-//    public JsonResult getViewObjectListMapping(SldzAgentRelDTO queryDto, Pagination pagination) throws Exception {
-//        return super.getViewObjectList(queryDto, pagination, SldzAgentRelListVO.class);
-//    }
-
-    /**
-     * 根据资源id查询ViewObject
-     * @param id ID
-     * @return
-     * @throws Exception
-     */
-//    @ApiOperation(value = "根据ID获取详情数据")
-//    @GetMapping("/{id}")
-//    public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
-//        return super.getViewObject(id, SldzAgentRelDetailVO.class);
-//    }
+    @Autowired
+    private SldzAgentService sldzAgentService;
 
     /**
      * 创建资源对象
@@ -72,27 +51,15 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgentRel entity) throws Exception {
-        //查询该下级是否有上级
+        // 查询该下级是否有上级
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
-        SldzAgentRel SldzAgentRel =   sldzAgentRelService.getSingleEntity(wrapper);
-        if (ObjectUtil.isNotNull(SldzAgentRel)){
+        SldzAgentRel SldzAgentRel = sldzAgentRelService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgentRel)) {
             return JsonResult.FAIL_OPERATION("该代理商有上级");
         }
         return super.createEntity(entity);
     }
-
-    /**
-     * 根据ID更新资源对象
-     * @param entity
-     * @return JsonResult
-     * @throws Exception
-     */
-//    @ApiOperation(value = "根据ID更新数据")
-//    @PutMapping("/{id}")
-//    public JsonResult updateEntityMapping(@PathVariable("id") Long id, @Valid @RequestBody SldzAgentRel entity) throws Exception {
-//        return super.updateEntity(id, entity);
-//    }
 
     /**
      * 根据id删除资源对象
@@ -104,5 +71,48 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @DeleteMapping("/{id}")
     public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
         return super.deleteEntity(id);
+    }
+
+
+    @ApiOperation(value = "根据唯一编码获取一级代理商列表")
+    @GetMapping("/relAgentListClassA")
+    public JsonResult relAgentListClassA(SldzAgentRel queryDto) throws Exception {
+        LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgentRel::getSubRandom, queryDto.getSubRandom());
+        List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.getEntityList(wrapper);
+        List<SldzAgent> SldzAgentsList = new ArrayList<>();
+        for(SldzAgentRel s :SldzAgentRel){
+            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
+            SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
+            SldzAgentsList.add(SldzAgent);
+        }
+        return JsonResult.OK().data(SldzAgentsList);
+    }
+
+
+    @ApiOperation(value = "根据唯一编码获取二级代理商列表")
+    @GetMapping("/relAgentListClassB")
+    public JsonResult relAgentListClassB(SldzAgentRel queryDto) throws Exception {
+        LambdaQueryWrapper<SldzAgentRel> wrapperA = new LambdaQueryWrapper<>();
+        wrapperA.eq(SldzAgentRel::getSubRandom, queryDto.getSubRandom());
+        //得到一级的列表
+        List<SldzAgentRel>  SldzAgentRelA = sldzAgentRelService.getEntityList(wrapperA);
+        List<SldzAgentRel>  SldzAgentRelB = new ArrayList<>();
+        for(SldzAgentRel s :SldzAgentRelA){
+            LambdaQueryWrapper<SldzAgentRel> wrapperB = new LambdaQueryWrapper<>();
+            wrapperB.eq(SldzAgentRel::getSubRandom, s.getSubRandom());
+            //得到二级的列表
+             SldzAgentRelB = sldzAgentRelService.getEntityList(wrapperB) ;
+        }
+
+        List<SldzAgent> SldzAgentsList = new ArrayList<>();
+        for(SldzAgentRel s :SldzAgentRelB){
+            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
+            SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
+            SldzAgentsList.add(SldzAgent);
+        }
+        return JsonResult.OK().data(SldzAgentsList);
     }
 }
