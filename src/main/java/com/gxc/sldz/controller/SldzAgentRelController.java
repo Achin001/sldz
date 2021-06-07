@@ -67,7 +67,7 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
      * @throws Exception
      */
     @ApiOperation(value = "根据ID删除数据")
-    @DeleteMapping("/")
+    @PostMapping("/")
     public JsonResult deleteEntityMapping(@Valid @RequestBody SldzAgentRel entity) throws Exception {
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
