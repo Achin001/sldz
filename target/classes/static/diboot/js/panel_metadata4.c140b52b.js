@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["panel_metadata4"],{"73e1":function(a,t,e){"use strict";e.r(t);var n=e("9bc6");t["default"]=n["a"]},"9bc6":function(a,t,e){"use strict";t["a"]={metadata:{height:36}}}}]);

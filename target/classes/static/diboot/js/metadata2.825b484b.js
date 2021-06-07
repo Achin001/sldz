@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["metadata2"],{"9b37":function(a,t,n){"use strict";n.r(t),t["default"]={metadata:{columns:[]}}}}]);

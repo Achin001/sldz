@@ -1,5 +1,9 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.service.RandomServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +72,13 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgentRel entity) throws Exception {
+        //查询该下级是否有上级
+        LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
+        SldzAgentRel SldzAgentRel =   sldzAgentRelService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgentRel)){
+            return JsonResult.FAIL_OPERATION("该代理商有上级");
+        }
         return super.createEntity(entity);
     }
 
