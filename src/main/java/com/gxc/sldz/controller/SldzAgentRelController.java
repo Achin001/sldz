@@ -51,6 +51,9 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgentRel entity) throws Exception {
+        if(entity.getSubRandom() == entity.getSupRandom()){
+            return JsonResult.FAIL_OPERATION("该代理商有上级");
+        }
         // 查询该下级是否有上级
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
