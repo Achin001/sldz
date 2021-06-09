@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.gxc.sldz.entity.SldzAdmin;
+import com.gxc.sldz.entity.SldzAgentRel;
 import com.gxc.sldz.service.RandomServer;
 import com.gxc.sldz.service.SldzAgentRelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,13 +109,18 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         return super.updateEntity(id, entity);
     }
 
-
     @ApiOperation(value = "根据ID充值积分")
     @PutMapping("Recharge/{id}")
     public JsonResult RechargeByid(@PathVariable("id") Long id, @Valid @RequestBody SldzAgent entity) throws Exception {
-        if (sldzAgentService.RechargeByid(entity.getAgentIntegral(),id)){
-            return JsonResult.OK().data("添加成功");
-        }
+        // if (sldzAgentService.RechargeByid(entity.getAgentIntegral(),id)){
+        // return JsonResult.OK().data("添加成功");
+        // }
+        // 充值人的对象
+        SldzAgent RechargeAgent = sldzAgentService.getEntity(id);
+        // 查询上级
+        SldzAgentRel SldzAgentRel = sldzAgentRelService.sub_find_sup(RechargeAgent.getAgentRandom());
+        // 查询上上级
+        // 业务提成计算
         return JsonResult.FAIL_OPERATION("添加失败");
     }
     // /**

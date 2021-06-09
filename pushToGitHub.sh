@@ -4,6 +4,6 @@ git init
 
 git add .
 
-git commit -m “添加了充值接口”
+git commit -m “添加分组接口”
 
 git push origin master

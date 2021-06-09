@@ -31,6 +31,15 @@ public class SldzAgentRelServiceImpl extends BaseCustomServiceImpl<SldzAgentRelM
         return SldzAgentRelMapper.SldzAgentRels(sup_random);
     }
 
+    @Override
+    public SldzAgentRel sub_find_sup(String sub_random) {
+        return SldzAgentRelMapper.sub_find_sup(sub_random);
+    }
+
+    @Override
+    public SldzAgentRel sub_find_supsup(String sub_random) {
+        return SldzAgentRelMapper.sub_find_supsup(sub_random);
+    }
 
 
 }

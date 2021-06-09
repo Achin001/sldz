@@ -250,3 +250,13 @@ ALTER TABLE `sldz_agent` MODIFY COLUMN `avatarUrl` varchar(600) COMMENT '微信�
 ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sup_random` varchar(100) COMMENT '上级编号' AFTER `id`;
 -- 2021-06-07 14:29:27 by Achin
 ALTER TABLE `sldz_agent_rel` MODIFY COLUMN `sub_random` varchar(100) COMMENT '下级编号' AFTER `sup_random`;
+-- 2021-06-09 12:39:34 by Achin
+ALTER TABLE `sldz_agent` ADD COLUMN `agent_group_id` bigint COMMENT '分组id' AFTER `agent_integral`;
+-- 2021-06-09 12:39:34 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `openid` varchar(100) COMMENT '微信openid' AFTER `agent_group_id`;
+-- 2021-06-09 12:40:02 by Achin
+CREATE TABLE `sldz_agent_group`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商分组';
+-- 2021-06-09 12:40:28 by Achin
+ALTER TABLE `sldz_agent_group` ADD COLUMN `group_name` varchar(100) COMMENT '分组名称' AFTER `id`;
+-- 2021-06-09 12:40:28 by Achin
+ALTER TABLE `sldz_agent_group` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `group_name`;

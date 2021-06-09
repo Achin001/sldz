@@ -2,6 +2,7 @@ package com.gxc.sldz.service;
 
 import com.gxc.sldz.entity.SldzAgentRel;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -17,5 +18,9 @@ public interface SldzAgentRelService extends BaseCustomService<SldzAgentRel> {
 
     List<SldzAgentRel> SldzAgentRels (@Param("sup_random") String sup_random);
 
+
+    SldzAgentRel sub_find_sup (@Param("sub_random") String sub_random);
+
+    SldzAgentRel sub_find_supsup (@Param("sub_random") String sub_random);
 
 }

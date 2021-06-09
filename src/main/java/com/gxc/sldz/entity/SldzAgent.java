@@ -162,6 +162,13 @@ public class SldzAgent extends BaseCustomEntity {
     private Double agentIntegral;
 
     /**
+     * 分组id
+     */
+    @ApiModelProperty(value = "分组id", example = "")
+    @TableField()
+    private Long agentGroupId;
+
+    /**
      * 微信城市
      */
     @ApiModelProperty(value = "微信城市", example = "")

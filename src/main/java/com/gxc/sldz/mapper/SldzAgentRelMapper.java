@@ -20,8 +20,17 @@ public interface SldzAgentRelMapper extends BaseCrudMapper<SldzAgentRel> {
 
 
 
-    //根据一级id查询出所有二级
+    //根据一级编号查询出所有二级
     @Select("SELECT * FROM sldz_agent_rel WHERE sup_random IN(SELECT sub_random FROM sldz_agent_rel WHERE sup_random = #{sup_random})")
     List<SldzAgentRel> SldzAgentRels (@Param("sup_random") String sup_random);
+
+
+    //根据二级编号查出上级编号
+    @Select("SELECT * FROM sldz_agent_rel WHERE sub_random  = #{sub_random}")
+    SldzAgentRel sub_find_sup (@Param("sub_random") String sub_random);
+
+    //根据二级编号查出上上级编号
+    @Select("SELECT * FROM sldz_agent_rel WHERE sub_random  IN (SELECT sup_random FROM sldz_agent_rel WHERE sub_random = #{sub_random})")
+    SldzAgentRel sub_find_supsup (@Param("sub_random") String sub_random);
 }
 
