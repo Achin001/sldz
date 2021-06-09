@@ -8,9 +8,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.gxc.sldz.entity.SldzAdmin;
-import com.gxc.sldz.entity.SldzAgent;
-import com.gxc.sldz.entity.SldzBonuSsetting;
+import com.gxc.sldz.entity.*;
+import com.gxc.sldz.service.SldzAgentProductPriceService;
 import com.gxc.sldz.service.SldzAgentService;
 import com.gxc.sldz.service.SldzBonuSsettingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 import com.diboot.core.vo.*;
-import com.gxc.sldz.entity.SldzAgentGroup;
 import com.gxc.sldz.dto.SldzAgentGroupDTO;
 import com.gxc.sldz.vo.SldzAgentGroupListVO;
 import com.gxc.sldz.vo.SldzAgentGroupDetailVO;
@@ -51,6 +49,9 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
 
     @Autowired
     private SldzBonuSsettingService sldzBonuSsettingService;
+
+    @Autowired
+    private SldzAgentProductPriceService sldzAgentProductPriceService;
 
     /***
     * 查询ViewObject的分页数据
@@ -188,6 +189,49 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         }
         Map map = new HashMap();
         map.put("msg",los+"人已更改为："+Bonus);
+        return JsonResult.OK().data(map);
+    }
+
+
+    @ApiOperation(value = "为分组设置产品价格")
+    @PutMapping("/groupProductPriceSetting")
+    public JsonResult groupProductPriceSetting(Long groupId,
+                                        Long productId,
+                                        double price) throws Exception {
+        //记录成功次数
+        int los = 0;
+        //获取该分组下所有代理商
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
+        wrapper.eq(SldzAgent::getAgentGroupId,groupId);
+        List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
+        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper();
+        for (SldzAgent s :SldzAgents){
+            //查询该代理商有无该产的价格
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,s.getAgentRandom());
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId,productId);
+            SldzAgentProductPrice SldzAgentProductPrice = sldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
+            if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
+                //有记录则更改
+                UpdateWrapper<SldzAgentProductPrice> UpdatewrapperSldzAgentProductPrice = new UpdateWrapper();
+                UpdatewrapperSldzAgentProductPrice.set("product_price",price);
+                UpdatewrapperSldzAgentProductPrice.eq("product_id",productId);
+                UpdatewrapperSldzAgentProductPrice.eq("agent_random",s.getAgentRandom());
+                if(sldzAgentProductPriceService. updateEntity(UpdatewrapperSldzAgentProductPrice)){
+                    los+=1;
+                }
+            }else {
+                //无记录则新增
+                if ( sldzAgentProductPriceService.createEntity(
+                        new SldzAgentProductPrice()
+                                .setAgentRandom(s.getAgentRandom())
+                                .setProductPrice(price)
+                                .setProductId(productId))){
+                    los+=1;
+                }
+            }
+        }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+price);
         return JsonResult.OK().data(map);
     }
 

@@ -23,36 +23,38 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
-* 奖励金设置 Entity定义
+* 代理商产品价格 Entity定义
 * @author Achin
 * @version 1.0
 * @date 2021-06-09
 * Copyright © MyCompany
 */
-@ApiModel(value = "奖励金设置")
+@ApiModel(value = "代理商产品价格")
 @Getter @Setter @Accessors(chain = true)
-public class SldzBonuSsetting extends BaseCustomEntity {
-    private static final long serialVersionUID = -7377901979401977312L;
+public class SldzAgentProductPrice extends BaseCustomEntity {
+    private static final long serialVersionUID = -3420540741833738220L;
 
     /**
     * 产品id 
     */
-    @ApiModelProperty(value="产品id", example = "0")
+    @ApiModelProperty(value="产品id", example = "")
     @TableField()
     private Long productId;
+
     /**
-    * 代理商id 
+    * 代理商编码 
     */
-    @ApiModelProperty(value="代理商编码", example = "0")
+    @ApiModelProperty(value="代理商编码", example = "")
+    @Length(max=100, message="代理商编码长度应小于100")
     @TableField()
     private String agentRandom;
 
     /**
-    * 奖励金 
+    * 价格 
     */
-    @ApiModelProperty(value="奖励金", example = "0.0")
+    @ApiModelProperty(value="价格", example = "")
     @TableField()
-    private Double bonus;
+    private Double productPrice;
 
 
 } 

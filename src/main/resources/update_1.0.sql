@@ -278,3 +278,13 @@ ALTER TABLE `sldz_bonu_ssetting` CHANGE COLUMN agent_id `agent_random` varchar(1
 ALTER TABLE `sldz_bonu_ssetting` MODIFY COLUMN `agent_random` varchar(100) DEFAULT '0' COMMENT '代理商唯一编码' AFTER `product_id`;
 -- 2021-06-09 13:36:52 by Achin
 ALTER TABLE `sldz_bonu_ssetting` MODIFY COLUMN `bonus` double DEFAULT 0 COMMENT '奖励金' AFTER `agent_random`;
+-- 2021-06-09 18:16:44 by Achin
+CREATE TABLE `sldz_agent_prduct_price`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '代理商产品价格';
+-- 2021-06-09 18:20:06 by Achin
+ALTER TABLE `sldz_agent_product_price` ADD COLUMN `product_id` bigint COMMENT '产品id' AFTER `id`;
+-- 2021-06-09 18:20:06 by Achin
+ALTER TABLE `sldz_agent_product_price` ADD COLUMN `agent_random` varchar(100) COMMENT '代理商编码' AFTER `product_id`;
+-- 2021-06-09 18:20:06 by Achin
+ALTER TABLE `sldz_agent_product_price` ADD COLUMN `product_price` double COMMENT '价格' AFTER `agent_random`;
+-- 2021-06-09 18:20:06 by Achin
+ALTER TABLE `sldz_agent_product_price` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `product_price`;
