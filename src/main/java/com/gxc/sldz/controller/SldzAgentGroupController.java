@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -9,7 +10,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.entity.SldzBonuSsetting;
 import com.gxc.sldz.service.SldzAgentService;
+import com.gxc.sldz.service.SldzBonuSsettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -24,7 +27,9 @@ import com.gxc.sldz.service.SldzAgentGroupService;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * 代理商分组 相关Controller
@@ -43,6 +48,9 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
 
     @Autowired
     private SldzAgentService sldzAgentService;
+
+    @Autowired
+    private SldzBonuSsettingService sldzBonuSsettingService;
 
     /***
     * 查询ViewObject的分页数据
@@ -106,6 +114,14 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         return JsonResult.OK().data(sldzAgentService.getEntityList(wrapper));
     }
 
+    @ApiOperation(value = "获取该分组成员")
+    @GetMapping("/getgroupedAgents")
+    public JsonResult getgroupedAgents(Long groupId) throws Exception{
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgent::getAgentGroupId,groupId);
+        return JsonResult.OK().data(sldzAgentService.getEntityList(wrapper));
+    }
+
     @ApiOperation(value = "为分组添加代理商")
     @PutMapping("/agentToGroupAdd")
     public JsonResult agentToGroupAdd(Long groupId, Long agentId) throws Exception {
@@ -131,6 +147,51 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         }
         return JsonResult.FAIL_OPERATION("移除失败");
     }
+
+
+    @ApiOperation(value = "为分组设置推广佣金")
+    @PutMapping("/groupBonusSetting")
+    public JsonResult groupBonusSetting(Long groupId,
+                                        Long productId,
+                                        double Bonus) throws Exception {
+        //记录成功次数
+        int los = 0;
+        //获取该分组下所有代理商
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
+        wrapper.eq(SldzAgent::getAgentGroupId,groupId);
+        List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
+        LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+        for (SldzAgent s :SldzAgents){
+            //查询该代理商有无奖励金
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,s.getAgentRandom());
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,productId);
+            SldzBonuSsetting SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+            if (ObjectUtil.isNotNull(SldzBonuSsettings)){
+                //有记录则更改
+                UpdateWrapper<SldzAgent> UpdatewrapperBonuSsetting = new UpdateWrapper();
+                UpdatewrapperBonuSsetting.set("bonus",Bonus);
+                UpdatewrapperBonuSsetting.eq("product_id",productId);
+                UpdatewrapperBonuSsetting.eq("agent_random",s.getAgentRandom());
+                if(sldzBonuSsettingService. updateEntity(UpdatewrapperBonuSsetting)){
+                    los+=1;
+                }
+            }else {
+                //无记录则新增
+                if ( sldzBonuSsettingService.createEntity(
+                        new SldzBonuSsetting()
+                        .setAgentRandom(s.getAgentRandom())
+                        .setBonus(Bonus)
+                        .setProductId(productId))){
+                    los+=1;
+                }
+            }
+        }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+Bonus);
+        return JsonResult.OK().data(map);
+    }
+
+
 
 
     /***

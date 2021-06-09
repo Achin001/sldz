@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["panel_metadata7"],{c0e5:function(a,t,e){"use strict";e.r(t),t["default"]={metadata:{propConfigList:[]}}}}]);

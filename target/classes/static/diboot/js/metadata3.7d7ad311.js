@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["metadata3"],{"57af":function(a,t,e){"use strict";e.r(t),t["default"]={metadata:{primaryKey:"id",columns:[],colNumber:1},scriptConfig:{methods:[]}}}}]);

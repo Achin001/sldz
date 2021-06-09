@@ -262,3 +262,19 @@ ALTER TABLE `sldz_agent_group` ADD COLUMN `group_name` varchar(100) COMMENT '分
 ALTER TABLE `sldz_agent_group` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `group_name`;
 -- 2021-06-09 13:03:56 by Achin
 ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_group_id` bigint DEFAULT 0 COMMENT '分组id' AFTER `agent_integral`;
+-- 2021-06-09 13:30:41 by Achin
+CREATE TABLE `sldz_bonu_ssetting`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '奖励金设置';
+-- 2021-06-09 13:32:19 by Achin
+ALTER TABLE `sldz_bonu_ssetting` ADD COLUMN `product_id` bigint DEFAULT 0 COMMENT '产品id' AFTER `id`;
+-- 2021-06-09 13:32:19 by Achin
+ALTER TABLE `sldz_bonu_ssetting` ADD COLUMN `agent_id` bigint DEFAULT 0 COMMENT '代理商id' AFTER `product_id`;
+-- 2021-06-09 13:32:20 by Achin
+ALTER TABLE `sldz_bonu_ssetting` ADD COLUMN `bonus` double DEFAULT 0.00 COMMENT '奖励金' AFTER `agent_id`;
+-- 2021-06-09 13:32:20 by Achin
+ALTER TABLE `sldz_bonu_ssetting` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `bonus`;
+-- 2021-06-09 13:36:52 by Achin
+ALTER TABLE `sldz_bonu_ssetting` CHANGE COLUMN agent_id `agent_random` varchar(100) DEFAULT '0' COMMENT '代理商唯一编码' AFTER `product_id`;
+-- 2021-06-09 13:36:52 by Achin
+ALTER TABLE `sldz_bonu_ssetting` MODIFY COLUMN `agent_random` varchar(100) DEFAULT '0' COMMENT '代理商唯一编码' AFTER `product_id`;
+-- 2021-06-09 13:36:52 by Achin
+ALTER TABLE `sldz_bonu_ssetting` MODIFY COLUMN `bonus` double DEFAULT 0 COMMENT '奖励金' AFTER `agent_random`;

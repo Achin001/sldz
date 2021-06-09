@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["panel_metadata5"],{"0df9":function(t,a,e){"use strict";a["a"]={metadata:{panelConfig:void 0},scriptConfig:{props:[],methods:[],event:[],emitEvent:[]}}},6953:function(t,a,e){"use strict";e.r(a);var n=e("0df9");a["default"]=n["a"]}}]);
