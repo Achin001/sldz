@@ -1,5 +1,15 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gxc.sldz.entity.SldzAdmin;
+import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.service.SldzAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -30,6 +40,9 @@ import java.util.List;
 public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzAgentGroup> {
     @Autowired
     private SldzAgentGroupService sldzAgentGroupService;
+
+    @Autowired
+    private SldzAgentService sldzAgentService;
 
     /***
     * 查询ViewObject的分页数据
@@ -81,6 +94,45 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         return super.updateEntity(id, entity);
     }
 
+
+
+
+
+    @ApiOperation(value = "获取未分组的代理商")
+    @GetMapping("/getUngroupedAgents")
+    public JsonResult getUngroupedAgents( ) throws Exception{
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgent::getAgentGroupId,0);
+        return JsonResult.OK().data(sldzAgentService.getEntityList(wrapper));
+    }
+
+    @ApiOperation(value = "为分组添加代理商")
+    @PutMapping("/agentToGroupAdd")
+    public JsonResult agentToGroupAdd(Long groupId, Long agentId) throws Exception {
+        //把该代理商的id改成该分组id
+        UpdateWrapper<SldzAgent> wrapper = new UpdateWrapper();
+        wrapper.set("agent_group_id",groupId);
+        wrapper.eq("id",agentId);
+         if (sldzAgentService.updateEntity(wrapper)){
+             return JsonResult.OK().data("添加成功");
+         }
+        return JsonResult.FAIL_OPERATION("添加失败");
+    }
+
+    @ApiOperation(value = "为分组移除代理商")
+    @PutMapping("/agentToGroupRemove")
+    public JsonResult agentToGroupRemove(Long agentId) throws Exception {
+        //把该代理商的id改成该分组id
+        UpdateWrapper<SldzAgent> wrapper = new UpdateWrapper();
+        wrapper.set("agent_group_id",0);
+        wrapper.eq("id",agentId);
+        if (sldzAgentService.updateEntity(wrapper)){
+            return JsonResult.OK().data("移除成功");
+        }
+        return JsonResult.FAIL_OPERATION("移除失败");
+    }
+
+
     /***
     * 根据id删除资源对象
     * @param id
@@ -92,5 +144,6 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
 //    public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
 //        return super.deleteEntity(id);
 //    }
+
 
 } 

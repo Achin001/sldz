@@ -260,3 +260,5 @@ CREATE TABLE `sldz_agent_group`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMEN
 ALTER TABLE `sldz_agent_group` ADD COLUMN `group_name` varchar(100) COMMENT '分组名称' AFTER `id`;
 -- 2021-06-09 12:40:28 by Achin
 ALTER TABLE `sldz_agent_group` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `group_name`;
+-- 2021-06-09 13:03:56 by Achin
+ALTER TABLE `sldz_agent` MODIFY COLUMN `agent_group_id` bigint DEFAULT 0 COMMENT '分组id' AFTER `agent_integral`;
