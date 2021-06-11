@@ -9,9 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gxc.sldz.entity.*;
-import com.gxc.sldz.service.SldzAgentProductPriceService;
-import com.gxc.sldz.service.SldzAgentService;
-import com.gxc.sldz.service.SldzBonuSsettingService;
+import com.gxc.sldz.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -21,7 +19,6 @@ import com.diboot.core.vo.*;
 import com.gxc.sldz.dto.SldzAgentGroupDTO;
 import com.gxc.sldz.vo.SldzAgentGroupListVO;
 import com.gxc.sldz.vo.SldzAgentGroupDetailVO;
-import com.gxc.sldz.service.SldzAgentGroupService;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
@@ -52,6 +49,9 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
 
     @Autowired
     private SldzAgentProductPriceService sldzAgentProductPriceService;
+
+    @Autowired
+    private SldzAgentLevelRewardService sldzAgentLevelRewardService;
 
     /***
     * 查询ViewObject的分页数据
@@ -234,6 +234,50 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         map.put("msg",los+"人已更改为："+price);
         return JsonResult.OK().data(map);
     }
+
+
+    @ApiOperation(value = "为分组设置直推间推报酬")
+    @PutMapping("/groupRemuneration")
+    public JsonResult groupRemuneration(Long groupId,
+                                        double RewardDirect,
+                                        double RewardIndirect) throws Exception {
+        //记录成功次数
+        int los = 0;
+        //获取该分组下所有代理商
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
+        wrapper.eq(SldzAgent::getAgentGroupId,groupId);
+        List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
+        LambdaQueryWrapper<SldzAgentLevelReward> SldzAgentLevelRewardwrapper = new LambdaQueryWrapper();
+        for (SldzAgent s :SldzAgents){
+            //查询该代理商有无奖励
+            SldzAgentLevelRewardwrapper.eq(SldzAgentLevelReward::getAgentRandom,s.getAgentRandom());
+            SldzAgentLevelReward SldzAgentLevelReward = sldzAgentLevelRewardService.getSingleEntity(SldzAgentLevelRewardwrapper);
+            if (ObjectUtil.isNotNull(SldzAgentLevelReward)){
+                //有记录则更改
+                UpdateWrapper<SldzAgentLevelReward> UpdatewrapperSldzAgentLevelReward = new UpdateWrapper();
+                UpdatewrapperSldzAgentLevelReward.set("reward_direct",RewardDirect);
+                UpdatewrapperSldzAgentLevelReward.set("reward_indirect",RewardIndirect);
+                UpdatewrapperSldzAgentLevelReward.eq("agent_random",s.getAgentRandom());
+                if(sldzAgentProductPriceService. updateEntity(UpdatewrapperSldzAgentLevelReward)){
+                    los+=1;
+                }
+            }else {
+                //无记录则新增
+                if ( sldzAgentLevelRewardService.createEntity(
+                        new SldzAgentLevelReward()
+                                .setAgentRandom(s.getAgentRandom())
+                                .setRewardDirect(RewardDirect)
+                                .setRewardIndirect(RewardIndirect))){
+                    los+=1;
+                }
+            }
+        }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改");
+        return JsonResult.OK().data(map);
+    }
+
+
 
 
 
