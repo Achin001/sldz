@@ -1,6 +1,7 @@
 package com.gxc.sldz.mapper;
 
 import com.diboot.core.mapper.BaseCrudMapper;
+import com.diboot.core.util.S;
 import com.gxc.sldz.entity.SldzAgent;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,7 +19,7 @@ public interface SldzAgentMapper extends BaseCrudMapper<SldzAgent> {
 
 
 
-    @Update("UPDATE sldz_agent SET agent_integral = agent_integral+ #{integral} WHERE id = #{id} ")
-    boolean RechargeByid(@Param("integral") double integral, @Param("id")  long id);
+    @Update("UPDATE sldz_agent SET agent_integral = agent_integral+#{integral} WHERE agent_random = #{Random}")
+    boolean RechargeByRandom(@Param("integral") double integral, @Param("Random") String Random);
 }
 

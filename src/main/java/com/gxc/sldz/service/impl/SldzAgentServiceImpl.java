@@ -26,7 +26,7 @@ public class SldzAgentServiceImpl extends BaseCustomServiceImpl<SldzAgentMapper,
     SldzAgentMapper SldzAgentMapper;
 
     @Override
-    public boolean RechargeByid(double integral, long id) {
-        return SldzAgentMapper.RechargeByid(integral,id);
+    public boolean RechargeByRandom(double integral, String Random) {
+        return SldzAgentMapper.RechargeByRandom(integral,Random);
     }
 }
