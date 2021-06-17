@@ -241,6 +241,7 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
     public JsonResult groupRemuneration(Long groupId,
                                         double RewardDirect,
                                         double RewardIndirect) throws Exception {
+
         //记录成功次数
         int los = 0;
         //获取该分组下所有代理商
@@ -258,7 +259,7 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
                 UpdatewrapperSldzAgentLevelReward.set("reward_direct",RewardDirect);
                 UpdatewrapperSldzAgentLevelReward.set("reward_indirect",RewardIndirect);
                 UpdatewrapperSldzAgentLevelReward.eq("agent_random",s.getAgentRandom());
-                if(sldzAgentProductPriceService. updateEntity(UpdatewrapperSldzAgentLevelReward)){
+                if(sldzAgentLevelRewardService. updateEntity(UpdatewrapperSldzAgentLevelReward)){
                     los+=1;
                 }
             }else {
