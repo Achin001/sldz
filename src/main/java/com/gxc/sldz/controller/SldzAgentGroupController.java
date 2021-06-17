@@ -248,9 +248,10 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
         wrapper.eq(SldzAgent::getAgentGroupId,groupId);
         List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
-        LambdaQueryWrapper<SldzAgentLevelReward> SldzAgentLevelRewardwrapper = new LambdaQueryWrapper();
+
         for (SldzAgent s :SldzAgents){
             //查询该代理商有无奖励
+            LambdaQueryWrapper<SldzAgentLevelReward> SldzAgentLevelRewardwrapper = new LambdaQueryWrapper();
             SldzAgentLevelRewardwrapper.eq(SldzAgentLevelReward::getAgentRandom,s.getAgentRandom());
             SldzAgentLevelReward SldzAgentLevelReward = sldzAgentLevelRewardService.getSingleEntity(SldzAgentLevelRewardwrapper);
             if (ObjectUtil.isNotNull(SldzAgentLevelReward)){

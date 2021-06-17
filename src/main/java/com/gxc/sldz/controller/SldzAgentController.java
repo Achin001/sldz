@@ -147,11 +147,12 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
                     .setIntegralMoney(RechargePoints)
                     .setIntegralType(1l));
             //奖励人加奖励金
-//            for(SuperiorShouldBeRewardedVO  s :  SuperiorShouldBeRewardedVO){
-//                //记录奖励金记录（收入）
-//                s.getAgentRandom();
-//                sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog().);
-//            }
+            for(SuperiorShouldBeRewardedVO  s :  SuperiorShouldBeRewardedVO){
+                //记录奖励金记录（收入）
+
+                s.getAgentRandom();
+                sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog());
+            }
 
         }
 
