@@ -19,7 +19,15 @@ public interface SldzAgentMapper extends BaseCrudMapper<SldzAgent> {
 
 
 
+    //加积分
     @Update("UPDATE sldz_agent SET agent_integral = agent_integral+#{integral} WHERE agent_random = #{Random}")
     boolean RechargeByRandom(@Param("integral") double integral, @Param("Random") String Random);
+
+
+//    加奖励金
+    @Update("UPDATE sldz_agent SET agent_bonus = agent_bonus+ #{agent_bonus} WHERE agent_random = #{agent_random}")
+    boolean PluszBonusByRandom(@Param("bonus") double bonus, @Param("Random") String Random);
+
+
 }
 

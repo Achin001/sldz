@@ -25,7 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 代理商 相关Controller
@@ -135,7 +137,8 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
             String Random,
             double RechargePoints,
             @Valid @RequestBody List<SuperiorShouldBeRewardedVO> SuperiorShouldBeRewardedVO) throws Exception {
-
+        int i = 0;
+        SldzAgent sldzAgent =  getAgent(Random);
         //充值人加积分
         if (sldzAgentService.RechargeByRandom(RechargePoints, Random)) {
            //充值成功
@@ -148,21 +151,21 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
                     .setIntegralType(1l));
             //奖励人加奖励金
             for(SuperiorShouldBeRewardedVO  s :  SuperiorShouldBeRewardedVO){
-                //记录奖励金记录（收入）
-
-                s.getAgentRandom();
-                sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog());
+                if (sldzAgentService. PluszBonusByRandom(s.getBonus(),s.getAgentRandom())){
+                    //记录奖励金记录（收入）
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(s.getAgentRandom())
+                            .setIntegralType(1l)
+                            .setIntegralMoney(s.getBonus())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent(sldzAgent.getAgentName()+"充值："+RechargePoints+",您获得"+s.getBonus()+"("+s.getProportion()+")")
+                    );
+                    i++;
+                }
             }
-
+            return JsonResult.OK().data("充值成功,"+"奖励金发放成功人数："+i);
         }
-
-
-
-
-
-
-
-        return JsonResult.FAIL_OPERATION("添加失败");
+        return JsonResult.FAIL_OPERATION("充值失败");
     }
 
     @ApiOperation(value = "根据充值对象查询该上级应得奖励")
@@ -232,6 +235,15 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         SldzAgentRel SldzAgentRel = sldzAgentRelService.sub_find_supsup(Random);
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgent::getAgentRandom, SldzAgentRel.getSupRandom());
+        return sldzAgentService.getSingleEntity(wrapper);
+    }
+
+
+
+    public SldzAgent getAgent(String Random) {
+        // 查询本级
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgent::getAgentRandom, Random);
         return sldzAgentService.getSingleEntity(wrapper);
     }
 

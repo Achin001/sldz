@@ -1,6 +1,7 @@
 package com.gxc.sldz.service;
 
 import com.gxc.sldz.entity.SldzAgent;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * 代理商相关Service
@@ -13,4 +14,6 @@ public interface SldzAgentService extends BaseCustomService<SldzAgent> {
 
 
     boolean RechargeByRandom(double integral,String Random);
+
+    boolean PluszBonusByRandom(@Param("bonus") double bonus, @Param("Random") String Random);
 }

@@ -29,4 +29,9 @@ public class SldzAgentServiceImpl extends BaseCustomServiceImpl<SldzAgentMapper,
     public boolean RechargeByRandom(double integral, String Random) {
         return SldzAgentMapper.RechargeByRandom(integral,Random);
     }
+
+    @Override
+    public boolean PluszBonusByRandom(double bonus, String Random) {
+        return SldzAgentMapper.PluszBonusByRandom(bonus,Random);
+    }
 }
