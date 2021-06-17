@@ -6,6 +6,6 @@ git init
 
 git add .
 
-git commit -m “修复了为分组设置直推间推报酬报500错误”
+git commit -m “添加了上级应得奖励”
 
 git push origin master
