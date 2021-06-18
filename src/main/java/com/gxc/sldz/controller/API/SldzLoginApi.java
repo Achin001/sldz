@@ -64,7 +64,7 @@ public class SldzLoginApi {
             return JsonResult.OK().data(map);
 
         }else {
-            return JsonResult.OK().data("账号密码错误");
+            return JsonResult.FAIL_EXCEPTION("账号密码错误");
 
         }
     }

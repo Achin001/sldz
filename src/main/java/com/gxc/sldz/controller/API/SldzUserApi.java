@@ -21,10 +21,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class SldzUserApi extends BaseCustomCrudRestController<SldzUser> {
 
 
-
-
-
-
-
-
 }
