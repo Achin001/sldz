@@ -25,7 +25,7 @@ public interface SldzAgentMapper extends BaseCrudMapper<SldzAgent> {
 
 
 //    加奖励金
-    @Update("UPDATE sldz_agent SET agent_bonus = agent_bonus+ #{agent_bonus} WHERE agent_random = #{agent_random}")
+    @Update("UPDATE sldz_agent SET agent_bonus = agent_bonus+ #{bonus} WHERE agent_random = #{Random}")
     boolean PluszBonusByRandom(@Param("bonus") double bonus, @Param("Random") String Random);
 
 
