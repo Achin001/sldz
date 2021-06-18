@@ -6,6 +6,6 @@ git init
 
 git add .
 
-git commit -m “添加了确认充值积分”
+git commit -m “添加了前台购物车接口”
 
 git push origin master

@@ -316,3 +316,13 @@ ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `agent_random` varchar(100) COM
 ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `ronus_type` bigint COMMENT '1是收入2是支出' AFTER `agent_random`;
 -- 2021-06-18 13:45:33 by Achin
 ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `ronus_date` varchar(100) COMMENT '日期' AFTER `ronus_event`;
+-- 2021-06-18 15:22:40 by Achin
+CREATE TABLE `sldz_shop_cart`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '购物车';
+-- 2021-06-18 15:28:03 by Achin
+ALTER TABLE `sldz_shop_cart` ADD COLUMN `agent_random` varchar(100) COMMENT '唯一编码' AFTER `id`;
+-- 2021-06-18 15:28:03 by Achin
+ALTER TABLE `sldz_shop_cart` ADD COLUMN `product_json` varchar(3000) COMMENT '产品json' AFTER `agent_random`;
+-- 2021-06-18 15:28:03 by Achin
+ALTER TABLE `sldz_shop_cart` ADD COLUMN `cart_num` bigint COMMENT '加购数量' AFTER `product_json`;
+-- 2021-06-18 15:28:03 by Achin
+ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `cart_num`;
