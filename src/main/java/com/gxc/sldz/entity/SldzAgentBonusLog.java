@@ -4,7 +4,6 @@ import java.util.Date;
 import java.lang.Double;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
@@ -23,54 +22,56 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
-* 代理商奖励金记录 Entity定义
-* @author Achin
-* @version 1.0
-* @date 2021-06-02
-* Copyright © MyCompany
-*/
+ * 代理商奖励金记录 Entity定义
+ * @author Achin
+ * @version 1.0
+ * @date 2021-06-02
+ * Copyright © MyCompany
+ */
 @ApiModel(value = "代理商奖励金记录")
-@Getter @Setter @Accessors(chain = true)
+@Getter
+@Setter
+@Accessors(chain = true)
 public class SldzAgentBonusLog extends BaseCustomEntity {
+
     private static final long serialVersionUID = 9123956967292809293L;
 
     /**
-    * 代理商ID 
-    */
-    @ApiModelProperty(value="代理商ID", example = "")
+     * 代理商唯一编码
+     */
+    @ApiModelProperty(value = "代理商唯一编码", example = "")
+    @Length(max = 100, message = "代理商唯一编码长度应小于100")
     @TableField()
-    private Long agentId;
+    private String agentRandom;
 
     /**
-    * 1是收入2是支出 
-    */
-    @ApiModelProperty(value="1是收入2是支出", example = "")
+     * 1是收入2是支出
+     */
+    @ApiModelProperty(value = "1是收入2是支出", example = "")
     @TableField()
     private Long ronusType;
 
     /**
-    * 金额 
-    */
-    @ApiModelProperty(value="金额", required = true, example = "0.0")
+     * 金额
+     */
+    @ApiModelProperty(value = "金额", required = true, example = "0.0")
     @NotNull(message = "金额不能为空")
     @TableField()
     private Double ronusMoney;
 
     /**
-    * 事件 
-    */
-    @ApiModelProperty(value="事件", example = "")
-    @Length(max=150, message="事件长度应小于150")
+     * 事件
+     */
+    @ApiModelProperty(value = "事件", example = "")
+    @Length(max = 150, message = "事件长度应小于150")
     @TableField()
     private String ronusEvent;
 
     /**
-    * 日期 
-    */
-    @ApiModelProperty(value="日期", example = "2021-06-02 00:00")
-    @JsonFormat(pattern = D.FORMAT_DATETIME_Y4MDHM)
+     * 日期
+     */
+    @ApiModelProperty(value = "日期", example = "2021-06-01T16:00:00.000Z")
+    @Length(max = 100, message = "日期长度应小于100")
     @TableField()
-    private Date ronusDate;
-
-
-} 
+    private String ronusDate;
+}

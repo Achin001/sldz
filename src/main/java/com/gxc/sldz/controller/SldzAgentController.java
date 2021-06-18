@@ -7,9 +7,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
-import com.gxc.sldz.entity.SldzAdmin;
-import com.gxc.sldz.entity.SldzAgentIntegralLog;
-import com.gxc.sldz.entity.SldzAgentRel;
+import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.*;
 import com.gxc.sldz.vo.SuperiorShouldBeRewardedVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.diboot.core.vo.*;
-import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.vo.SldzAgentListVO;
 import com.gxc.sldz.vo.SldzAgentDetailVO;
@@ -42,6 +39,11 @@ import java.util.Map;
 @RequestMapping("admin/sldzAgent")
 @Slf4j
 public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent> {
+
+    //奖励金记录服务
+    @Autowired
+    private SldzAgentBonusLogService sldzAgentBonusLogService;
+
 
     //代理商服务
     @Autowired
@@ -153,12 +155,12 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
             for(SuperiorShouldBeRewardedVO  s :  SuperiorShouldBeRewardedVO){
                 if (sldzAgentService. PluszBonusByRandom(s.getBonus(),s.getAgentRandom())){
                     //记录奖励金记录（收入）
-                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                    sldzAgentBonusLogService.createEntity(new SldzAgentBonusLog()
                             .setAgentRandom(s.getAgentRandom())
-                            .setIntegralType(1l)
-                            .setIntegralMoney(s.getBonus())
-                            .setIntegralDate(DateUtil.now())
-                            .setIntegralEvent(sldzAgent.getAgentName()+"充值："+RechargePoints+",您获得"+s.getBonus()+"("+s.getProportion()+")")
+                            .setRonusType(1l)
+                            .setRonusMoney(s.getBonus())
+                            .setRonusDate(DateUtil.now())
+                            .setRonusEvent(sldzAgent.getAgentName()+"充值："+RechargePoints+",您获得"+s.getBonus()+"("+s.getProportion()+")")
                     );
                     i++;
                 }
@@ -188,7 +190,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         SuperiorShouldBeRewardedVO1.setBonus(NumberUtil.mul(RechargePoints, SupRewardRatio));
 
 
-        // 获取上上级对象
+        /* 获取上上级对象 */
         SldzAgent AgentSupSup = getSupSup(Random);
         LambdaQueryWrapper<SldzAgent> supsupReward = new LambdaQueryWrapper<>();
         supsupReward.eq(SldzAgent::getAgentRandom, AgentSupSup.getAgentRandom());

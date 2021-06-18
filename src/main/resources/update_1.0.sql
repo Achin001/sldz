@@ -308,3 +308,11 @@ ALTER TABLE `sldz_agent_integral_log` MODIFY COLUMN `agent_random` varchar(100) 
 ALTER TABLE `sldz_agent_integral_log` MODIFY COLUMN `integral_type` bigint COMMENT '1是收入2是支出' AFTER `agent_random`;
 -- 2021-06-17 15:20:32 by Achin
 ALTER TABLE `sldz_agent_integral_log` MODIFY COLUMN `integral_date` varchar(100) COMMENT '日期' AFTER `integral_event`;
+-- 2021-06-18 13:42:49 by Achin
+ALTER TABLE `sldz_agent_bonus_log` CHANGE COLUMN agent_id `agent_random` varchar(100) COMMENT '代理商唯一编码' AFTER `id`;
+-- 2021-06-18 13:42:49 by Achin
+ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `agent_random` varchar(100) COMMENT '代理商唯一编码' AFTER `id`;
+-- 2021-06-18 13:42:49 by Achin
+ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `ronus_type` bigint COMMENT '1是收入2是支出' AFTER `agent_random`;
+-- 2021-06-18 13:45:33 by Achin
+ALTER TABLE `sldz_agent_bonus_log` MODIFY COLUMN `ronus_date` varchar(100) COMMENT '日期' AFTER `ronus_event`;
