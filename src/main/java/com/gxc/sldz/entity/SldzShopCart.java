@@ -65,4 +65,6 @@ public class SldzShopCart extends BaseCustomEntity {
     @ApiModelProperty(value = "加购数量", example = "")
     @TableField()
     private Long cartNum;
+
+    private boolean checked = true;
 }
