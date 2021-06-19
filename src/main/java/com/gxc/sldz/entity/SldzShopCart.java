@@ -66,5 +66,4 @@ public class SldzShopCart extends BaseCustomEntity {
     @TableField()
     private Long cartNum;
 
-    private boolean checked = true;
 }
