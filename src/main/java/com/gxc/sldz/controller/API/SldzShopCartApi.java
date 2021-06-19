@@ -1,16 +1,21 @@
 package com.gxc.sldz.controller.API;
 
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzShopCartDTO;
+import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzShopCart;
-import com.gxc.sldz.vo.SldzShopCartDetailVO;
+import com.gxc.sldz.service.SldzShopCartService;
 import com.gxc.sldz.vo.SldzShopCartListVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +26,8 @@ import javax.validation.Valid;
 @Slf4j
 public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> {
 
+    @Autowired
+    SldzShopCartService sldzShopCartService;
 
 
     /***
@@ -58,6 +65,17 @@ public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> 
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzShopCart entity) throws Exception {
+        LambdaQueryWrapper<SldzShopCart> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzShopCart::getProductId, entity.getProductId());
+        wrapper.eq(SldzShopCart::getAgentRandom, entity.getAgentRandom());
+        SldzShopCart SldzShopCart  = sldzShopCartService.getSingleEntity(wrapper);
+        //查询该产品该代理商有无添加购物车
+        if (ObjectUtil.isNotNull(SldzShopCart)){
+            //有则添加数量
+            SldzShopCart.setCartNum(SldzShopCart.getCartNum()+1);
+            sldzShopCartService.updateEntity(SldzShopCart);
+        }
+        //无则新建购物车记录
         return super.createEntity(entity);
     }
 

@@ -326,3 +326,9 @@ ALTER TABLE `sldz_shop_cart` ADD COLUMN `product_json` varchar(3000) COMMENT '�
 ALTER TABLE `sldz_shop_cart` ADD COLUMN `cart_num` bigint COMMENT '加购数量' AFTER `product_json`;
 -- 2021-06-18 15:28:03 by Achin
 ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `cart_num`;
+-- 2021-06-19 13:10:03 by Achin
+ALTER TABLE `sldz_shop_cart` ADD COLUMN `product_id` varchar(100) COMMENT '产品id' AFTER `agent_random`;
+-- 2021-06-19 13:10:03 by Achin
+ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `product_json` varchar(3000) COMMENT '产品json' AFTER `product_id`;
+-- 2021-06-19 13:13:51 by Achin
+ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `product_id` bigint COMMENT '产品id' AFTER `agent_random`;
