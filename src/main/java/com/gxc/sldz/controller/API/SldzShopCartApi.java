@@ -79,17 +79,48 @@ public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> 
         return super.createEntity(entity);
     }
 
+//    /***
+//     * 根据ID更新资源对象
+//     * @param entity
+//     * @return JsonResult
+//     * @throws Exception
+//     */
+//    @ApiOperation(value = "根据ID更新数据")
+//    @PutMapping("/{id}")
+//    public JsonResult updateEntityMapping(@PathVariable("id")Long id, @Valid @RequestBody SldzShopCart entity) throws Exception {
+//        return super.updateEntity(id, entity);
+//    }
+
     /***
      * 根据ID更新资源对象
-     * @param entity
      * @return JsonResult
      * @throws Exception
      */
-    @ApiOperation(value = "根据ID更新数据")
-    @PutMapping("/{id}")
-    public JsonResult updateEntityMapping(@PathVariable("id")Long id, @Valid @RequestBody SldzShopCart entity) throws Exception {
-        return super.updateEntity(id, entity);
+    @ApiOperation(value = "根据ID更新数据+")
+    @PutMapping("cartNumPlus/{id}/{Random}")
+    public JsonResult cartNumPlus(@PathVariable("id")Long id,@PathVariable("Random")String Random) throws Exception {
+        if (sldzShopCartService.cartNumPlus(Random,id)){
+            return JsonResult.OK();
+        }else {
+            return JsonResult.FAIL_OPERATION("失败");
+        }
     }
+
+    /***
+     * 根据ID更新资源对象
+     * @return JsonResult
+     * @throws Exception
+     */
+    @ApiOperation(value = "根据ID更新数据-")
+    @PutMapping("cartNumReduce/{id}/{Random}")
+    public JsonResult cartNumReduce(@PathVariable("id")Long id,@PathVariable("Random")String Random) throws Exception {
+        if (sldzShopCartService.cartNumReduce(Random,id)){
+            return JsonResult.OK();
+        }else {
+            return JsonResult.FAIL_OPERATION("失败");
+        }
+    }
+
 
     /***
      * 根据id删除资源对象
