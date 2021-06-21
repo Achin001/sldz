@@ -3,6 +3,7 @@ package com.gxc.sldz.controller.API;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
@@ -134,6 +135,12 @@ public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> 
     @DeleteMapping("/{id}")
     public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
         return super.deleteEntity(id);
+    }
+
+    @ApiOperation(value = "获取加购数量总和")
+    @GetMapping("/cartNumByRandom")
+    public JsonResult cartNumByRandom(String Random) throws Exception {
+        return JsonResult.OK().data(sldzShopCartService.cartNumByRandom(Random));
     }
 
     /***

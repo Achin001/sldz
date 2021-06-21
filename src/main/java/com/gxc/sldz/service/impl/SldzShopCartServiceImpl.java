@@ -32,4 +32,11 @@ public class SldzShopCartServiceImpl extends BaseCustomServiceImpl<SldzShopCartM
     public boolean cartNumReduce(String Random, long id) {
         return SldzShopCartMapper.cartNumReduce(Random,id);
     }
+
+    @Override
+    public String cartNumByRandom(String Random) {
+        return SldzShopCartMapper.cartNumByRandom(Random);
+    }
+
+
 }

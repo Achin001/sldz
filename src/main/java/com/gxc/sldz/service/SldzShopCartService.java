@@ -3,6 +3,8 @@ package com.gxc.sldz.service;
 import com.gxc.sldz.entity.SldzShopCart;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Random;
+
 /**
 * 购物车相关Service
 * @author Achin
@@ -14,10 +16,12 @@ public interface SldzShopCartService extends BaseCustomService<SldzShopCart> {
 
 
 
-    boolean cartNumPlus(@Param("Random") String Random,
-                        @Param("id") long id);
+    boolean cartNumPlus(String Random,
+                        long id);
 
-    boolean cartNumReduce(@Param("Random") String Random,
-                          @Param("id") long id);
+    boolean cartNumReduce(String Random,
+                          long id);
+
+    String cartNumByRandom(String Random);
 
 }

@@ -4,6 +4,7 @@ import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzShopCart;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -24,5 +25,11 @@ public interface SldzShopCartMapper extends BaseCrudMapper<SldzShopCart> {
     @Update("UPDATE sldz_shop_cart SET cart_num = cart_num - 1 WHERE agent_random = #{Random} and id = #{id}")
     boolean cartNumReduce(@Param("Random") String Random,
                         @Param("id") long id);
+
+
+
+
+    @Select("SELECT SUM(cart_num) FROM sldz_shop_cart WHERE agent_random = #{Random}")
+    String cartNumByRandom(@Param("Random") String Random);
 }
 
