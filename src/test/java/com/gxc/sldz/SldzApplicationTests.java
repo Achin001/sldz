@@ -1,17 +1,23 @@
 package com.gxc.sldz;
 
 import cn.hutool.core.date.DateUtil;
+import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.entity.SldzUser;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @SpringBootTest
 class SldzApplicationTests {
+    @Autowired
+    private RedisUtils redisUtils;
+
 
     @Test
     void contextLoads() {
@@ -57,6 +63,30 @@ class SldzApplicationTests {
         calendar.setTime(date);
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
+
+    @Test
+    void contextLoadsa() {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try
+        {
+            Date d1 = df.parse("2004-01-01 00:00:00");
+            Date d2 = df.parse("2004-01-01 00:01:00");
+            //这样得到的差值是毫秒级别
+            long diff = d2.getTime() - d1.getTime();
+            System.out.println(diff/1000);
+            if (redisUtils.set("sas","ulaj",100)){
+                System.out.println(redisUtils.get("sas"));
+            }
+        }catch (Exception e)
+        {
+        }
+    }
+
+
+
+
+
 
 
 }

@@ -352,3 +352,67 @@ ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_appoint_product_ids` varc
 ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_details` varchar(500) COMMENT '详情' AFTER `coupons_appoint_product_ids`;
 -- 2021-06-22 14:12:25 by Achin
 ALTER TABLE `sldz_company_coupons` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `coupons_details`;
+-- 2021-06-22 19:42:08 by Achin
+CREATE TABLE `sldz_order`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '订单';
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `order_number` varchar(100) COMMENT '订单号' AFTER `id`;
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `buyers_random` varchar(100) COMMENT '买方唯一编号' AFTER `order_number`;
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `buyers_name` varchar(100) COMMENT '买方姓名' AFTER `buyers_random`;
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `product_json` varchar(3000) COMMENT '产品json' AFTER `buyers_name`;
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `amount_payable` double COMMENT '应付金额' AFTER `product_json`;
+-- 2021-06-22 20:35:08 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `discount` double COMMENT '优惠金额' AFTER `amount_payable`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `coupon_json` varchar(1500) COMMENT '优惠券json' AFTER `discount`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `amount_actually_paid` double COMMENT '实付金额' AFTER `coupon_json`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `payment_method` tinyint(1) COMMENT '付款方式(1微信钱包,2奖励金,3,积分)' AFTER `amount_actually_paid`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `state` tinyint(1) COMMENT '状态(1待付款,2待收货,3,已完成,4售后)' AFTER `payment_method`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `addres_json` varchar(1000) COMMENT '收货地址json' AFTER `state`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `logistics_number` varchar(100) COMMENT '物流编号' AFTER `addres_json`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `payment_time` timestamp NULL COMMENT '付款时间' AFTER `logistics_number`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `delivery_time` timestamp NULL COMMENT '发货时间' AFTER `payment_time`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `confirm_receiving_time` timestamp NULL COMMENT '确认收货时间' AFTER `delivery_time`;
+-- 2021-06-22 20:35:09 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `confirm_receiving_time`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `order_number` varchar(100) NOT NULL COMMENT '订单号' AFTER `id`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `buyers_random` varchar(100) NOT NULL COMMENT '买方唯一编号' AFTER `order_number`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `buyers_name` varchar(100) NOT NULL COMMENT '买方姓名' AFTER `buyers_random`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `product_json` varchar(3000) NOT NULL COMMENT '产品json' AFTER `buyers_name`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `amount_payable` double NOT NULL DEFAULT 0.00 COMMENT '应付金额' AFTER `product_json`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `discount` double NOT NULL DEFAULT 0.00 COMMENT '优惠金额' AFTER `amount_payable`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `amount_actually_paid` double NOT NULL DEFAULT 0.00 COMMENT '实付金额' AFTER `coupon_json`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `payment_method` tinyint(1) NOT NULL DEFAULT 1 COMMENT '付款方式(1微信钱包,2奖励金,3,积分)' AFTER `amount_actually_paid`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `state` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态(1待付款,2待收货,3,已完成,4售后)' AFTER `payment_method`;
+-- 2021-06-22 20:40:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `addres_json` varchar(1000) NOT NULL COMMENT '收货地址json' AFTER `state`;
+-- 2021-06-22 20:48:10 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `amount_payable` double NOT NULL DEFAULT 0 COMMENT '应付金额' AFTER `product_json`;
+-- 2021-06-22 20:48:10 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `discount` double NOT NULL DEFAULT 0 COMMENT '优惠金额' AFTER `amount_payable`;
+-- 2021-06-22 20:48:10 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `amount_actually_paid` double NOT NULL DEFAULT 0 COMMENT '实付金额' AFTER `coupon_json`;
+-- 2021-06-22 20:48:10 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `wx_pay_serial_num` varchar(200) COMMENT '微信支付流水号' AFTER `confirm_receiving_time`;
+-- 2021-06-22 20:48:10 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `wx_pay_serial_num`;
