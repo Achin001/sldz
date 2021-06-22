@@ -332,3 +332,23 @@ ALTER TABLE `sldz_shop_cart` ADD COLUMN `product_id` varchar(100) COMMENT '产�
 ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `product_json` varchar(3000) COMMENT '产品json' AFTER `product_id`;
 -- 2021-06-19 13:13:51 by Achin
 ALTER TABLE `sldz_shop_cart` MODIFY COLUMN `product_id` bigint COMMENT '产品id' AFTER `agent_random`;
+-- 2021-06-22 13:36:22 by Achin
+CREATE TABLE `sldz_company_coupons`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '公司优惠券';
+-- 2021-06-22 14:12:24 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_spwd` varchar(100) COMMENT '吱口令' AFTER `id`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_show_or_hide` tinyint(1) DEFAULT 1 COMMENT '优惠券大厅是否显示(1显示,2不显示)' AFTER `coupons_spwd`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_total` int(8) COMMENT '优惠券总数量' AFTER `coupons_show_or_hide`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_failure_time` timestamp NULL COMMENT '优惠券失效时间' AFTER `coupons_total`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_full_price` double COMMENT '满多少' AFTER `coupons_failure_time`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_reduce_price` double COMMENT '减多少' AFTER `coupons_full_price`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_appoint_product_ids` varchar(500) COMMENT '指定可用产品id(  数组 )' AFTER `coupons_reduce_price`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_details` varchar(500) COMMENT '详情' AFTER `coupons_appoint_product_ids`;
+-- 2021-06-22 14:12:25 by Achin
+ALTER TABLE `sldz_company_coupons` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `coupons_details`;

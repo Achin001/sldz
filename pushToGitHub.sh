@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-mvn clean
-
 git init
 
 git add .
