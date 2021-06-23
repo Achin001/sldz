@@ -2,6 +2,7 @@ package com.gxc.sldz;
 
 import cn.hutool.core.date.DateUtil;
 import com.gxc.sldz.Utils.RedisUtils;
+import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.entity.SldzUser;
 import org.junit.jupiter.api.Test;
@@ -82,7 +83,6 @@ class SldzApplicationTests {
         {
         }
     }
-
 
 
 
