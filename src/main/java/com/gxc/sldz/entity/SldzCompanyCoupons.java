@@ -55,9 +55,9 @@ public class SldzCompanyCoupons extends BaseCustomEntity {
     /**
      * 优惠券大厅是否显示(1显示,2不显示)
      */
-    @ApiModelProperty(value = "优惠券大厅是否显示(1显示,2不显示)", example = "true")
+    @ApiModelProperty(value = "优惠券大厅是否显示(1显示,2不显示)", example = "1")
     @TableField()
-    private Boolean couponsShowOrHide = true;
+    private Integer couponsShowOrHide ;
 
     /**
      * 优惠券总数量

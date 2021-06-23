@@ -37,20 +37,20 @@ public class SldzOrder extends BaseCustomEntity {
     private static final long serialVersionUID = 4845868198009471896L;
 
     /**
+     * 订单号
+     */
+    @ApiModelProperty(value = "订单号", example = "订单号样例内容")
+    @Length(max = 100, message = "订单号长度应小于100")
+    @TableField()
+    private String orderNumber;
+
+    /**
      * 微信支付流水号
      */
     @ApiModelProperty(value = "微信支付流水号", example = "")
     @Length(max = 200, message = "微信支付流水号长度应小于200")
     @TableField()
     private String wxPaySerialNum;
-
-    /**
-     * 订单号
-     */
-    @ApiModelProperty(value = "订单号", example = "")
-    @Length(max = 100, message = "订单号长度应小于100")
-    @TableField()
-    private String orderNumber;
 
     /**
      * 买方唯一编号

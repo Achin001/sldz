@@ -420,3 +420,5 @@ ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 
 ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_name` varchar(100) COMMENT '优惠券名称' AFTER `id`;
 -- 2021-06-23 13:53:55 by Achin
 ALTER TABLE `sldz_company_coupons` MODIFY COLUMN `coupons_spwd` varchar(100) COMMENT '吱口令' AFTER `coupons_name`;
+-- 2021-06-23 14:28:34 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `order_number` varchar(100) COMMENT '订单号' AFTER `id`;
