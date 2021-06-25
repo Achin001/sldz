@@ -9,4 +9,5 @@ public class SldzApplication {
     public static void main(String[] args) {
         SpringApplication.run(SldzApplication.class, args);
     }
+
 }

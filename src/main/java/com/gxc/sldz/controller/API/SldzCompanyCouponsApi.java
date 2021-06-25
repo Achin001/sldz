@@ -17,10 +17,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,7 +49,7 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
 
     @ApiOperation(value = "领取优惠券")
     @PostMapping("/receive")
-    public JsonResult receive(String random ,SldzCompanyCouponsDTO queryDto) throws Exception{
+    public JsonResult receive(String random ,@RequestBody SldzCompanyCouponsDTO queryDto) throws Exception{
         String key = random+"_coupon"+queryDto.getId();
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(queryDto);
         //结束时间
