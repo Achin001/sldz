@@ -74,4 +74,12 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
 
 
 
+    @ApiOperation(value = "获取已领取优惠券列表")
+    @GetMapping("/received")
+    public JsonResult received(String random) throws Exception{
+        String key = random+"_coupon"+"*";
+        return JsonResult.OK().data(redisUtils.get(key));
+    }
+
+
 }
