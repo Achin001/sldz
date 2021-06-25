@@ -1,5 +1,5 @@
-server:
-  port: 83
+
+
 spring:
   datasource:
     name: druidDataSource
@@ -62,3 +62,6 @@ aliyun:
       # 上传文件夹路径前缀
       dir:
         prefix: imgs/
+
+
+

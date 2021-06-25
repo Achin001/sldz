@@ -37,15 +37,17 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzOrder entity) throws Exception {
         entity.setOrderNumber(OrderNumberTimeUtil.getOrderIdByTime());
-
         return super.createEntity(entity);
     }
+
 
     @ApiOperation(value = "根据订单产品获取符合条件的优惠券列表")
     @PostMapping("/ObtainCouponsAccordingOrderProducts")
     public JsonResult ObtainCouponsAccordingOrderProducts(@Valid @RequestBody SldzOrder entity) throws Exception {
-       //唯一编码
+        //唯一编码
         // 获取订单产品id列表
+
+
 
 
         return super.createEntity(entity);
@@ -58,6 +60,14 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 //
 //        return super.createEntity(entity);
 //    }
+
+    @ApiOperation(value = "根据订单编号更改收货地址")
+    @PostMapping("/ChangeAddressByoOrderNumber")
+    public JsonResult ChangeAddressByoOrderNumber(@Valid @RequestBody SldzOrder entity) throws Exception {
+        entity.setOrderNumber(OrderNumberTimeUtil.getOrderIdByTime());
+
+        return super.createEntity(entity);
+    }
 
 
     /***
