@@ -36,7 +36,7 @@ public class getUnlimited {
         String url="https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token="+accessToken;
         //二维码携带参数 不超过32位 参数类型必须是字符串
         paraMap.put("scene", random);  //存入的参数
-        paraMap.put("width", 1280);  //尺寸 px最小280 1280
+        paraMap.put("width", 210);  //尺寸 px最小280 1280
         paraMap.put("is_hyaline", true);//为 true 时，生成透明底色的小程序
 
 
