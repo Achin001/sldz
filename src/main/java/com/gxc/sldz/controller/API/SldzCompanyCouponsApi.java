@@ -2,18 +2,13 @@ package com.gxc.sldz.controller.API;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
-import com.diboot.core.util.D;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzCompanyCouponsDTO;
-import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzCompanyCoupons;
 import com.gxc.sldz.service.SldzCompanyCouponsService;
 import com.gxc.sldz.vo.SldzCompanyCouponsListVO;
@@ -23,8 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Api(tags = {"用户优惠券管理前台接口"})

@@ -12,7 +12,6 @@ import com.gxc.sldz.vo.SldzCompanyCouponsDetailVO;
 import com.gxc.sldz.service.SldzCompanyCouponsService;
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * 公司优惠券 相关Controller
