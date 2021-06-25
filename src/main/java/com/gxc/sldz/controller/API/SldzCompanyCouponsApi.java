@@ -2,14 +2,18 @@ package com.gxc.sldz.controller.API;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
+import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
 import com.diboot.core.util.D;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzCompanyCouponsDTO;
+import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzCompanyCoupons;
 import com.gxc.sldz.service.SldzCompanyCouponsService;
 import com.gxc.sldz.vo.SldzCompanyCouponsListVO;
@@ -68,6 +72,8 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
         if (StrUtil.isNotBlank(s)){
             return JsonResult.FAIL_OPERATION("不能重复领取领取");
         }
+        queryDto.setCouponsTotal(queryDto.getCouponsTotal()-1);
+        sldzCompanyCouponsService.updateEntity(queryDto);
         redisUtils.set(key, String.valueOf(jsonObject),diff);
         return JsonResult.OK().data("领取成功");
     }
@@ -80,6 +86,46 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
         String key = random+"_coupon"+"*";
         return JsonResult.OK().data(redisUtils.get(key));
     }
+
+
+    @ApiOperation(value = "根据口令领取优惠券")
+    @PostMapping("/receiveBykey")
+    public JsonResult receiveBykey(String Spwd ,String random) throws Exception{
+        LambdaQueryWrapper<SldzCompanyCoupons> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzCompanyCoupons::getCouponsSpwd, Spwd);
+        SldzCompanyCoupons SldzCompanyCoupons =  sldzCompanyCouponsService.getSingleEntity(wrapper);
+        if (SldzCompanyCoupons.getCouponsTotal() > 0){
+            String key = random+"_coupon"+SldzCompanyCoupons.getId();
+            JSONObject jsonObject = (JSONObject) JSONObject.toJSON(SldzCompanyCoupons);
+            //结束时间
+            Date d1 =  SldzCompanyCoupons.getCouponsFailureTime();
+            //现在时间
+            Date d2 = DateUtil.date();
+            //这样得到的差值是毫秒级别
+            long diff = d1.getTime() - d2.getTime();
+            //转换成秒
+            diff = diff/1000;
+            if (diff<0){
+                return JsonResult.FAIL_OPERATION("领取失败！");
+            }
+            //该优惠券只能领取一张
+            String s = redisUtils.get(key);
+            if (StrUtil.isNotBlank(s)){
+                return JsonResult.FAIL_OPERATION("不能重复领取领取！");
+            }
+            redisUtils.set(key, String.valueOf(jsonObject),diff);
+            SldzCompanyCoupons.setCouponsTotal(SldzCompanyCoupons.getCouponsTotal()-1);
+            sldzCompanyCouponsService.updateEntity(SldzCompanyCoupons);
+            return JsonResult.OK().data("领取成功！！");
+        }else {
+            return JsonResult.FAIL_OPERATION("该优惠券领光啦！！");
+        }
+
+
+
+    }
+
+
 
 
 }
