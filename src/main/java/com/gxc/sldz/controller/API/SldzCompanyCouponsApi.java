@@ -40,6 +40,7 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzCompanyCouponsDTO queryDto, Pagination pagination) throws Exception{
+        sldzCompanyCouponsService.DeleteExpiredSldzCompanyCoupons();
         return super.getViewObjectList(queryDto, pagination, SldzCompanyCouponsListVO.class);
     }
 
@@ -77,7 +78,7 @@ public class SldzCompanyCouponsApi extends BaseCustomCrudRestController<SldzComp
     @GetMapping("/received")
     public JsonResult received(String random) throws Exception{
         String key = random+"_coupon"+"*";
-        return JsonResult.OK().data(redisUtils.get(key));
+        return JsonResult.OK().data(redisUtils.getByKeys(key));
     }
 
 

@@ -36,5 +36,4 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
     }
 
 
-
 }

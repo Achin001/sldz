@@ -25,4 +25,6 @@ public class SldzProductCategoryApi extends BaseCustomCrudRestController<SldzPro
     public JsonResult getViewObjectListMapping(SldzProductCategoryDTO queryDto, Pagination pagination) throws Exception{
         return super.getViewObjectList(queryDto, pagination, SldzProductCategoryListVO.class);
     }
+
+
 }

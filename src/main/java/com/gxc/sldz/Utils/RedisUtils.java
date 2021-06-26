@@ -1,9 +1,14 @@
 package com.gxc.sldz.Utils;
 
+import com.gxc.sldz.dto.SldzCompanyCouponsDTO;
+import com.gxc.sldz.entity.SldzCompanyCoupons;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 
@@ -16,7 +21,6 @@ public class RedisUtils {
 
 
 
-
     /**
      * 读取缓存
      *
@@ -26,6 +30,24 @@ public class RedisUtils {
     public String get(final String key) {
         return redisTemplate.opsForValue().get(key);
     }
+
+
+    /**
+     * 读取缓存
+     *
+     * @param keys
+     * @return
+     */
+    public Set<String> getByKeys(final String keys) {
+        Set<String> strings = new HashSet<>();
+        //获取到keys 遍历获取v值
+        Set<String> keyss = redisTemplate.keys(keys);
+        for (String s :keyss){
+            strings.add(get(s));
+        }
+        return strings;
+    }
+
 
     /**
      * 写入缓存
