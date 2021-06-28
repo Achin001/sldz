@@ -3,6 +3,8 @@ package com.gxc.sldz.mapper;
 import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzOrder;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 /**
 * 订单Mapper
@@ -13,6 +15,13 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
+
+
+    @Update("UPDATE sldz_order SET addres_json = #{addresJson}  WHERE order_number = #{orderNumber} " +
+            "and buyers_random =#{Random} ")
+    boolean ChangeShippingAddress(@Param("addresJson") String addresJson,
+                                  @Param("orderNumber") String orderNumber,
+                                  @Param("Random") String Random);
 
 }
 

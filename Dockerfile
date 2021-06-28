@@ -10,6 +10,12 @@ RUN cd /tmp/build && mvn clean package \
         #清理编译痕迹
         && cd / && rm -rf /tmp/build
 
+
+#使用亚洲上海时间
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' >/etc/timezone
+
+
 VOLUME /tmp
 EXPOSE 83
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","-Duser.timezone=GMT+08","/app.jar"]

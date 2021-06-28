@@ -5,6 +5,8 @@ import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.SldzOrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,4 +20,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper, SldzOrder> implements SldzOrderService {
 
+    @Autowired
+    SldzOrderMapper SldzOrderMapper;
+
+
+    @Override
+    public boolean ChangeShippingAddress(String addresJson, String orderNumber, String Random) {
+        return SldzOrderMapper.ChangeShippingAddress(addresJson,orderNumber,Random);
+    }
 }

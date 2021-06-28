@@ -12,6 +12,7 @@ import com.gxc.sldz.vo.SldzOrderListVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,10 +64,12 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
     @ApiOperation(value = "根据订单编号更改收货地址")
     @PostMapping("/ChangeAddressByoOrderNumber")
-    public JsonResult ChangeAddressByoOrderNumber(@Valid @RequestBody SldzOrder entity) throws Exception {
-        entity.setOrderNumber(OrderNumberTimeUtil.getOrderIdByTime());
+    public JsonResult ChangeAddressByoOrderNumber(String addresJson ,String orderNumber,String Random) throws Exception {
+        if (sldzOrderService. ChangeShippingAddress(addresJson,orderNumber,Random)){
+            return  JsonResult.OK().data("改收货地址修改成功");
+        }
 
-        return super.createEntity(entity);
+        return JsonResult.FAIL_OPERATION("改收货地址修改失败");
     }
 
 
