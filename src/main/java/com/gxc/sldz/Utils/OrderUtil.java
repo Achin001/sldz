@@ -1,8 +1,10 @@
 package com.gxc.sldz.Utils;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.gxc.sldz.vo.OrderProductJsonVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +44,30 @@ public class OrderUtil {
     }
 
 
+    //获取订单OrderProductJsonVo
+    public static  List<OrderProductJsonVo> getOrderProductJsonVo(String s) {
+        List<OrderProductJsonVo> orderProductJsonVos = new ArrayList<>();
+        JSONArray tableData = JSONArray.parseArray(s);
+        JSONObject rowData = new JSONObject();
+        for (int i = 0; i < tableData.size(); i++) {
+            OrderProductJsonVo OrderProductJsonVo = new OrderProductJsonVo();
+            rowData = tableData.getJSONObject(i);
+            JSONObject jsonObject = JSON.parseObject(rowData.getString("productJson"));
+            OrderProductJsonVo.setProductPrice(Double.parseDouble(jsonObject.getString("productPrice")));
+            OrderProductJsonVo.setCartNum(Integer.parseInt(rowData.getString("cartNum")));
+            OrderProductJsonVo.setProductId(Long.parseLong(jsonObject.getString("id")));
+            orderProductJsonVos.add(OrderProductJsonVo);
+        }
+        return orderProductJsonVos;
+    }
+
+
+    //获取优惠券里面的满足条件
+    public static  String GetConditionsCoupon(String s) {
+        JSONObject rowData = JSONObject.parseObject(s);
+        String ConditionsCoupon = rowData.getString("couponsFullPrice");
+        return ConditionsCoupon;
+    }
 
 
 

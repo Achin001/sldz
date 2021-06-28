@@ -422,3 +422,7 @@ ALTER TABLE `sldz_company_coupons` ADD COLUMN `coupons_name` varchar(100) COMMEN
 ALTER TABLE `sldz_company_coupons` MODIFY COLUMN `coupons_spwd` varchar(100) COMMENT '吱口令' AFTER `coupons_name`;
 -- 2021-06-23 14:28:34 by Achin
 ALTER TABLE `sldz_order` MODIFY COLUMN `order_number` varchar(100) COMMENT '订单号' AFTER `id`;
+-- 2021-06-28 20:43:10 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `buyers_remarks` varchar(200) COMMENT '买方备注' AFTER `amount_payable`;
+-- 2021-06-28 20:43:10 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `discount` double NOT NULL DEFAULT 0.00 COMMENT '优惠金额' AFTER `buyers_remarks`;

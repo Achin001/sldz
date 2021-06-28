@@ -23,5 +23,11 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
                                   @Param("orderNumber") String orderNumber,
                                   @Param("Random") String Random);
 
+
+    @Update("UPDATE sldz_order SET buyers_remarks = #{Remarks} WHERE order_number = #{orderNumber}")
+    boolean AddOrderNotesByOrderNum(@Param("Remarks") String Remarks,
+                                  @Param("orderNumber") String orderNumber);
+
+
 }
 

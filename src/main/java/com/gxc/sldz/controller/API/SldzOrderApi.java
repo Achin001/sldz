@@ -61,35 +61,35 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         if (ObjectUtil.isNull(SldzOrder)){
             return JsonResult.FAIL_OPERATION("获取优惠券列表失败");
         }
-        //唯一编码
-        SldzOrder.getBuyersRandom();
-        // 获取order producJson
-        List<Long> orderProductIds  =  OrderUtil.getOrderJsonProductId(SldzOrder.getProductJson());
-        List<Long> CouponproductIds = new ArrayList<>();
-        //从缓存拿出该人的优惠券列表
-        String key = SldzOrder.getBuyersRandom()+"_coupon"+"*";
-        Set<String> CouponList = redisUtils.getByKeys(key);
-//        可用优惠券列表
-        List<String> availableCoupons = new ArrayList<>();
-//        拿出各组优惠券
-        for (String Coupon :CouponList){
-            int oap = 0;
-//            CouponproductIds  .addAll(OrderUtil.GetProductIdByCoupon(Coupon));
-                //循环优惠券productId
-                for(Long CouponPrductid :OrderUtil.GetProductIdByCoupon(Coupon)){
-                    if (!orderProductIds.contains(CouponPrductid)){
-                        //为false的时候跳出
-                        break;
-                    }else {
-                        oap =1;
-                    }
-                }
-
-                if (oap>1){
-                    availableCoupons.add(Coupon);
-                }
-            }
-        return JsonResult.OK().data(availableCoupons);
+//        //唯一编码
+//        SldzOrder.getBuyersRandom();
+//        // 获取order producJson
+//        List<Long> orderProductIds  =  OrderUtil.getOrderJsonProductId(SldzOrder.getProductJson());
+//        List<Long> CouponproductIds = new ArrayList<>();
+//        //从缓存拿出该人的优惠券列表
+//        String key = SldzOrder.getBuyersRandom()+"_coupon"+"*";
+//        Set<String> CouponList = redisUtils.getByKeys(key);
+////        可用优惠券列表
+//        List<String> availableCoupons = new ArrayList<>();
+////        拿出各组优惠券
+//        for (String Coupon :CouponList){
+//            int oap = 0;
+////            CouponproductIds  .addAll(OrderUtil.GetProductIdByCoupon(Coupon));
+//                //循环优惠券productId
+//                for(Long CouponPrductid :OrderUtil.GetProductIdByCoupon(Coupon)){
+//                    if (!orderProductIds.contains(CouponPrductid)){
+//                        //为false的时候跳出
+//                        break;
+//                    }else {
+//                        oap =1;
+//                    }
+//                }
+//
+//                if (oap>1){
+//                    availableCoupons.add(Coupon);
+//                }
+//            }
+        return sldzOrderService.ObtainCouponsAccordingOrderProducts(SldzOrder);
     }
 
 //    @ApiOperation(value = "选择优惠券，更改应付金额")
@@ -108,6 +108,17 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         }
 
         return JsonResult.FAIL_OPERATION("改收货地址修改失败");
+    }
+
+
+    @ApiOperation(value = "根据订单编号添加订单备注")
+    @PutMapping("/AddOrderNotesByOrderNum")
+    public JsonResult AddOrderNotesByOrderNum(String buyersRemarks,String orderNumber) throws Exception {
+        if (sldzOrderService. AddOrderNotesByOrderNum(buyersRemarks,orderNumber)){
+            return  JsonResult.OK().data("备注添加成功");
+        }
+
+        return JsonResult.FAIL_OPERATION("备注添加失败");
     }
 
 
