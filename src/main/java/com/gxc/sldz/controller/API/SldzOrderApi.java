@@ -30,9 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Api(tags = {"前台订单接口"})
@@ -149,10 +147,10 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         updateWrapper.set("amount_payable",AmountPayable);
         updateWrapper.set("discount",discount);
         updateWrapper.set("coupon_json",couponJson);
-        if (sldzOrderService.updateEntity(updateWrapper)){
-            return JsonResult.OK().data("调整应付金额成功");
-        }
-        return JsonResult.FAIL_OPERATION("调整应付金额失败");
+        Map map = new HashMap();
+        map.put("AmountPayable",AmountPayable);
+        map.put("msg",sldzOrderService.updateEntity(updateWrapper)?"调整应付金额成功":"调整应付金额失败");
+        return JsonResult.OK().data(map);
     }
 
 

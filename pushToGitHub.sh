@@ -4,6 +4,6 @@ git init
 
 git add .
 
-git commit -m “添加了收货地址修改接口”
+git commit -m “添加了选择优惠券调整应付金额接口”
 
 git push origin master
