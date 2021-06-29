@@ -1,8 +1,11 @@
 package com.gxc.sldz.controller.API;
 
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
 import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
@@ -18,6 +21,8 @@ import com.gxc.sldz.vo.SldzOrderDetailVO;
 import com.gxc.sldz.vo.SldzOrderListVO;
 import io.netty.handler.codec.json.JsonObjectDecoder;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
@@ -121,6 +126,35 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         return JsonResult.FAIL_OPERATION("备注添加失败");
     }
 
+    @ApiOperation(value = "选择优惠券调整应付金额")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "discount", value = "优惠金额", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "couponJson", value = "优惠券json", required = true, dataType = "String"),
+    })
+    @PutMapping("/CouponAdjustAmountPayable")
+    public JsonResult CouponAdjustAmountPayable(double discount,String orderNumber,@RequestBody String couponJson) throws Exception {
+        SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
+        if (ObjectUtil.isNull(SldzOrder)){
+            return JsonResult.FAIL_OPERATION("应付金额计算失败");
+        }
+        double AmountPayable =  SldzOrder.getAmountPayable();
+//        应付金额 = 应付金额 - 优惠金额
+         AmountPayable = NumberUtil.sub(AmountPayable, discount);
+
+
+         //写入库 优惠金额 应付金额
+        UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq(SldzOrder.getOrderNumber(),orderNumber);
+        updateWrapper.set("amount_payable",AmountPayable);
+        updateWrapper.set("discount",discount);
+        updateWrapper.set("coupon_json",couponJson);
+        if (sldzOrderService.updateEntity(updateWrapper)){
+            return JsonResult.OK().data("调整应付金额成功");
+        }
+        return JsonResult.FAIL_OPERATION("调整应付金额失败");
+    }
+
 
     /***
      * 查询ViewObject的分页数据
@@ -155,8 +189,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
         wrapper.eq(SldzOrder::getState, 1);
-        SldzOrder SldzOrder =  sldzOrderService.getSingleEntity(wrapper);
-        return SldzOrder;
+        return  sldzOrderService.getSingleEntity(wrapper);
     }
 
 
