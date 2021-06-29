@@ -17,6 +17,7 @@ import com.gxc.sldz.dto.SldzOrderDTO;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.service.SldzOrderService;
+import com.gxc.sldz.vo.OrderProductJsonVo;
 import com.gxc.sldz.vo.SldzOrderDetailVO;
 import com.gxc.sldz.vo.SldzOrderListVO;
 import io.netty.handler.codec.json.JsonObjectDecoder;
@@ -95,24 +96,14 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         return sldzOrderService.ObtainCouponsAccordingOrderProducts(SldzOrder);
     }
 
-//    @ApiOperation(value = "选择优惠券，更改应付金额")
-//    @PostMapping("/")
-//    public JsonResult createEntityMapping(@Valid @RequestBody SldzOrder entity) throws Exception {
-//        entity.setOrderNumber(OrderNumberTimeUtil.getOrderIdByTime());
-//
-//        return super.createEntity(entity);
-//    }
-
     @ApiOperation(value = "根据订单编号更改收货地址")
     @PutMapping("/ChangeAddressByoOrderNumber")
     public JsonResult ChangeAddressByoOrderNumber(String addresJson ,String orderNumber,String Random) throws Exception {
         if (sldzOrderService. ChangeShippingAddress(addresJson,orderNumber,Random)){
             return  JsonResult.OK().data("改收货地址修改成功");
         }
-
         return JsonResult.FAIL_OPERATION("改收货地址修改失败");
     }
-
 
     @ApiOperation(value = "根据订单编号添加订单备注")
     @PutMapping("/AddOrderNotesByOrderNum")
@@ -128,31 +119,83 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "discount", value = "优惠金额", required = true, dataType = "String"),
             @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "couponJson", value = "优惠券json", required = true, dataType = "String"),
     })
     @PutMapping("/CouponAdjustAmountPayable")
-    public JsonResult CouponAdjustAmountPayable(double discount,String orderNumber,@RequestBody String couponJson) throws Exception {
+    public JsonResult CouponAdjustAmountPayable(double discount,String orderNumber) throws Exception {
         SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
         if (ObjectUtil.isNull(SldzOrder)){
             return JsonResult.FAIL_OPERATION("应付金额计算失败");
         }
-        double AmountPayable =  SldzOrder.getAmountPayable();
+
+       //获取订单总金额
+        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+
+
+        // 订单应付钱金额
+        double AmountOrderPayable = 0.00;
+        for (OrderProductJsonVo salk:getOrderProductJsonVo){
+            //购买数量 * 单品金额
+            AmountOrderPayable += NumberUtil.mul(salk.getCartNum(),salk.getProductPrice());
+        }
+
+
+        //优惠后金额
+        double AmountAfterDiscount = 0.00;
 //        应付金额 = 应付金额 - 优惠金额
-         AmountPayable = NumberUtil.sub(AmountPayable, discount);
+        AmountAfterDiscount = NumberUtil.sub(AmountOrderPayable, discount);
 
 
          //写入库 优惠金额 应付金额
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq(SldzOrder.getOrderNumber(),orderNumber);
-        updateWrapper.set("amount_payable",AmountPayable);
-        updateWrapper.set("discount",discount);
-        updateWrapper.set("coupon_json",couponJson);
+        updateWrapper.set("amount_payable",AmountOrderPayable);
+//        updateWrapper.set("discount",discount);
+//        updateWrapper.set("coupon_json",couponJson);
         Map map = new HashMap();
-        map.put("AmountPayable",AmountPayable);
-        map.put("msg",sldzOrderService.updateEntity(updateWrapper)?"调整应付金额成功":"调整应付金额失败");
+        map.put("AmountAfterDiscount",AmountAfterDiscount);
+        map.put("msg",sldzOrderService.updateEntity(updateWrapper)?"调整优惠后金额成功":"调整优惠后金额失败");
         return JsonResult.OK().data(map);
     }
 
+    @ApiOperation(value = "确定最终应付金额")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "couponId", value = "优惠券id", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "couponJson", value = "优惠券json", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "discount", value = "优惠金额", required = true, dataType = "double"),
+            @ApiImplicitParam(name = "AmountAfterDiscount", value = "优惠后金额", required = true, dataType = "double"),
+            @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
+    })
+    @PutMapping("/DetermineFinalAmount")
+    public JsonResult DetermineFinalAmount(int couponId,
+                                           @RequestBody String couponJson,
+                                           double discount,
+                                           double AmountAfterDiscount,
+                                           String orderNumber) throws Exception {
+        SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
+        if (ObjectUtil.isNull(SldzOrder)){
+            return JsonResult.FAIL_OPERATION("失败");
+        }
+
+       //删除缓存优惠券
+        String key = SldzOrder.getBuyersRandom()+"_coupon"+couponId;
+        redisUtils.delete(key);
+
+        //把优惠券json 优惠金额 优惠后金额 写入库
+        UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq(SldzOrder.getOrderNumber(),orderNumber);
+        updateWrapper.set("amount_payable",AmountAfterDiscount);
+        updateWrapper.set("discount",discount);
+        updateWrapper.set("coupon_json",couponJson);
+        return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper)?"调整优惠后金额成功":"调整优惠后金额失败");
+    }
+
+
+    @ApiOperation(value = "根据订单号获取订单详情")
+    @GetMapping("/orderDetailsByOrderNumber")
+    public JsonResult orderDetailsByOrderNumber(String orderNumber) throws Exception{
+        SldzOrder   SldzOrder =  GetOrderObjectByOrderNumber( orderNumber);
+        return JsonResult.OK().data(SldzOrder);
+    }
 
     /***
      * 查询ViewObject的分页数据
@@ -183,7 +226,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
 
     //根据订单号获取订单对象
-    protected SldzOrder GetOrderObjectByOrderNumber(String orderNumber) throws Exception {
+    public SldzOrder GetOrderObjectByOrderNumber(String orderNumber) throws Exception {
         LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
         wrapper.eq(SldzOrder::getState, 1);

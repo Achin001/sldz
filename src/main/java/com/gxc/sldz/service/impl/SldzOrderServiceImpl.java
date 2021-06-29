@@ -1,10 +1,12 @@
 package com.gxc.sldz.service.impl;
 
 import cn.hutool.core.util.NumberUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.util.BeanUtils;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
+import com.gxc.sldz.controller.API.SldzOrderApi;
 import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.SldzOrderService;
@@ -90,6 +92,22 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
 
         }
         return JsonResult.OK().data(availableCoupons);
+    }
+
+    @Override
+    public JsonResult orderPay(SldzOrder SldzOrder, int paymentMethod) {
+
+        if (paymentMethod == 1){
+            //微信支付
+        }else if(paymentMethod == 2){
+            //积分支付
+
+        }else if (paymentMethod == 3){
+            //奖励金支付
+        }
+
+
+        return null;
     }
 
 

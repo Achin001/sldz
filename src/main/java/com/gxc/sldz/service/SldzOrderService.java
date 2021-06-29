@@ -26,4 +26,6 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     JsonResult ObtainCouponsAccordingOrderProducts(SldzOrder SldzOrder);
 
+    JsonResult orderPay(SldzOrder SldzOrder ,int paymentMethod);
+
 }
