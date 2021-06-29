@@ -33,7 +33,7 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
     @ApiOperation(value = "订单支付")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "paymentMethod", value = "支付方式", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "paymentMethod", value = "支付方式(付款方式 1微信钱包,2积分,3,奖励金)", required = true, dataType = "int"),
     })
     @PutMapping("/orderPay")
     public JsonResult orderPay(String orderNumber ,int paymentMethod) throws Exception {

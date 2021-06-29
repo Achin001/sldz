@@ -5,6 +5,7 @@ import java.lang.Double;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -28,9 +29,9 @@ import lombok.experimental.Accessors;
  * @date 2021-05-20
  * Copyright © MyCompany
  */
+
+@Data
 @ApiModel(value = "产品")
-@Getter
-@Setter
 @Accessors(chain = true)
 public class SldzProduct extends BaseCustomEntity {
 

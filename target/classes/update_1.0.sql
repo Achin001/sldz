@@ -426,3 +426,9 @@ ALTER TABLE `sldz_order` MODIFY COLUMN `order_number` varchar(100) COMMENT '订�
 ALTER TABLE `sldz_order` ADD COLUMN `buyers_remarks` varchar(200) COMMENT '买方备注' AFTER `amount_payable`;
 -- 2021-06-28 20:43:10 by Achin
 ALTER TABLE `sldz_order` MODIFY COLUMN `discount` double NOT NULL DEFAULT 0.00 COMMENT '优惠金额' AFTER `buyers_remarks`;
+-- 2021-06-29 16:45:07 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `bonus` double COMMENT '奖励金' AFTER `random`;
+-- 2021-06-29 16:45:07 by Achin
+ALTER TABLE `sldz_user` ADD COLUMN `integral` double COMMENT '积分' AFTER `bonus`;
+-- 2021-06-29 16:45:07 by Achin
+ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `integral`;

@@ -29,5 +29,22 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
                                   @Param("orderNumber") String orderNumber);
 
 
+
+    //改订单状态  待收货  记录时间 把支付方式改成相应的 记录实际支付
+    @Update("UPDATE sldz_order SET  " +
+            "payment_method = #{paymentMethod}," +
+            " amount_actually_paid = #{amountActuallyPaid}," +
+            "state = 2 ," +
+            "payment_time = #{paymentTime}" +
+            "WHERE  order_number =#{orderNumber}")
+    boolean ChangeOrderSigned(@Param("paymentMethod") int paymentMethod,
+                              @Param("amountActuallyPaid") double amountActuallyPaid,
+                              @Param("paymentTime") String paymentTime,
+                              @Param("orderNumber") String orderNumber);
+
+
+
+
+
 }
 

@@ -101,7 +101,7 @@ public class SldzOrder extends BaseCustomEntity {
     private String couponJson;
 
     /**
-     * 付款方式(1微信钱包,2奖励金,3,积分)
+     * 付款方式(1微信钱包,2积分,3,奖励金)
      */
     @ApiModelProperty(value = "付款方式(1微信钱包,2 积分,3,奖励金)", example = "")
     @TableField()

@@ -5,6 +5,7 @@ import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.mapper.SldzProductMapper;
 import com.gxc.sldz.service.SldzProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,4 +19,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMapper, SldzProduct> implements SldzProductService {
 
+
+
+    @Autowired
+    SldzProductMapper SldzProductMapper;
+
+    @Override
+    public boolean productStockById(long stock, long id) {
+        return SldzProductMapper.productStockById(stock,id);
+    }
 }

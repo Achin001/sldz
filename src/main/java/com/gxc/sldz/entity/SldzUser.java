@@ -101,6 +101,20 @@ public class SldzUser extends BaseCustomEntity {
     @TableField()
     private String random;
 
+    /**
+     * 奖励金
+     */
+    @ApiModelProperty(value = "奖励金", example = "")
+    @TableField()
+    private Double bonus;
+
     @TableField(exist = false)
     private List<String> fileUuidList;
+
+    /**
+     * 积分
+     */
+    @ApiModelProperty(value = "积分", example = "")
+    @TableField()
+    private Double integral;
 }

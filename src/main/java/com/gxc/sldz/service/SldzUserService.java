@@ -1,6 +1,7 @@
 package com.gxc.sldz.service;
 
 import com.gxc.sldz.entity.SldzUser;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * 用户相关Service
@@ -10,5 +11,12 @@ import com.gxc.sldz.entity.SldzUser;
  * Copyright © MyCompany
 */
 public interface SldzUserService extends BaseCustomService<SldzUser> {
+
+
+    boolean ChangePoints(@Param("integral") double integral,
+                         @Param("random") String random);
+
+    boolean ChangeBonus(@Param("bonus") double bonus,
+                        @Param("random") String random);
 
 }

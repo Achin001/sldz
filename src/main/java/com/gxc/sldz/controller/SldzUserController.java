@@ -91,4 +91,5 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
         return super.deleteEntity(id);
     }
 
+
 }

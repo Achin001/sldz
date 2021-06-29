@@ -1,24 +1,28 @@
 package com.gxc.sldz.service.impl;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.diboot.core.util.BeanUtils;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
+import com.gxc.sldz.Utils.RandomChangeUsers;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.controller.API.SldzOrderApi;
-import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.entity.*;
 import com.gxc.sldz.mapper.SldzOrderMapper;
-import com.gxc.sldz.service.SldzOrderService;
+import com.gxc.sldz.service.*;
 import com.gxc.sldz.vo.OrderProductJsonVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 订单相关Service实现
@@ -32,9 +36,24 @@ import java.util.Set;
 @Slf4j
 public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper, SldzOrder> implements SldzOrderService {
 
+    //奖励金记录服务
+    @Autowired
+    SldzAgentBonusLogService SldzAgentBonusLogService;
+    //订单服务
     @Autowired
     SldzOrderMapper SldzOrderMapper;
-
+    //用户服务
+    @Autowired
+    SldzUserService SldzUserServic;
+    //代理商服务
+    @Autowired
+    SldzAgentService SldzAgentService;
+    //积分记录服务
+    @Autowired
+    SldzAgentIntegralLogService sldzAgentIntegralLogService;
+    //产品服务
+    @Autowired
+    SldzProductService SldzProductService;
 
     @Autowired
     private RedisUtils redisUtils;
@@ -82,11 +101,11 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
             }
             double apoq = 0;
             for (OrderProductJsonVo orderProductJsonVo : OrderProductJsonVos) {
-                apoq+= NumberUtil.mul(orderProductJsonVo.getProductPrice(),orderProductJsonVo.getCartNum());
+                apoq += NumberUtil.mul(orderProductJsonVo.getProductPrice(), orderProductJsonVo.getCartNum());
             }
 
             //判断总金额是否满足满减
-            if (GetConditionsCoupon <= apoq){
+            if (GetConditionsCoupon <= apoq) {
                 availableCoupons.add(Coupon);
             }
 
@@ -94,20 +113,198 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return JsonResult.OK().data(availableCoupons);
     }
 
+    @Transactional
     @Override
     public JsonResult orderPay(SldzOrder SldzOrder, int paymentMethod) {
+        Map map = getUser(SldzOrder.getBuyersRandom());
+        int type = (int) map.get("type");
+        if (type == 1) {      //消费者
+            SldzUser SldzUser = (SldzUser) map.get("SldzUser");
 
-        if (paymentMethod == 1){
-            //微信支付
-        }else if(paymentMethod == 2){
-            //积分支付
+            //扣除金额
+            if (paymentMethod == 1) {
+                //微信支付
+            } else if (paymentMethod == 2) {
+                //剩余积分
+                double ResidualIntegral = 0.00;
+                //积分
+                double Integral = SldzUser.getIntegral();
+                //应付金额
+                double AmountPayable = SldzOrder.getAmountPayable();
+                if (Integral < AmountPayable) {
+                    return JsonResult.FAIL_OPERATION("积分余额不足,您的积分余额：" + Integral);
+                }
 
-        }else if (paymentMethod == 3){
-            //奖励金支付
-        }
+                ResidualIntegral =  NumberUtil.sub(Integral,AmountPayable);
+                //扣积分
+                if (SldzUserServic.ChangePoints(ResidualIntegral,SldzUser.getRandom())) {
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(2l));
+                    //扣除库存
+                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                    for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+                        //库存
+                      int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                        stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
+                        //库存 = 库存 - 购买数量
+                        SldzProductService.productStockById(stock,asfssa.getProductId());
+                    }
+                    //改订单状态  待收货  记录时间
+                    SldzOrderMapper.ChangeOrderSigned (paymentMethod,AmountPayable,DateUtil.now(),SldzOrder.getOrderNumber());
+                    return JsonResult.OK().data("支付成功，积分扣除："+AmountPayable);
+                }
+
+            } else if (paymentMethod == 3) {
+                //奖励金支付
+                //剩余奖励金
+                double RemainingBonus = 0.00;
+                //奖励金
+                double Bonus = SldzUser.getBonus();
+                //应付金额
+                double AmountPayable = SldzOrder.getAmountPayable();
+                if (Bonus < AmountPayable) {
+                    return JsonResult.FAIL_OPERATION("奖励金余额不足,您的奖励金余额：" + Bonus);
+                }
+
+                RemainingBonus =  NumberUtil.sub(Bonus,AmountPayable);
+                //扣除奖励金
+                if (SldzUserServic.ChangeBonus(RemainingBonus,SldzUser.getRandom())) {
+                    //记录奖励金消费记录
+                    SldzAgentBonusLogService.createEntity(new SldzAgentBonusLog()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setRonusDate(DateUtil.now())
+                            .setRonusEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setRonusMoney(AmountPayable)
+                            .setRonusType(1l));
+                    //扣除库存
+                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                    for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+                        //库存
+                        int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                        stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
+                        //库存 = 库存 - 购买数量
+                        SldzProductService.productStockById(stock,asfssa.getProductId());
+                    }
+                    //改订单状态  待收货  记录时间
+                    SldzOrderMapper.ChangeOrderSigned (paymentMethod,AmountPayable,DateUtil.now(),SldzOrder.getOrderNumber());
+                    return JsonResult.OK().data("支付成功，奖励金扣除："+AmountPayable);
+                }
+
+
+
+            }
+        } else if (type == 2) {//代理商
+            SldzAgent SldzAgen = (SldzAgent) map.get("SldzAgent");
+            if (paymentMethod == 1) {
+                //微信支付
+            }else if ( paymentMethod == 2) {
+                //积分支付
+                //剩余积分
+                double ResidualIntegral = 0.00;
+                //积分
+                double Integral = SldzAgen.getAgentIntegral();
+                //应付金额
+                double AmountPayable = SldzOrder.getAmountPayable();
+                if (Integral < AmountPayable) {
+                    return JsonResult.FAIL_OPERATION("积分余额不足,您的积分余额：" + Integral);
+                }
+
+                ResidualIntegral =  NumberUtil.sub(Integral,AmountPayable);
+                //扣积分
+                if (SldzAgentService.ChangePoints(ResidualIntegral,SldzAgen.getAgentRandom())) {
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzAgen.getAgentRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(2l));
+                    //扣除库存
+                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                    for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+                        //库存
+                        int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                        stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
+                        //库存 = 库存 - 购买数量
+                        SldzProductService.productStockById(stock,asfssa.getProductId());
+                    }
+                    //改订单状态  待收货  记录时间
+                    SldzOrderMapper.ChangeOrderSigned (paymentMethod,AmountPayable,DateUtil.now(),SldzOrder.getOrderNumber());
+                    return JsonResult.OK().data("支付成功，积分扣除："+AmountPayable);
+                }
+
+            }else if (paymentMethod == 3) {
+                //奖励金支付
+                //剩余奖励金
+                double RemainingBonus = 0.00;
+                //奖励金
+                double Bonus = SldzAgen.getAgentBonus();
+                //应付金额
+                double AmountPayable = SldzOrder.getAmountPayable();
+                if (Bonus < AmountPayable) {
+                    return JsonResult.FAIL_OPERATION("奖励金余额不足,您的奖励金余额：" + Bonus);
+                }
+
+
+                RemainingBonus = NumberUtil.sub(Bonus, AmountPayable);
+                //扣除奖励金
+                if (SldzUserServic.ChangeBonus(RemainingBonus,SldzAgen.getAgentRandom())) {
+                    //记录奖励金消费记录
+                    SldzAgentBonusLogService.createEntity(new SldzAgentBonusLog()
+                            .setAgentRandom(SldzAgen.getAgentRandom())
+                            .setRonusDate(DateUtil.now())
+                            .setRonusEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setRonusMoney(AmountPayable)
+                            .setRonusType(1l));
+                    //扣除库存
+                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                    for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+                        //库存
+                        int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                        stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
+                        //库存 = 库存 - 购买数量
+                        SldzProductService.productStockById(stock,asfssa.getProductId());
+                    }
+                    //改订单状态  待收货  记录时间 把支付方式改成相应的 记录实际支付
+                    SldzOrderMapper.ChangeOrderSigned (paymentMethod,AmountPayable,DateUtil.now(),SldzOrder.getOrderNumber());
+
+                    return JsonResult.OK().data("支付成功，奖励金扣除："+AmountPayable);
+                }
+
+
+
+            }
+            }
 
 
         return null;
+    }
+
+
+    public Map getUser(String random) {
+        Map map = new HashMap();
+
+        LambdaQueryWrapper<SldzUser> wrapperUser = new LambdaQueryWrapper<>();
+        wrapperUser.eq(SldzUser::getRandom, random);
+        //根据wrapper 查找对应数据
+        SldzUser SldzUser = SldzUserServic.getSingleEntity(wrapperUser);
+        if (ObjectUtil.isNull(SldzUser)) {
+            LambdaQueryWrapper<SldzAgent> wrapperAgent = new LambdaQueryWrapper<>();
+            wrapperAgent.eq(SldzAgent::getAgentRandom, random);
+            //根据wrapper 查找对应数据
+            SldzAgent SldzAgent = SldzAgentService.getSingleEntity(wrapperAgent);
+            map.put("type", 2);//1代表消费者 2代理商
+            map.put("SldzAgent", SldzAgent);//1代表消费者 2代理商
+            return map;
+        }
+        map.put("type", 1);//1代表消费者 2代理商
+        map.put("SldzUser", SldzUser);//1代表消费者 2代理商
+        return map;
     }
 
 
