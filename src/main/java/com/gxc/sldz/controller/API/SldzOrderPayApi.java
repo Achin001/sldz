@@ -74,8 +74,8 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         String  TradeNo = response.getOutTradeNo();
         System.out.println("微信支付流水号"+TradeNo);
         //取出订单
-        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
-        System.out.println("取出订单"+SldzOrder);
+//        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
+//        System.out.println("取出订单"+SldzOrder);
 //        log.info("【异步回调获取订单号】orderId={}", orderId);
 
 
@@ -95,7 +95,7 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
                 AmountPayable,
                 DateUtil.now(),
                 TradeNo,
-                SldzOrder.getOrderNumber());
+                orderId);
 
     }
 
