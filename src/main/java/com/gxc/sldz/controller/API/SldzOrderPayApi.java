@@ -80,15 +80,15 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
 
 
 //        扣除库存
-        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
-            //库存
-            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
-            long stock = SldzProduct.getProductStock();
-            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
-            //库存 = 库存 - 购买数量
-            SldzProductService.productStockById(stock,asfssa.getProductId());
-        }
+//        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+//        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+//            //库存
+//            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
+//            long stock = SldzProduct.getProductStock();
+//            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
+//            //库存 = 库存 - 购买数量
+//            SldzProductService.productStockById(stock,asfssa.getProductId());
+//        }
 //        改订单状态  待收货  记录时间
         sldzOrderService.ChangeOrderSigneds (
                 1,
