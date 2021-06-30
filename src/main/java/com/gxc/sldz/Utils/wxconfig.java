@@ -1,5 +1,7 @@
 package com.gxc.sldz.Utils;
 
+import org.springframework.stereotype.Component;
+
 public interface wxconfig {
 
     // 请求的网址
@@ -10,6 +12,17 @@ public interface wxconfig {
     public static final String WX_LOGIN_SECRET = "e7e8ed87a3047491e15e73ce2bcea747";
     // 固定参数
     public static final String WX_LOGIN_GRANT_TYPE = "authorization_code";
+
+
+
+    //微信支付的商户id
+    public static final String mchId = "1564268321";
+    //密匙(在微信支付平台自行设置,要求32位.建议使用随机密码)
+    public static final String mchKey = "o8mdiqk14nz5aq2jfwi1oafaw02bcbhu";
+    //退款密匙(应该这么叫吧.需要去微信支付平台下载.指定密匙的绝对地址)
+    public static final String keyPath = "classpath:cert/apiclient_cert.p12";
+    //微信支付完成的通知地址 需要关闭token验证
+    public static final String notifyUrl = "http://pro1.siliandingzhi.com/quanghuo001/wechat/notify";
 
 
 }

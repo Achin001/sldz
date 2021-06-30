@@ -16,6 +16,10 @@ import com.gxc.sldz.entity.*;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.*;
 import com.gxc.sldz.vo.OrderProductJsonVo;
+import com.lly835.bestpay.enums.BestPayTypeEnum;
+import com.lly835.bestpay.model.PayRequest;
+import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +39,11 @@ import java.util.*;
 @Service
 @Slf4j
 public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper, SldzOrder> implements SldzOrderService {
+
+
+    //微信支付服务
+    @Autowired
+    private BestPayServiceImpl bestPayService;
 
     //奖励金记录服务
     @Autowired
@@ -124,6 +133,14 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
             //扣除金额
             if (paymentMethod == 1) {
                 //微信支付
+                PayRequest payRequest = new PayRequest();
+                payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
+                payRequest.setOrderId(SldzOrder.getOrderNumber());
+                payRequest.setOrderName("私脸小程序支付订单");
+                payRequest.setOrderAmount(0.01);
+                payRequest.setOpenid(SldzUser.getOpenid());
+                PayResponse payResponse = bestPayService.pay(payRequest);
+                return JsonResult.OK().data(payResponse);
             } else if (paymentMethod == 2) {
                 //剩余积分
                 double ResidualIntegral = 0.00;
