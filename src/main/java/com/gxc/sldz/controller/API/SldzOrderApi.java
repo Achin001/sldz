@@ -166,7 +166,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
             @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
     })
     @PutMapping("/DetermineFinalAmount")
-    public JsonResult DetermineFinalAmount(int couponId,
+    public JsonResult DetermineFinalAmount(Integer couponId,
                                            @RequestBody String couponJson,
                                            double discount,
                                            double AmountAfterDiscount,
@@ -222,6 +222,18 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @GetMapping("/{id}")
     public JsonResult getViewObjectMapping(@PathVariable("id")Long id) throws Exception{
         return super.getViewObject(id, SldzOrderDetailVO.class);
+    }
+
+    /***
+     * 根据资源id查询ViewObject
+     * @param id ID
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "未付款-取消订单")
+    @DeleteMapping("/{id}")
+    public JsonResult deleteEntity(@PathVariable("id")Long id) throws Exception{
+        return super.deleteEntity(id);
     }
 
 
