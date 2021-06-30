@@ -432,3 +432,7 @@ ALTER TABLE `sldz_user` ADD COLUMN `bonus` double COMMENT '奖励金' AFTER `ran
 ALTER TABLE `sldz_user` ADD COLUMN `integral` double COMMENT '积分' AFTER `bonus`;
 -- 2021-06-29 16:45:07 by Achin
 ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `integral`;
+-- 2021-06-30 16:27:31 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `payment_method` tinyint(1) DEFAULT 1 COMMENT '付款方式(1微信钱包,2积分,3,奖励金)' AFTER `amount_actually_paid`;
+-- 2021-06-30 16:27:31 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `state` tinyint(1) DEFAULT 1 COMMENT '状态(1待付款,2待收货,3,已完成,4售后)' AFTER `payment_method`;

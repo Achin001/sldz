@@ -105,8 +105,11 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
      */
     private static final String[] NOT_CHECK_URL = {
             "/admin/login",
-//            "/admin/**",
-            "/api/**"
+            "/api/AccountLogin",//账号密码登录
+            "/api/WeChatLogin",//微信登录
+            "/api/sldzOrder/notify", //微信支付回调
+            "/api/sldzProduct/**",//产品列表
+            "/api/sldzProductCategory/**",//产品分类列表
     };
 
 }

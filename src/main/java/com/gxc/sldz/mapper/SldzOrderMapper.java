@@ -51,7 +51,7 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
             "state = 2 ," +
             "payment_time = #{paymentTime}" +
             "wx_pay_serial_num = #{wxPaySerialNum}" +
-            "WHERE  order_number =#{orderNumber}\n")
+            "WHERE  order_number =#{orderNumber}")
     boolean ChangeOrderSigneds(@Param("paymentMethod") int paymentMethod,
                               @Param("amountActuallyPaid") double amountActuallyPaid,
                               @Param("paymentTime") String paymentTime,

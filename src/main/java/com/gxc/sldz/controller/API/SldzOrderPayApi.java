@@ -60,35 +60,40 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
     @ApiOperation(value = "异步回调")
     @PostMapping(value = "/notify")
     public void notify(@RequestBody String notifyData ) throws Exception {
-        log.info("asynchronous【异步回调】request={}", notifyData);
+//        log.info("asynchronous【异步回调】request={}", notifyData);
         PayResponse response = bestPayService.asyncNotify(notifyData);
-        log.info("asynchronous【异步回调】response={}", JsonUtil.toJson(response));
+//        log.info("asynchronous【异步回调】response={}", JsonUtil.toJson(response));
         //获取订单号
         String orderId = response.getOrderId();
+        System.out.println("获取订单号"+orderId);
         //实际支付金额
         double  AmountPayable = response.getOrderAmount();
+        System.out.println("实际支付金额"+AmountPayable);
         //微信支付流水号
         String  TradeNo = response.getOutTradeNo();
-        //取出订单号
+        System.out.println("微信支付流水号"+TradeNo);
+        //取出订单
         SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
-        log.info("【异步回调获取订单号】orderId={}", orderId);
+        System.out.println("取出订单产品"+SldzOrder.getProductJson());
+//        log.info("【异步回调获取订单号】orderId={}", orderId);
+
 
         //扣除库存
-        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
-            //库存
-            int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
-            stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
-            //库存 = 库存 - 购买数量
-            SldzProductService.productStockById(stock,asfssa.getProductId());
-        }
+//        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+//        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+//            //库存
+//            int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+//            stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
+//            //库存 = 库存 - 购买数量
+//            SldzProductService.productStockById(stock,asfssa.getProductId());
+//        }
         //改订单状态  待收货  记录时间
-        sldzOrderService.ChangeOrderSigneds (
-                1,
-                AmountPayable,
-                DateUtil.now(),
-                TradeNo,
-                SldzOrder.getOrderNumber());
+//        sldzOrderService.ChangeOrderSigneds (
+//                1,
+//                AmountPayable,
+//                DateUtil.now(),
+//                TradeNo,
+//                SldzOrder.getOrderNumber());
 
     }
 

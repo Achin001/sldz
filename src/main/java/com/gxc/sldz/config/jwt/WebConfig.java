@@ -25,10 +25,15 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(JwtInterceptor)
                 //拦截
                 .addPathPatterns("/admin/**")
+                .addPathPatterns("/api/**")
                 //放行
                 .excludePathPatterns(
                         "/admin/login",
-                        "/api/**"
+                        "/api/AccountLogin",//账号密码登录
+                        "/api/WeChatLogin",//微信登录
+                        "/api/sldzOrder/notify", //微信支付回调
+                        "/api/sldzProduct/**",//产品列表
+                        "/api/sldzProductCategory/**"//产品分类列表
                 );
 
 
