@@ -23,6 +23,14 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
     boolean AddOrderNotesByOrderNum(@Param("Remarks") String Remarks,
                                     @Param("orderNumber") String orderNumber);
 
+    boolean ChangeOrderSigneds(@Param("paymentMethod") int paymentMethod,
+                               @Param("amountActuallyPaid") double amountActuallyPaid,
+                               @Param("paymentTime") String paymentTime,
+                               @Param("wxPaySerialNum") String wxPaySerialNum,
+                               @Param("orderNumber") String orderNumber);
+
+
+
 
     JsonResult ObtainCouponsAccordingOrderProducts(SldzOrder SldzOrder);
 

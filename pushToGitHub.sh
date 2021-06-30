@@ -4,6 +4,6 @@ git init
 
 git add .
 
-git commit -m “添加了支付接口”
+git commit -m “添加了微信支付接口”
 
 git push origin master

@@ -78,6 +78,13 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     }
 
     @Override
+    public boolean ChangeOrderSigneds(int paymentMethod, double amountActuallyPaid, String paymentTime, String wxPaySerialNum, String orderNumber) {
+        return SldzOrderMapper.ChangeOrderSigneds(paymentMethod, amountActuallyPaid,paymentTime,orderNumber,wxPaySerialNum);
+    }
+
+
+
+    @Override
     public JsonResult ObtainCouponsAccordingOrderProducts(SldzOrder SldzOrder) {
         //可用优惠券列表
         List<String> availableCoupons = new ArrayList<>();

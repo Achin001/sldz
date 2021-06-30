@@ -103,9 +103,9 @@ public class SldzOrder extends BaseCustomEntity {
     /**
      * 付款方式(1微信钱包,2积分,3,奖励金)
      */
-    @ApiModelProperty(value = "付款方式(1微信钱包,2 积分,3,奖励金)", example = "")
+    @ApiModelProperty(value = "付款方式(1微信钱包,2 积分,3,奖励金)", example = "1")
     @TableField()
-    private Boolean paymentMethod;
+    private int paymentMethod;
 
     /**
      * 实付金额
@@ -118,9 +118,9 @@ public class SldzOrder extends BaseCustomEntity {
     /**
      * 状态(1待付款,2待收货,3,已完成,4售后)
      */
-    @ApiModelProperty(value = "状态(1待付款,2待收货,3,已完成,4售后)", example = "")
+    @ApiModelProperty(value = "状态(1待付款,2待收货,3,已完成,4售后)", example = "1")
     @TableField()
-    private Boolean state;
+    private int state;
 
     /**
      * 收货地址json
