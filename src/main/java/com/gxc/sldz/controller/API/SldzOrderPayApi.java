@@ -71,6 +71,7 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         String  TradeNo = response.getOutTradeNo();
         //取出订单
         SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
+        System.out.println("取出订单"+SldzOrder);
 //        log.info("【异步回调获取订单号】orderId={}", orderId);
 
 

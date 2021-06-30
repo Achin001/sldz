@@ -8,6 +8,7 @@ import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.Utils.wxconfig;
+import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.entity.SldzUser;
 import com.gxc.sldz.vo.OrderProductJsonVo;
 import org.junit.jupiter.api.Test;
@@ -100,22 +101,11 @@ class SldzApplicationTests {
 
     @Test
     void contextLoadssa() {
-        List<OrderProductJsonVo> orderProductJsonVos = new ArrayList<>();
-        String z = "[{\"id\":\"10000107\",\"createTime\":\"2021-06-25 13:05:16\",\"agentRandom\":\"YtENKCuJ\",\"productId\":\"10000013\",\"productJson\":{\"id\":\"10000013\",\"createTime\":\"2021-06-04 19:54:51\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778844458,\"status\":\"success\"}],\"productName\":\"尔特喏特\",\"productPrice\":236,\"productDetails\":\"<p>二人的头423443&nbsp;</p>\",\"productStock\":\"152\",\"sldzProductCategoryCategoryName\":\"真香\"},\"cartNum\":\"1\",\"checked\":true},{\"id\":\"10000099\",\"createTime\":\"2021-06-21 18:18:08\",\"agentRandom\":\"YtENKCuJ\",\"productId\":\"10000006\",\"productJson\":{\"id\":\"10000006\",\"createTime\":\"2021-06-04 19:48:07\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778441869,\"status\":\"success\"}],\"productName\":\"保湿喷雾液\",\"productPrice\":189,\"productVideo\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/vedio2.mp4\",\"productDetails\":\" <p>真好，是真的好！</p>\",\"productStock\":\"200\",\"sldzProductCategoryCategoryName\":\"真香\"},\"cartNum\":\"10\",\"checked\":true},{\"id\":\"10000098\",\"createTime\":\"2021-06-21 18:18:06\",\"agentRandom\":\"YtENKCuJ\",\"productId\":\"10000009\",\"productJson\":{\"id\":\"10000009\",\"createTime\":\"2021-06-04 19:53:39\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778800125,\"status\":\"success\"}],\"productName\":\"玻尿酸\",\"productPrice\":156,\"productDetails\":\"<p>问题热天热特特</p>\",\"productStock\":\"656\",\"sldzProductCategoryCategoryName\":\"真香\"},\"cartNum\":\"14\",\"checked\":true}]";
-        JSONArray tableData = JSONArray.parseArray(z);
-        JSONObject rowData = new JSONObject();
-        String rowDatas  = null;
-
-        for (int i = 0; i < tableData.size(); i++) {
-            OrderProductJsonVo OrderProductJsonVo = new OrderProductJsonVo();
-            rowData = tableData.getJSONObject(i);
-            JSONObject jsonObject = JSON.parseObject(rowData.getString("productJson"));
-            OrderProductJsonVo.setProductPrice(Double.parseDouble(jsonObject.getString("productPrice")));
-            OrderProductJsonVo.setCartNum(Integer.parseInt(rowData.getString("cartNum")));
-            OrderProductJsonVo.setProductId(Long.parseLong(jsonObject.getString("id")));
-            orderProductJsonVos.add(OrderProductJsonVo);
+        List<OrderProductJsonVo>   OrderProductJsonVo = OrderUtil.getOrderProductJsonVo("[{\"id\":\"10000123\",\"createTime\":\"2021-06-30 16:43:31\",\"agentRandom\":\"KXHS1lDU\",\"productId\":\"10000011\",\"productJson\":{\"id\":\"10000011\",\"createTime\":\"2021-06-04 11:54:12\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778844458,\"status\":\"success\"}],\"productName\":\"的投入\",\"productPrice\":696,\"productDetails\":\"<p>尔尔</p>\",\"productStock\":\"45\",\"sldzProductCategoryCategoryName\":\"梵莲娜\"},\"cartNum\":\"1\",\"checked\":true}]");
+        for (OrderProductJsonVo asfssa :OrderProductJsonVo) {
+            System.out.println(asfssa);
         }
-        System.out.println(orderProductJsonVos);
+
     }
 
 
