@@ -10,6 +10,7 @@ import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.service.SldzProductService;
@@ -78,22 +79,23 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
 //        log.info("【异步回调获取订单号】orderId={}", orderId);
 
 
-        //扣除库存
-//        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-//        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
-//            //库存
-//            int stock =  Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
-//            stock = (int) NumberUtil.sub(stock, asfssa.getCartNum());
-//            //库存 = 库存 - 购买数量
-//            SldzProductService.productStockById(stock,asfssa.getProductId());
-//        }
-////        改订单状态  待收货  记录时间
-//        sldzOrderService.ChangeOrderSigneds (
-//                1,
-//                AmountPayable,
-//                DateUtil.now(),
-//                TradeNo,
-//                SldzOrder.getOrderNumber());
+//        扣除库存
+        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+            //库存
+            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
+            long stock = SldzProduct.getProductStock();
+            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
+            //库存 = 库存 - 购买数量
+            SldzProductService.productStockById(stock,asfssa.getProductId());
+        }
+//        改订单状态  待收货  记录时间
+        sldzOrderService.ChangeOrderSigneds (
+                1,
+                AmountPayable,
+                DateUtil.now(),
+                TradeNo,
+                SldzOrder.getOrderNumber());
 
     }
 
@@ -139,5 +141,6 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
         return  s;
     }
+
 
 }
