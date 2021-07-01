@@ -75,7 +75,7 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         String TradeNo = response.getOutTradeNo();
         System.out.println("微信支付流水号"+TradeNo);
         //取出订单
-        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumberss(orderId);
         System.out.println("取出订单"+SldzOrder);
 
 
@@ -125,7 +125,17 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
     }
 
 
-    //根据订单号获取订单对象
+
+    //根据订单号获取未付款订单对象
+    public SldzOrder GetOrderObjectByOrderNumberss(String orderNumber) throws Exception {
+        LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
+        SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
+        return  s;
+    }
+
+
+    //根据订单号获取未付款订单对象
     public SldzOrder GetOrderObjectByOrderNumber(String orderNumber) throws Exception {
         LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
