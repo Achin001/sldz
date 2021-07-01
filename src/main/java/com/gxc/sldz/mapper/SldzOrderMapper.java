@@ -44,7 +44,13 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
 
 
     //改订单状态  待收货  记录时间 把支付方式改成相应的 记录实际支付 记录微信支付流水号
-    @Update("UPDATE sldz_order SET payment_method = #{paymentMethod},amount_actually_paid = #{amountActuallyPaid},state = 2 ,payment_time = #{paymentTime},wx_pay_serial_num = #{wxPaySerialNum} WHERE  order_number =#{orderNumber}")
+    @Update("UPDATE sldz_order SET " +
+            "payment_method = #{paymentMethod}," +
+            "amount_actually_paid = #{amountActuallyPaid}," +
+            "state = 2 ," +
+            "payment_time = #{paymentTime}," +
+            "wx_pay_serial_num = #{wxPaySerialNum} " +
+            "WHERE  order_number =#{orderNumber}")
     boolean ChangeOrderSigneds(@Param("paymentMethod") int paymentMethod,
                               @Param("amountActuallyPaid") double amountActuallyPaid,
                               @Param("paymentTime") String paymentTime,

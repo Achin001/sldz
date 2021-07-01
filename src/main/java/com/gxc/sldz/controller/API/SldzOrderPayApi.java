@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
@@ -88,13 +89,21 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         }
         System.out.println("扣除库存流程走完");
 
+
+        UpdateWrapper<SldzOrder> SldzOrderupdateWrapper = new UpdateWrapper<>();
+        SldzOrderupdateWrapper.eq("order_number",orderId);
+        SldzOrderupdateWrapper.set("amount_actually_paid",AmountPayable);
+        SldzOrderupdateWrapper.set("state",2);
+        SldzOrderupdateWrapper.set("wx_pay_serial_num",TradeNo);
+        SldzOrderupdateWrapper.set("payment_time",DateUtil.now());
+        sldzOrderService.updateEntity(SldzOrderupdateWrapper);
 //        改订单状态  待收货  记录时间
-        sldzOrderService.ChangeOrderSigneds (
-                1,
-                AmountPayable,
-                DateUtil.now(),
-                TradeNo,
-                orderId);
+//        sldzOrderService.ChangeOrderSigneds (
+//                1,
+//                AmountPayable,
+//                DateUtil.now(),
+//                TradeNo,
+//                orderId);
         System.out.println("回调流程走完");
 
     }
