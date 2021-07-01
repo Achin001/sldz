@@ -66,29 +66,31 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
 //        log.info("asynchronous【异步回调】response={}", JsonUtil.toJson(response));
         //获取订单号
         String orderId = response.getOrderId();
+        log.info("【异步回调获取订单号】orderId={}", orderId);
         System.out.println("获取订单号"+orderId);
         //实际支付金额
-        double  AmountPayable = response.getOrderAmount();
+        double AmountPayable = response.getOrderAmount();
         System.out.println("实际支付金额"+AmountPayable);
         //微信支付流水号
-        String  TradeNo = response.getOutTradeNo();
+        String TradeNo = response.getOutTradeNo();
         System.out.println("微信支付流水号"+TradeNo);
         //取出订单
-//        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
-//        System.out.println("取出订单"+SldzOrder);
-//        log.info("【异步回调获取订单号】orderId={}", orderId);
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderId);
+        System.out.println("取出订单"+SldzOrder);
 
 
-//        扣除库存
-//        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-//        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
-//            //库存
-//            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
-//            long stock = SldzProduct.getProductStock();
-//            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
-//            //库存 = 库存 - 购买数量
-//            SldzProductService.productStockById(stock,asfssa.getProductId());
-//        }
+        //扣除库存
+        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+        for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
+            System.out.println("取出产品："+asfssa);
+            //库存
+            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
+            long stock = SldzProduct.getProductStock();
+            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
+            //库存 = 库存 - 购买数量
+            SldzProductService.productStockById(stock,asfssa.getProductId());
+        }
+
 //        改订单状态  待收货  记录时间
         sldzOrderService.ChangeOrderSigneds (
                 1,
