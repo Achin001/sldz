@@ -25,8 +25,11 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedOutputStream;
 import java.util.List;
 
 @Api(tags = {"前台订单支付接口"})
@@ -61,35 +64,24 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
 
     @ApiOperation(value = "异步回调")
     @PostMapping(value = "/notify")
-    public void notify(@RequestBody String notifyData ) throws Exception {
-//        log.info("asynchronous【异步回调】request={}", notifyData);
+    public String notify(@RequestBody String notifyData ) throws Exception {
         PayResponse response = bestPayService.asyncNotify(notifyData);
-//        log.info("asynchronous【异步回调】response={}", JsonUtil.toJson(response));
         //获取订单号
         String orderId = response.getOrderId();
-        log.info("【异步回调获取订单号】orderId={}", orderId);
-        System.out.println("获取订单号"+orderId);
         //实际支付金额
         double AmountPayable = response.getOrderAmount();
-        System.out.println("实际支付金额"+AmountPayable);
         //微信支付流水号
         String TradeNo = response.getOutTradeNo();
-        System.out.println("微信支付流水号"+TradeNo);
         //取出订单
         SldzOrder SldzOrder = GetOrderObjectByOrderNumberss(orderId);
-        System.out.println("取出订单"+SldzOrder);
 
 
         //扣除库存
         List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
         for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
-            System.out.println("取出产品："+asfssa);
             //库存 = 库存 - 购买数量  根据ID减产品库存
             SldzProductService.productStockByIdloa(asfssa.getCartNum(),asfssa.getProductId());
         }
-        System.out.println("扣除库存流程走完");
-
-
         UpdateWrapper<SldzOrder> SldzOrderupdateWrapper = new UpdateWrapper<>();
         SldzOrderupdateWrapper.eq("order_number",orderId);
         SldzOrderupdateWrapper.set("amount_actually_paid",AmountPayable);
@@ -97,14 +89,10 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         SldzOrderupdateWrapper.set("wx_pay_serial_num",TradeNo);
         SldzOrderupdateWrapper.set("payment_time",DateUtil.now());
         sldzOrderService.updateEntity(SldzOrderupdateWrapper);
-//        改订单状态  待收货  记录时间
-//        sldzOrderService.ChangeOrderSigneds (
-//                1,
-//                AmountPayable,
-//                DateUtil.now(),
-//                TradeNo,
-//                orderId);
-        System.out.println("回调流程走完");
+        // 通知微信.异步确认成功.必写.不然会一直通知后台.八次之后就认为交易失败了.
+      String   resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
+                + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
+        return resXml;
 
     }
 
