@@ -13,4 +13,6 @@ import org.apache.ibatis.annotations.Param;
 public interface SldzProductService extends BaseCustomService<SldzProduct> {
 
     boolean productStockById (@Param("stock") long stock, @Param("id") long id);
+
+    boolean productStockByIdloa (@Param("stock") long stock,@Param("id") long id);
 }

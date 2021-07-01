@@ -83,13 +83,8 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
         List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
         for (OrderProductJsonVo asfssa :getOrderProductJsonVo) {
             System.out.println("取出产品："+asfssa);
-            //库存
-            SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
-            long stock = SldzProduct.getProductStock();
-            stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
-            System.out.println("剩余的库存"+stock);
-            //库存 = 库存 - 购买数量
-            SldzProductService.productStockById(stock,asfssa.getProductId());
+            //库存 = 库存 - 购买数量  根据ID减产品库存
+            SldzProductService.productStockByIdloa(asfssa.getCartNum(),asfssa.getProductId());
         }
         System.out.println("扣除库存流程走完");
 

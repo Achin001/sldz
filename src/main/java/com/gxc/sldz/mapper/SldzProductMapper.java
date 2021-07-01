@@ -21,6 +21,9 @@ public interface SldzProductMapper extends BaseCrudMapper<SldzProduct> {
     @Update("UPDATE sldz_product SET product_stock = #{stock}  WHERE id = #{id}")
     boolean productStockById (@Param("stock") long stock,@Param("id") long id);
 
+    //根据产品id减改产品库存
+    @Update("UPDATE sldz_product SET product_stock = product_stock - #{stock}  WHERE id = #{id}")
+    boolean productStockByIdloa (@Param("stock") long stock,@Param("id") long id);
 
 
 }

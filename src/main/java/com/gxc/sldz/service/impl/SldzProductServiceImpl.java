@@ -28,4 +28,9 @@ public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMap
     public boolean productStockById(long stock, long id) {
         return SldzProductMapper.productStockById(stock,id);
     }
+
+    @Override
+    public boolean productStockByIdloa(long stock, long id) {
+        return SldzProductMapper.productStockByIdloa(stock,id);
+    }
 }
