@@ -87,9 +87,11 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
             SldzProduct SldzProduct  = SldzProductService.getEntity(asfssa.getProductId());
             long stock = SldzProduct.getProductStock();
             stock = (long) NumberUtil.sub(stock, asfssa.getCartNum());
+            System.out.println("剩余的库存"+stock);
             //库存 = 库存 - 购买数量
             SldzProductService.productStockById(stock,asfssa.getProductId());
         }
+        System.out.println("扣除库存流程走完");
 
 //        改订单状态  待收货  记录时间
         sldzOrderService.ChangeOrderSigneds (
@@ -98,6 +100,7 @@ public class SldzOrderPayApi extends BaseCustomCrudRestController<SldzOrder> {
                 DateUtil.now(),
                 TradeNo,
                 orderId);
+        System.out.println("回调流程走完");
 
     }
 
