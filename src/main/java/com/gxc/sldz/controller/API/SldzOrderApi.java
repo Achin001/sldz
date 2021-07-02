@@ -2,6 +2,7 @@ package com.gxc.sldz.controller.API;
 
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -182,7 +183,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
         //把优惠券json 优惠金额 优惠后金额 写入库
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq(SldzOrder.getOrderNumber(),orderNumber);
+        updateWrapper.eq("order_number",orderNumber);
         updateWrapper.set("amount_payable",AmountAfterDiscount);
         updateWrapper.set("discount",discount);
         updateWrapper.set("coupon_json",couponJson);
@@ -237,6 +238,13 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     }
 
 
+
+    @ApiOperation(value = "未发货-退款")
+    @PostMapping("/{UndeliveredRefund}")
+    public JsonResult UndeliveredRefund(String orderNumber) throws Exception{
+        return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers( orderNumber));
+    }
+
     //根据订单号获取订单对象
     public SldzOrder GetOrderObjectByOrderNumber(String orderNumber) throws Exception {
         LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
@@ -245,6 +253,14 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         return  sldzOrderService.getSingleEntity(wrapper);
     }
 
+    //根据订单号获取已付款订单对象
+    public SldzOrder GetOrderObjectByOrderNumbers(String orderNumber) throws Exception {
+        LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
+        wrapper.eq(SldzOrder::getState, 2);
+        SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
+        return  s;
+    }
 
 
 }

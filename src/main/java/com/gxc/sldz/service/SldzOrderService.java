@@ -36,4 +36,6 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     JsonResult orderPay(SldzOrder SldzOrder ,int paymentMethod);
 
+    JsonResult UndeliveredRefund(SldzOrder SldzOrder);
+
 }

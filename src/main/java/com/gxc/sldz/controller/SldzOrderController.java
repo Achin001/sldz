@@ -1,5 +1,10 @@
 package com.gxc.sldz.controller;
 
+import com.lly835.bestpay.enums.BestPayTypeEnum;
+import com.lly835.bestpay.model.RefundRequest;
+import com.lly835.bestpay.model.RefundResponse;
+import com.lly835.bestpay.service.impl.BestPayServiceImpl;
+import com.lly835.bestpay.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -29,6 +34,9 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     @Autowired
     private SldzOrderService sldzOrderService;
+
+    @Autowired
+    private BestPayServiceImpl bestPayService;
 
     /**
      * 查询ViewObject的分页数据
@@ -90,4 +98,22 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
     // public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
     // return super.deleteEntity(id);
     // }
+
+
+    /**
+     * 退款
+     */
+//    @GetMapping(value = "/refund")
+//    public JsonResult refund(@RequestParam("ordernum") String ordernum, @RequestParam("price") double price) {
+//        RefundRequest refundRequest = new RefundRequest();
+//        refundRequest.setOrderId(ordernum);
+//        refundRequest.setOrderAmount(price);
+//        refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
+//        log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
+//        RefundResponse refundResponse = bestPayService.refund(refundRequest);
+//        log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
+//        return JsonResult.OK().data(PayServer.refund(refundResponse));
+//    }
+
+
 }

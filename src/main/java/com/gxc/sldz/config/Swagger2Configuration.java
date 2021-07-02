@@ -37,7 +37,7 @@ public class Swagger2Configuration {
         return new ApiInfoBuilder()
                 .title("私脸定治小程序接口文档")
                 .description("私脸定治小程序接口文档")
-                .termsOfServiceUrl("http://localhost:82/")
+                .termsOfServiceUrl("https://miniapp.siliandingzhi.com:83/")
                 .contact("10086@mail.com")
                 .version("1.0")
                 .build();
