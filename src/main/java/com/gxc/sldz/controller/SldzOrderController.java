@@ -1,5 +1,9 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.crypto.SecureUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.gxc.sldz.entity.SldzAdmin;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
@@ -62,6 +66,20 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
     @GetMapping("/{id}")
     public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
         return super.getViewObject(id, SldzOrderDetailVO.class);
+    }
+
+    /**
+     * 根据资源id查询ViewObject
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "获取已付款未发货的数量")
+    @GetMapping("/GetPaidNotDeliveredQuantity")
+    public JsonResult GetPaidNotDeliveredQuantity() throws Exception {
+        LambdaQueryWrapper<SldzOrder> SldzOrderwrapper = new LambdaQueryWrapper<>();
+        SldzOrderwrapper.eq(SldzOrder::getState, 2);
+        SldzOrderwrapper.eq(SldzOrder::getLogisticsNumber, null);
+        return JsonResult.OK().data(sldzOrderService. getSingleEntity(SldzOrderwrapper));
     }
 
     // 

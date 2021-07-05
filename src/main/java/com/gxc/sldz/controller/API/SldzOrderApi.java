@@ -240,7 +240,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
 
     @ApiOperation(value = "未发货-退款")
-    @PostMapping("/{UndeliveredRefund}")
+    @PostMapping("/UndeliveredRefund")
     public JsonResult UndeliveredRefund(String orderNumber) throws Exception{
         return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers( orderNumber));
     }
