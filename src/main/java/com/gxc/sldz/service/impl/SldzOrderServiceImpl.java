@@ -8,6 +8,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.diboot.core.util.BeanUtils;
+import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RandomChangeUsers;
@@ -20,7 +21,10 @@ import com.gxc.sldz.vo.OrderProductJsonVo;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
+import com.lly835.bestpay.model.RefundRequest;
+import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
+import com.lly835.bestpay.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -324,38 +328,191 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         }
         Map map = getUser(SldzOrder.getBuyersRandom());
         int type = (int) map.get("type");
-        //付款金额
-       double AmountMoney = SldzOrder.getAmountActuallyPaid();
         if (type == 1) {
             //消费者
             SldzUser SldzUser = (SldzUser) map.get("SldzUser");
             //退款流程 加回积分/奖励金/微信
             if (SldzOrder.getPaymentMethod() == 1) {
                 //微信支付
-            } else if (SldzOrder.getPaymentMethod() == 2) {
+                RefundRequest refundRequest = new RefundRequest();
+                refundRequest.setOrderId(SldzOrder.getOrderNumber());
+                refundRequest.setOrderAmount(SldzOrder.getAmountActuallyPaid());
+                refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
+                log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
+                RefundResponse refundResponse = bestPayService.refund(refundRequest);
+                log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                return JsonResult.OK().data("退款退货成功" + refundResponse);
+            }
+            else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                //记录 回积分/奖励金 收入记录
+                //应该加回的积分
+                double ResidualIntegral = 0.00;
+                //积分余额
+                double Integral = SldzUser.getIntegral();
+                //实付金额
+                double AmountPayable = SldzOrder.getAmountActuallyPaid();
 
-
-            } else if (SldzOrder.getPaymentMethod() == 2) {
+                ResidualIntegral = NumberUtil.add(Integral, AmountPayable);
+                //加积分
+                if (SldzUserServic.ChangePoints(ResidualIntegral, SldzUser.getRandom())) {
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("订单退款退货" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(1l));
+                }
+                return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
+            }
+            else if (SldzOrder.getPaymentMethod() == 3) {
                 //奖励金支付
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                double RemainingBonus = 0.00;
+                //奖励金
+                double Bonus = SldzUser.getBonus();
+                //实付金额
+                double AmountPayable = SldzOrder.getAmountActuallyPaid();
+
+                RemainingBonus = NumberUtil.add(Bonus, AmountPayable);
+                //加奖励金
+                if (SldzUserServic.ChangeBonus(RemainingBonus, SldzUser.getRandom())) {
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("订单退款退货" + AmountPayable + "奖励金,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(1l));
+                }
+                return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
 
             }
-
-
-            //记录 回积分/奖励金 收入记录
-            //订单改为退款售后
-            //库存加回
         } else if (type == 2) {
             //代理商
+            SldzAgent SldzAgen = (SldzAgent) map.get("SldzAgent");
             //退款流程 加回积分/奖励金/微信
             if (SldzOrder.getPaymentMethod() == 1) {
                 //微信支付
-            } else if (SldzOrder.getPaymentMethod() == 2) {
+                RefundRequest refundRequest = new RefundRequest();
+                refundRequest.setOrderId(SldzOrder.getOrderNumber());
+                refundRequest.setOrderAmount(SldzOrder.getAmountActuallyPaid());
+                refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
+                log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
+                RefundResponse refundResponse = bestPayService.refund(refundRequest);
+                log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                return JsonResult.OK().data("退款退货成功" + refundResponse);
+            }
+            else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                //记录 回积分/奖励金 收入记录
+                //应该加回的积分
+                double ResidualIntegral = 0.00;
+                //积分余额
+                double Integral = SldzAgen.getAgentIntegral();
+                //实付金额
+                double AmountPayable = SldzOrder.getAmountActuallyPaid();
 
-            } else if (SldzOrder.getPaymentMethod() == 2) {
+                ResidualIntegral = NumberUtil.add(Integral, AmountPayable);
+                //加积分
+                if (SldzUserServic.ChangePoints(ResidualIntegral, SldzAgen.getAgentRandom())) {
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzAgen.getAgentRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("订单退款退货" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(1l));
+                }
+                return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
+            }
+            else if (SldzOrder.getPaymentMethod() == 3) {
                 //奖励金支付
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
+                }
+                double RemainingBonus = 0.00;
+                //奖励金
+                double Bonus = SldzAgen.getAgentBonus();
+                //实付金额
+                double AmountPayable = SldzOrder.getAmountActuallyPaid();
 
+                RemainingBonus = NumberUtil.add(Bonus, AmountPayable);
+                //加奖励金
+                if (SldzUserServic.ChangeBonus(RemainingBonus, SldzAgen.getAgentRandom())){
+                    //记录积分消费记录
+                    sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
+                            .setAgentRandom(SldzAgen.getAgentRandom())
+                            .setIntegralDate(DateUtil.now())
+                            .setIntegralEvent("订单退款退货" + AmountPayable + "奖励金,订单号:" + SldzOrder.getOrderNumber())
+                            .setIntegralMoney(AmountPayable)
+                            .setIntegralType(1l));
+
+                }
+                return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
             }
 
         }

@@ -60,5 +60,10 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
 
 
 
+    //改订单状态4  售后
+    @Update("UPDATE sldz_order SET state = 4  WHERE  order_number =#{orderNumber}")
+    boolean ChangeOrderAfterSales(@Param("orderNumber") String orderNumber);
+
+
 }
 

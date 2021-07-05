@@ -20,7 +20,7 @@ public interface wxconfig {
     //密匙(在微信支付平台自行设置,要求32位.建议使用随机密码)
     public static final String mchKey = "o8mdiqk14nz5aq2jfwi1oafaw02bcbhu";
     //退款密匙(应该这么叫吧.需要去微信支付平台下载.指定密匙的绝对地址)
-    public static final String keyPath = "classpath:cert/apiclient_cert.p12";
+    public static final String keyPath = "/www/certificate/certapiclient_cert.p12";
     //微信支付完成的通知地址 需要关闭token验证
     public static final String notifyUrl = "https://miniapp.siliandingzhi.com:83/api/sldzOrder/notify";
 

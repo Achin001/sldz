@@ -26,5 +26,7 @@ public interface SldzUserMapper extends BaseCrudMapper<SldzUser> {
     @Update("UPDATE sldz_user  SET bonus =#{bonus} WHERE random = #{random}")
     boolean ChangeBonus(@Param("bonus") double bonus,
                          @Param("random") String random);
+
+
 }
 
