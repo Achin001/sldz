@@ -19,6 +19,7 @@ import java.util.Map;
 
 @Slf4j
 public class Logistics {
+
     public static String main(String no) {
             //快递编号不为空
             String host = "https://goexpress.market.alicloudapi.com";// 【1】请求地址 支持http 和 https 及 WEBSOCKET
