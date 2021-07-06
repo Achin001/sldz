@@ -1,9 +1,13 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
+import com.gxc.sldz.entity.SldzAgent;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
@@ -54,6 +58,25 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzOrderDTO queryDto, Pagination pagination) throws Exception {
         return super.getViewObjectList(queryDto, pagination, SldzOrderListVO.class);
+    }
+
+
+
+    @ApiOperation(value = "订单模糊搜索")
+    @GetMapping("/keywords")
+    public JsonResult keywords(SldzOrderDTO queryDto, Pagination pagination) throws Exception {
+        String orderNumber = "order_number";
+        String buyersRandom = "buyers_random";
+        String buyersName = "buyers_name";
+        String logisticsNumber = "logistics_number";
+
+        QueryWrapper<SldzOrder> wrapper = new QueryWrapper();
+        wrapper.like(StrUtil.isNotBlank(queryDto.getOrderNumber()), orderNumber, queryDto.getOrderNumber());
+        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersRandom()), buyersRandom, queryDto.getBuyersRandom());
+        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersRandom()), buyersName, queryDto.getBuyersRandom());
+        wrapper.like(StrUtil.isNotBlank(queryDto.getLogisticsNumber()), logisticsNumber, queryDto.getLogisticsNumber());
+        return super.getEntityListWithPaging(wrapper, pagination);
+        // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
     }
 
     /**
