@@ -3,7 +3,6 @@ package com.gxc.sldz.config;
 import com.gxc.sldz.Utils.wxconfig;
 import com.lly835.bestpay.config.WxPayConfig;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;

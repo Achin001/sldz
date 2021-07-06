@@ -335,22 +335,18 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
                 RefundResponse refundResponse = bestPayService.refund(refundRequest);
                 log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
-
-                if (refundResponse.getOrderId() == SldzOrder.getOrderNumber()
-                        && refundResponse.getOrderAmount() == SldzOrder.getAmountActuallyPaid()){
-                    //订单改为退款售后
-                    SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
-                    //库存加回
-                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-                    for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
-                        //库存
-                        int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
-                        stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
-                        //库存 = 库存 + 购买数量
-                        SldzProductService.productStockById(stock, asfssa.getProductId());
-                    }
-                    return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
                 }
+                return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
             }
             else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
@@ -432,22 +428,18 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
                 RefundResponse refundResponse = bestPayService.refund(refundRequest);
                 log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
-
-                if (refundResponse.getOrderId() == SldzOrder.getOrderNumber()
-                        && refundResponse.getOrderAmount() == SldzOrder.getAmountActuallyPaid()){
-                    //订单改为退款售后
-                    SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
-                    //库存加回
-                    List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
-                    for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
-                        //库存
-                        int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
-                        stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
-                        //库存 = 库存 + 购买数量
-                        SldzProductService.productStockById(stock, asfssa.getProductId());
+                //订单改为退款售后
+                SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
+                //库存加回
+                List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+                for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
+                    //库存
+                    int stock = Math.toIntExact(SldzProductService.getEntity(asfssa.getProductId()).getProductStock());
+                    stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
+                    //库存 = 库存 + 购买数量
+                    SldzProductService.productStockById(stock, asfssa.getProductId());
                     }
-                    return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
-                }
+                return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
             }
             else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
