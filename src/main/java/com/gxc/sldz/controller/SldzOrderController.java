@@ -2,11 +2,14 @@ package com.gxc.sldz.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
+import com.gxc.sldz.Utils.Logistics;
+import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
@@ -15,7 +18,10 @@ import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import com.lly835.bestpay.utils.JsonUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 订单 相关Controller
@@ -49,6 +56,11 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     @Autowired
     private BestPayServiceImpl bestPayService;
+
+    @Autowired
+    private RedisUtils redisUtils;
+
+
 
     /**
      * 查询ViewObject的分页数据
@@ -77,7 +89,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         QueryWrapper<SldzOrder> wrapper = new QueryWrapper();
         wrapper.like(StrUtil.isNotBlank(queryDto.getOrderNumber()), orderNumber, queryDto.getOrderNumber());
         wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersRandom()), buyersRandom, queryDto.getBuyersRandom());
-        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersRandom()), buyersName, queryDto.getBuyersRandom());
+        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersName()), buyersName, queryDto.getBuyersName());
         wrapper.like(StrUtil.isNotBlank(queryDto.getLogisticsNumber()), logisticsNumber, queryDto.getLogisticsNumber());
         return super.getEntityListWithPaging(wrapper, pagination);
         // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
@@ -133,21 +145,46 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         return JsonResult.FAIL_OPERATION("物流单号修改失败");
     }
 
+    @ApiOperation(value = "无运单号-退款")
+    @PostMapping("/UndeliveredRefund")
+    public JsonResult UndeliveredRefund(String orderNumber) throws Exception{
+        return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers(orderNumber));
+    }
 
-    /**
-     * 退款
-     */
-//    @GetMapping(value = "/refund")
-//    public JsonResult refund(@RequestParam("ordernum") String ordernum, @RequestParam("price") double price) {
-//        RefundRequest refundRequest = new RefundRequest();
-//        refundRequest.setOrderId(ordernum);
-//        refundRequest.setOrderAmount(price);
-//        refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
-//        log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
-//        RefundResponse refundResponse = bestPayService.refund(refundRequest);
-//        log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
-//        return JsonResult.OK().data(PayServer.refund(refundResponse));
-//    }
+
+    @ApiOperation(value = "获取物流详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "LogisticsNumber", value = "快递单号", required = true, dataType = "String"),
+    })
+    @RequestMapping(value = "GetLogisticsDetails", method = RequestMethod.GET)
+    public JsonResult GetLogisticsDetails(String LogisticsNumber) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        if (StrUtil.isNotEmpty(LogisticsNumber)){
+            // 根据物流单号查询 redis有没有数据
+            String ss =  redisUtils.get(LogisticsNumber);
+            // 如果物流单号不在redis中就查询第三方api
+            if (StrUtil.isBlank(ss)) {
+                ss = Logistics.main(LogisticsNumber);
+                //获取到数据后 写入redis 设置30分钟后过期
+                redisUtils.set(LogisticsNumber,ss,1800);
+                return JsonResult.OK().data(ss);
+            }else {
+                return JsonResult.OK().data(ss);
+            }
+        }else {
+            return JsonResult.FAIL_OPERATION("运单号不能为空");
+        }
+    }
+
+
+    //根据订单号获取已付款订单对象
+    public SldzOrder GetOrderObjectByOrderNumbers(String orderNumber) throws Exception {
+        LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
+        wrapper.eq(SldzOrder::getState, 2);
+        SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
+        return  s;
+    }
 
 
 }

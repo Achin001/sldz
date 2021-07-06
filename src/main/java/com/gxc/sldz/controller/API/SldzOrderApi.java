@@ -4,12 +4,14 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
 import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
+import com.gxc.sldz.Utils.Logistics;
 import com.gxc.sldz.Utils.OrderNumberTimeUtil;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
@@ -245,6 +247,36 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     public JsonResult UndeliveredRefund(String orderNumber) throws Exception{
         return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers( orderNumber));
     }
+
+
+
+    @ApiOperation(value = "获取物流详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "LogisticsNumber", value = "快递单号", required = true, dataType = "String"),
+    })
+    @RequestMapping(value = "GetLogisticsDetails", method = RequestMethod.GET)
+    public JsonResult GetLogisticsDetails(String LogisticsNumber) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        if (StrUtil.isNotEmpty(LogisticsNumber)){
+            // 根据物流单号查询 redis有没有数据
+            String ss =  redisUtils.get(LogisticsNumber);
+            // 如果物流单号不在redis中就查询第三方api
+            if (StrUtil.isBlank(ss)) {
+                ss = Logistics.main(LogisticsNumber);
+                //获取到数据后 写入redis 设置30分钟后过期
+                redisUtils.set(LogisticsNumber,ss,1800);
+                return JsonResult.OK().data(ss);
+            }else {
+                return JsonResult.OK().data(ss);
+            }
+        }else {
+            return JsonResult.FAIL_OPERATION("运单号不能为空");
+        }
+    }
+
+
+
+
 
     //根据订单号获取订单对象
     public SldzOrder GetOrderObjectByOrderNumber(String orderNumber) throws Exception {
