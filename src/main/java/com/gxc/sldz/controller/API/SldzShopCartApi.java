@@ -15,6 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -125,12 +126,19 @@ public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> 
     }
 
 
-//    /***
-//     * 根据id删除资源对象
-//     * @param id
-//     * @return
-//     * @throws Exception
-//     */
+    @Transactional
+    @ApiOperation(value = "根据IDS删除数据")
+    @DeleteMapping("/{ids}")
+    public JsonResult deletesEntityMapping(@PathVariable("ids")List<Long> ids) throws Exception {
+      boolean s =   sldzShopCartService.deleteEntities(ids);
+      if (s){
+          return JsonResult.OK().data("批量删除成功");
+      }
+        return JsonResult.FAIL_OPERATION("批量删除失败");
+    }
+
+
+
     @ApiOperation(value = "根据ID删除数据")
     @DeleteMapping("/{id}")
     public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
