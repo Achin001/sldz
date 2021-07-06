@@ -26,4 +26,13 @@ public interface wxconfig {
     public static final String notifyUrl = "https://miniapp.siliandingzhi.com:83/api/sldzOrder/notify";
 
 
+
+
+    public static final String img1 = "/www/1.jpg";
+
+    public static final String img2 = "/www/2.jpg";
+
+    public static final String img3 = "/www/3.jpg";
+
+
 }

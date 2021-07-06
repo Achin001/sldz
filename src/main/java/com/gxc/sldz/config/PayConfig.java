@@ -17,7 +17,8 @@ public class PayConfig {
     @Bean
     public WxPayConfig wxPayConfig() {
         WxPayConfig wxPayConfig = new WxPayConfig();
-        wxPayConfig.setAppId(wxconfig.WX_APPID);//小程序Id
+        wxPayConfig.setMiniAppId(wxconfig.WX_APPID);//小程序Id
+        wxPayConfig.setAppId(wxconfig.WX_APPID);//公众号ID
         wxPayConfig.setMchId(wxconfig.mchId);//商户id
         wxPayConfig.setMchKey(wxconfig.mchKey);//密钥
         wxPayConfig.setKeyPath(wxconfig.keyPath);//证书
