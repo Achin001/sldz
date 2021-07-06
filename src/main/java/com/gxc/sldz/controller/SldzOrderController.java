@@ -4,7 +4,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
 import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
@@ -24,17 +26,19 @@ import com.gxc.sldz.vo.SldzOrderListVO;
 import com.gxc.sldz.vo.SldzOrderDetailVO;
 import com.gxc.sldz.service.SldzOrderService;
 import lombok.extern.slf4j.Slf4j;
+
 import javax.validation.Valid;
 import java.util.List;
 
 /**
  * 订单 相关Controller
+ *
  * @author Achin
  * @version 1.0
  * @date 2021-06-22
  * Copyright © MyCompany
  */
-@Api(tags = { "后台订单管理" })
+@Api(tags = {"后台订单管理"})
 @RestController
 @RequestMapping("admin/sldzOrder")
 @Slf4j
@@ -51,6 +55,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
      * <p>
      * url请求参数示例: /list?field=abc&pageIndex=1&orderBy=abc:DESC
      * </p>
+     *
      * @return
      * @throws Exception
      */
@@ -59,7 +64,6 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
     public JsonResult getViewObjectListMapping(SldzOrderDTO queryDto, Pagination pagination) throws Exception {
         return super.getViewObjectList(queryDto, pagination, SldzOrderListVO.class);
     }
-
 
 
     @ApiOperation(value = "订单模糊搜索")
@@ -81,6 +85,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     /**
      * 根据资源id查询ViewObject
+     *
      * @param id ID
      * @return
      * @throws Exception
@@ -93,52 +98,40 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     /**
      * 根据资源id查询ViewObject
+     *
      * @return
      * @throws Exception
      */
     @ApiOperation(value = "获取已付款未发货的数量")
     @GetMapping("/GetPaidNotDeliveredQuantity")
     public JsonResult GetPaidNotDeliveredQuantity() throws Exception {
-        LambdaQueryWrapper<SldzOrder> SldzOrderwrapper = new LambdaQueryWrapper<>();
-        SldzOrderwrapper.eq(SldzOrder::getState, 2);
-        SldzOrderwrapper.eq(SldzOrder::getLogisticsNumber, null);
-        return JsonResult.OK().data(sldzOrderService. getSingleEntity(SldzOrderwrapper));
+//        LambdaQueryWrapper<SldzOrder> SldzOrderwrapper = new LambdaQueryWrapper<>();
+//        SldzOrderwrapper.eq(SldzOrder::getState, 2);
+//        SldzOrderwrapper.eq(SldzOrder::getLogisticsNumber, null);
+        Integer s =  sldzOrderService.ChangeLogisticsNumber();
+        return JsonResult.OK().data(s);
     }
 
-    // 
-    // /***
-    // * 创建资源对象
-    // * @param entity
-    // * @return JsonResult
-    // * @throws Exception
-    // */
-    // @ApiOperation(value = "新建数据")
-    // @PostMapping("/")
-    // public JsonResult createEntityMapping(@Valid @RequestBody SldzOrder entity) throws Exception {
-    // return super.createEntity(entity);
-    // }
-    /**
-     * 根据ID更新资源对象
-     * @param entity
-     * @return JsonResult
-     * @throws Exception
-     */
+
     @ApiOperation(value = "根据ID更新数据")
     @PutMapping("/{id}")
     public JsonResult updateEntityMapping(@PathVariable("id") Long id, @Valid @RequestBody SldzOrder entity) throws Exception {
         return super.updateEntity(id, entity);
     }
-    // /***
-    // * 根据id删除资源对象
-    // * @param id
-    // * @return
-    // * @throws Exception
-    // */
-    // @ApiOperation(value = "根据ID删除数据")
-    // @DeleteMapping("/{id}")
-    // public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
-    // return super.deleteEntity(id);
-    // }
+
+
+    @ApiOperation(value = "更改物流单号")
+    @PutMapping("/ChangeLogisticsNumber")
+    public JsonResult ChangeLogisticsNumber(String orderNumber, String LogisticsNumber) throws Exception {
+        UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("order_number", orderNumber);
+        updateWrapper.set("logistics_number", LogisticsNumber);
+        boolean s = sldzOrderService.updateEntity(updateWrapper);
+        if (s){
+            return JsonResult.OK().data("物流单号修改成功");
+        }
+        return JsonResult.FAIL_OPERATION("物流单号修改失败");
+    }
 
 
     /**

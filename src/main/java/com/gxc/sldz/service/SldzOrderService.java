@@ -38,4 +38,6 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     JsonResult UndeliveredRefund(SldzOrder SldzOrder);
 
+    Integer ChangeLogisticsNumber();
+
 }

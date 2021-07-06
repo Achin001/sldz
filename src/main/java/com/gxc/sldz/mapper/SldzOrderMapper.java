@@ -4,6 +4,7 @@ import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzOrder;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -63,6 +64,14 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
     //改订单状态4  售后
     @Update("UPDATE sldz_order SET state = 4  WHERE  order_number =#{orderNumber}")
     boolean ChangeOrderAfterSales(@Param("orderNumber") String orderNumber);
+
+    //获取未发货的数量
+    @Select("SELECT COUNT(*) FROM sldz_order WHERE state = 2 AND logistics_number is NULL OR logistics_number ='' ")
+    Integer ChangeLogisticsNumber();
+
+
+
+
 
 
 }
