@@ -6,14 +6,9 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.diboot.core.util.BeanUtils;
-import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
-import com.gxc.sldz.Utils.RandomChangeUsers;
 import com.gxc.sldz.Utils.RedisUtils;
-import com.gxc.sldz.controller.API.SldzOrderApi;
 import com.gxc.sldz.entity.*;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.*;
@@ -26,7 +21,6 @@ import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import com.lly835.bestpay.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -339,8 +333,10 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 refundRequest.setOrderAmount(SldzOrder.getAmountActuallyPaid());
                 refundRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
                 log.info("【微信退款】request={}", JsonUtil.toJson(refundRequest));
+
                 RefundResponse refundResponse = bestPayService.refund(refundRequest);
                 log.info("【微信退款】response={}", JsonUtil.toJson(refundResponse));
+
                 //订单改为退款售后
                 SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
                 //库存加回

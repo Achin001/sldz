@@ -28,7 +28,7 @@ public class wxUtilServerImpl implements wxUtilServer {
         //去redis里面找有无AccessToken
         String AccessToken =   redisUtils.get("AccessToken");
         if (StrUtil.isBlank(AccessToken)){
-            String requestUrl ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+ wxconfig.WX_LOGIN_APPID+"&secret="+wxconfig.WX_LOGIN_SECRET;
+            String requestUrl ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+ wxconfig.WX_APPID+"&secret="+wxconfig.WX_SECRET;
             URL url = new URL(requestUrl);
             // 打开和URL之间的连接
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

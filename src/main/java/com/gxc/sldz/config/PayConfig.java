@@ -5,8 +5,10 @@ import com.lly835.bestpay.config.WxPayConfig;
 import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+@Configuration
 @Component
 public class PayConfig {
 
@@ -15,11 +17,11 @@ public class PayConfig {
     @Bean
     public WxPayConfig wxPayConfig() {
         WxPayConfig wxPayConfig = new WxPayConfig();
-        wxPayConfig.setMiniAppId(wxconfig.WX_LOGIN_APPID);
-        wxPayConfig.setMchId(wxconfig.mchId);
-        wxPayConfig.setMchKey(wxconfig.mchKey);
-        wxPayConfig.setKeyPath(wxconfig.keyPath);
-        wxPayConfig.setNotifyUrl(wxconfig.notifyUrl);
+        wxPayConfig.setAppId(wxconfig.WX_APPID);//小程序Id
+        wxPayConfig.setMchId(wxconfig.mchId);//商户id
+        wxPayConfig.setMchKey(wxconfig.mchKey);//密钥
+        wxPayConfig.setKeyPath(wxconfig.keyPath);//证书
+        wxPayConfig.setNotifyUrl(wxconfig.notifyUrl);///回调地址
         return wxPayConfig;
     }
 
