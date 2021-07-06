@@ -10,20 +10,23 @@ import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.config.jwt.JWT;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.entity.SldzAgentRel;
 import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.service.SldzAgentRelService;
 import com.gxc.sldz.service.SldzAgentService;
+import com.gxc.sldz.vo.SldzAgentDetailVO;
+import com.gxc.sldz.vo.SldzUserDetailVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Api(tags = {"代理商前台接口"})
@@ -35,6 +38,9 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
 
     @Autowired
     private SldzAgentService sldzAgentService;
+
+    @Autowired
+    private SldzAgentRelService sldzAgentRelService;
 
 
     @ApiOperation(value = "代理商账号绑定微信")
@@ -62,6 +68,59 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
         }
         return JsonResult.FAIL_OPERATION("绑定失败,请稍后再试");
         }
+
+
+
+
+    /**
+     * 根据资源id查询ViewObject
+     * @param id ID
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "根据ID获取详情数据")
+    @GetMapping("/{id}")
+    public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
+        return super.getViewObject(id, SldzAgentDetailVO.class);
     }
+
+
+
+
+
+    @ApiOperation(value = "获取会员列表")
+    @GetMapping("/GetMembership}")
+    public JsonResult  GetMembership(String Random) throws Exception {
+        LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgentRel::getSupRandom, Random);
+        //所有一级
+        List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.getEntityList(wrapper);
+        List<SldzAgent> SldzAgentsList = new ArrayList<>();
+        for(SldzAgentRel s :SldzAgentRel){
+            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
+            SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
+            SldzAgent.setAgentPasword("HR1");
+            SldzAgentsList.add(SldzAgent);
+        }
+
+        //所有二级
+        List<SldzAgentRel>  SldzAgentRels = sldzAgentRelService.SldzAgentRels(Random);
+        for(SldzAgentRel s :SldzAgentRels){
+            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
+            SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
+            SldzAgent.setAgentPasword("HR2");
+            SldzAgentsList.add(SldzAgent);
+        }
+
+        return JsonResult.OK().data(SldzAgentsList);
+    }
+
+
+
+
+
+}
 
 

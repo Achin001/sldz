@@ -250,6 +250,17 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
 
 
+    @ApiOperation(value = "确认收货")
+    @PostMapping("/ConfirmReceipt")
+    public JsonResult ConfirmReceipt(String orderNumber) throws Exception{
+        UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("order_number",orderNumber);
+        updateWrapper.set("state",3);
+        return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper));
+    }
+
+
+
     @ApiOperation(value = "获取物流详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "LogisticsNumber", value = "快递单号", required = true, dataType = "String"),

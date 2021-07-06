@@ -436,3 +436,31 @@ ALTER TABLE `sldz_user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0
 ALTER TABLE `sldz_order` MODIFY COLUMN `payment_method` tinyint(1) DEFAULT 1 COMMENT '付款方式(1微信钱包,2积分,3,奖励金)' AFTER `amount_actually_paid`;
 -- 2021-06-30 16:27:31 by Achin
 ALTER TABLE `sldz_order` MODIFY COLUMN `state` tinyint(1) DEFAULT 1 COMMENT '状态(1待付款,2待收货,3,已完成,4售后)' AFTER `payment_method`;
+-- 2021-07-06 19:51:20 by Achin
+CREATE TABLE `sldz_product_reviews`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '产品评论';
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `product_id` bigint COMMENT '产品id' AFTER `id`;
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `reviewer_json` varchar(300) COMMENT '评论人json {唯一编码,昵称,头像}' AFTER `product_id`;
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `comment_content` varchar(2000) COMMENT '评论内容 ' AFTER `reviewer_json`;
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `pictures_json` varchar(2000) COMMENT '实拍图json' AFTER `comment_content`;
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `reviewer_date` timestamp NULL COMMENT '时间' AFTER `pictures_json`;
+-- 2021-07-06 19:55:07 by Achin
+ALTER TABLE `sldz_product_reviews` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `reviewer_date`;
+-- 2021-07-06 21:03:14 by Achin
+CREATE TABLE `sldz_punch_clock`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '签到';
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` ADD COLUMN `random` varchar(100) COMMENT '唯一编码' AFTER `id`;
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` ADD COLUMN `check_person_json` varchar(100) COMMENT '签到人json' AFTER `random`;
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` ADD COLUMN `clock_date` date NULL COMMENT '签到时间' AFTER `check_person_json`;
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` ADD COLUMN `points_gained` double DEFAULT 0.00 COMMENT '所得积分' AFTER `clock_date`;
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` ADD COLUMN `continuous_check_days` int(8) DEFAULT 0 COMMENT '连续签到天数' AFTER `points_gained`;
+-- 2021-07-06 21:07:12 by Achin
+ALTER TABLE `sldz_punch_clock` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `continuous_check_days`;
