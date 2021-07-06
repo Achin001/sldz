@@ -50,9 +50,6 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     private SldzOrderService sldzOrderService;
 
 
-
-
-
     @ApiOperation(value = "生成订单")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzOrder entity) throws Exception {
@@ -65,8 +62,8 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @ApiOperation(value = "根据订单产品获取符合条件的优惠券列表")
     @PostMapping("/ObtainCouponsAccordingOrderProducts")
     public JsonResult ObtainCouponsAccordingOrderProducts(@RequestBody String orderNumber) throws Exception {
-        SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
-        if (ObjectUtil.isNull(SldzOrder)){
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderNumber);
+        if (ObjectUtil.isNull(SldzOrder)) {
             return JsonResult.FAIL_OPERATION("获取优惠券列表失败");
         }
 //        //唯一编码
@@ -102,18 +99,18 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
     @ApiOperation(value = "根据订单编号更改收货地址")
     @PutMapping("/ChangeAddressByoOrderNumber")
-    public JsonResult ChangeAddressByoOrderNumber(String addresJson ,String orderNumber,String Random) throws Exception {
-        if (sldzOrderService. ChangeShippingAddress(addresJson,orderNumber,Random)){
-            return  JsonResult.OK().data("改收货地址修改成功");
+    public JsonResult ChangeAddressByoOrderNumber(String addresJson, String orderNumber, String Random) throws Exception {
+        if (sldzOrderService.ChangeShippingAddress(addresJson, orderNumber, Random)) {
+            return JsonResult.OK().data("改收货地址修改成功");
         }
         return JsonResult.FAIL_OPERATION("改收货地址修改失败");
     }
 
     @ApiOperation(value = "根据订单编号添加订单备注")
     @PutMapping("/AddOrderNotesByOrderNum")
-    public JsonResult AddOrderNotesByOrderNum(String buyersRemarks,String orderNumber) throws Exception {
-        if (sldzOrderService. AddOrderNotesByOrderNum(buyersRemarks,orderNumber)){
-            return  JsonResult.OK().data("备注添加成功");
+    public JsonResult AddOrderNotesByOrderNum(String buyersRemarks, String orderNumber) throws Exception {
+        if (sldzOrderService.AddOrderNotesByOrderNum(buyersRemarks, orderNumber)) {
+            return JsonResult.OK().data("备注添加成功");
         }
 
         return JsonResult.FAIL_OPERATION("备注添加失败");
@@ -125,21 +122,21 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
             @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String"),
     })
     @PutMapping("/CouponAdjustAmountPayable")
-    public JsonResult CouponAdjustAmountPayable(double discount,String orderNumber) throws Exception {
-        SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
-        if (ObjectUtil.isNull(SldzOrder)){
+    public JsonResult CouponAdjustAmountPayable(double discount, String orderNumber) throws Exception {
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderNumber);
+        if (ObjectUtil.isNull(SldzOrder)) {
             return JsonResult.FAIL_OPERATION("应付金额计算失败");
         }
 
-       //获取订单总金额
+        //获取订单总金额
         List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
 
 
         // 订单应付钱金额
         double AmountOrderPayable = 0.00;
-        for (OrderProductJsonVo salk:getOrderProductJsonVo){
+        for (OrderProductJsonVo salk : getOrderProductJsonVo) {
             //购买数量 * 单品金额
-            AmountOrderPayable += NumberUtil.mul(salk.getCartNum(),salk.getProductPrice());
+            AmountOrderPayable += NumberUtil.mul(salk.getCartNum(), salk.getProductPrice());
         }
 
 
@@ -149,15 +146,15 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         AmountAfterDiscount = NumberUtil.sub(AmountOrderPayable, discount);
 
 
-         //写入库 优惠金额 应付金额
+        //写入库 优惠金额 应付金额
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq(SldzOrder.getOrderNumber(),orderNumber);
-        updateWrapper.set("amount_payable",AmountOrderPayable);
+        updateWrapper.eq(SldzOrder.getOrderNumber(), orderNumber);
+        updateWrapper.set("amount_payable", AmountOrderPayable);
 //        updateWrapper.set("discount",discount);
 //        updateWrapper.set("coupon_json",couponJson);
         Map map = new HashMap();
-        map.put("AmountAfterDiscount",AmountAfterDiscount);
-        map.put("msg",sldzOrderService.updateEntity(updateWrapper)?"调整优惠后金额成功":"调整优惠后金额失败");
+        map.put("AmountAfterDiscount", AmountAfterDiscount);
+        map.put("msg", sldzOrderService.updateEntity(updateWrapper) ? "调整优惠后金额成功" : "调整优惠后金额失败");
         return JsonResult.OK().data(map);
     }
 
@@ -175,29 +172,29 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
                                            double discount,
                                            double AmountAfterDiscount,
                                            String orderNumber) throws Exception {
-        SldzOrder SldzOrder =   GetOrderObjectByOrderNumber(orderNumber);
-        if (ObjectUtil.isNull(SldzOrder)){
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderNumber);
+        if (ObjectUtil.isNull(SldzOrder)) {
             return JsonResult.FAIL_OPERATION("失败");
         }
 
-       //删除缓存优惠券
-        String key = SldzOrder.getBuyersRandom()+"_coupon"+couponId;
+        //删除缓存优惠券
+        String key = SldzOrder.getBuyersRandom() + "_coupon" + couponId;
         redisUtils.delete(key);
 
         //把优惠券json 优惠金额 优惠后金额 写入库
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("order_number",orderNumber);
-        updateWrapper.set("amount_payable",AmountAfterDiscount);
-        updateWrapper.set("discount",discount);
-        updateWrapper.set("coupon_json",couponJson);
-        return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper)?"调整优惠后金额成功":"调整优惠后金额失败");
+        updateWrapper.eq("order_number", orderNumber);
+        updateWrapper.set("amount_payable", AmountAfterDiscount);
+        updateWrapper.set("discount", discount);
+        updateWrapper.set("coupon_json", couponJson);
+        return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper) ? "调整优惠后金额成功" : "调整优惠后金额失败");
     }
 
 
     @ApiOperation(value = "根据订单号获取订单详情")
     @GetMapping("/orderDetailsByOrderNumber")
-    public JsonResult orderDetailsByOrderNumber(String orderNumber) throws Exception{
-        SldzOrder   SldzOrder =  GetOrderObjectByOrderNumber( orderNumber);
+    public JsonResult orderDetailsByOrderNumber(String orderNumber) throws Exception {
+        SldzOrder SldzOrder = GetOrderObjectByOrderNumber(orderNumber);
         return JsonResult.OK().data(SldzOrder);
     }
 
@@ -211,7 +208,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
      */
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
-    public JsonResult getViewObjectListMapping(SldzOrderDTO queryDto, Pagination pagination) throws Exception{
+    public JsonResult getViewObjectListMapping(SldzOrderDTO queryDto, Pagination pagination) throws Exception {
         return super.getViewObjectList(queryDto, pagination, SldzOrderListVO.class);
     }
 
@@ -224,7 +221,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
      */
     @ApiOperation(value = "根据ID获取详情数据")
     @GetMapping("/{id}")
-    public JsonResult getViewObjectMapping(@PathVariable("id")Long id) throws Exception{
+    public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
         return super.getViewObject(id, SldzOrderDetailVO.class);
     }
 
@@ -236,29 +233,26 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
      */
     @ApiOperation(value = "未付款-取消订单")
     @DeleteMapping("/{id}")
-    public JsonResult deleteEntity(@PathVariable("id")Long id) throws Exception{
+    public JsonResult deleteEntity(@PathVariable("id") Long id) throws Exception {
         return super.deleteEntity(id);
     }
 
 
-
     @ApiOperation(value = "未发货-退款")
     @PostMapping("/UndeliveredRefund")
-    public JsonResult UndeliveredRefund(String orderNumber) throws Exception{
-        return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers( orderNumber));
+    public JsonResult UndeliveredRefund(String orderNumber) throws Exception {
+        return sldzOrderService.UndeliveredRefund(GetOrderObjectByOrderNumbers(orderNumber));
     }
-
 
 
     @ApiOperation(value = "确认收货")
     @PostMapping("/ConfirmReceipt")
-    public JsonResult ConfirmReceipt(String orderNumber) throws Exception{
+    public JsonResult ConfirmReceipt(String orderNumber) throws Exception {
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq("order_number",orderNumber);
-        updateWrapper.set("state",3);
+        updateWrapper.eq("order_number", orderNumber);
+        updateWrapper.set("state", 3);
         return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper));
     }
-
 
 
     @ApiOperation(value = "获取物流详情")
@@ -268,25 +262,22 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @RequestMapping(value = "GetLogisticsDetails", method = RequestMethod.GET)
     public JsonResult GetLogisticsDetails(String LogisticsNumber) throws Exception {
         JSONObject jsonObject = new JSONObject();
-        if (StrUtil.isNotEmpty(LogisticsNumber)){
+        if (StrUtil.isNotEmpty(LogisticsNumber)) {
             // 根据物流单号查询 redis有没有数据
-            String ss =  redisUtils.get(LogisticsNumber);
+            String ss = redisUtils.get(LogisticsNumber);
             // 如果物流单号不在redis中就查询第三方api
             if (StrUtil.isBlank(ss)) {
                 ss = Logistics.main(LogisticsNumber);
                 //获取到数据后 写入redis 设置30分钟后过期
-                redisUtils.set(LogisticsNumber,ss,1800);
+                redisUtils.set(LogisticsNumber, ss, 1800);
                 return JsonResult.OK().data(ss);
-            }else {
+            } else {
                 return JsonResult.OK().data(ss);
             }
-        }else {
+        } else {
             return JsonResult.FAIL_OPERATION("运单号不能为空");
         }
     }
-
-
-
 
 
     //根据订单号获取订单对象
@@ -294,7 +285,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
         wrapper.eq(SldzOrder::getState, 1);
-        return  sldzOrderService.getSingleEntity(wrapper);
+        return sldzOrderService.getSingleEntity(wrapper);
     }
 
     //根据订单号获取已付款订单对象
@@ -303,7 +294,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
         wrapper.eq(SldzOrder::getState, 2);
         SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
-        return  s;
+        return s;
     }
 
 
