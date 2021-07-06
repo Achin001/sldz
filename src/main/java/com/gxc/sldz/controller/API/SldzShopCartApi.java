@@ -127,9 +127,9 @@ public class SldzShopCartApi extends BaseCustomCrudRestController<SldzShopCart> 
 
 
     @Transactional
-    @ApiOperation(value = "根据IDS删除数据")
-    @DeleteMapping("/{ids}")
-    public JsonResult deletesEntityMapping(@PathVariable("ids")List<Long> ids) throws Exception {
+    @ApiOperation(value = "批量删除购物车记录")
+    @DeleteMapping("/ids")
+    public JsonResult deletesEntityMapping(@RequestBody List<Long> ids) throws Exception {
       boolean s =   sldzShopCartService.deleteEntities(ids);
       if (s){
           return JsonResult.OK().data("批量删除成功");
