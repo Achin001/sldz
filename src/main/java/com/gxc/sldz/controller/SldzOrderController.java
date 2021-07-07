@@ -80,17 +80,17 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     @ApiOperation(value = "订单模糊搜索")
     @GetMapping("/keywords")
-    public JsonResult keywords(SldzOrderDTO queryDto, Pagination pagination) throws Exception {
+    public JsonResult keywords(String  keyword, Pagination pagination) throws Exception {
         String orderNumber = "order_number";
         String buyersRandom = "buyers_random";
         String buyersName = "buyers_name";
         String logisticsNumber = "logistics_number";
 
         QueryWrapper<SldzOrder> wrapper = new QueryWrapper();
-        wrapper.like(StrUtil.isNotBlank(queryDto.getOrderNumber()), orderNumber, queryDto.getOrderNumber());
-        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersRandom()), buyersRandom, queryDto.getBuyersRandom());
-        wrapper.like(StrUtil.isNotBlank(queryDto.getBuyersName()), buyersName, queryDto.getBuyersName());
-        wrapper.like(StrUtil.isNotBlank(queryDto.getLogisticsNumber()), logisticsNumber, queryDto.getLogisticsNumber());
+        wrapper.like(orderNumber, keyword).or()
+                .like(buyersRandom,keyword).or()
+                .like(buyersName, keyword).or()
+                .like(logisticsNumber, keyword);
         return super.getEntityListWithPaging(wrapper, pagination);
         // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
     }
