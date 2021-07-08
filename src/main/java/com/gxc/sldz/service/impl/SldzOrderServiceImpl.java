@@ -316,8 +316,14 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     @Transactional
     @Override
     public JsonResult UndeliveredRefund(SldzOrder SldzOrder) {
+        String lo  = SldzOrder.getLogisticsNumber();
+
+        if (lo == null || "".equals(lo) || "null".equals(lo)){
+            System.out.println("条件满足");
+            lo = "";
+        }
         //如果运单号为空允许退款
-        if (StrUtil.isNotBlank(SldzOrder.getLogisticsNumber())) {
+        if (StrUtil.isNotBlank(lo)) {
             return JsonResult.FAIL_OPERATION("退款失败").data("该订单已发货，不支持退款");
         }
         Map map = getUser(SldzOrder.getBuyersRandom());

@@ -1,5 +1,10 @@
 package com.gxc.sldz.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.conditions.update.UpdateChainWrapper;
+import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.entity.SldzUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -91,4 +96,15 @@ public class SldzCompanyCouponsController extends BaseCustomCrudRestController<S
     public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
         return super.deleteEntity(id);
     }
+
+    @ApiOperation(value = "根据ID修改显示隐藏")
+    @PutMapping("/ShowHideByid")
+    public JsonResult ShowHideByid(Long id,int coupons) throws Exception {
+        UpdateWrapper<SldzCompanyCoupons> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", id);
+        updateWrapper.set("coupons_show_or_hide", coupons);
+        return JsonResult.OK().data(sldzCompanyCouponsService.updateEntity(updateWrapper));
+    }
+
+
 }
