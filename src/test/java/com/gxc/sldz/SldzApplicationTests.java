@@ -87,9 +87,11 @@ class SldzApplicationTests {
             //这样得到的差值是毫秒级别
             long diff = d2.getTime() - d1.getTime();
             System.out.println(diff/1000);
-            if (redisUtils.set("sas","ulaj",100)){
-                System.out.println(redisUtils.get("sas"));
-            }
+            System.out.println(d1.getTime());
+            System.out.println(d2.getTime());
+//            if (redisUtils.set("sas","ulaj",100)){
+//                System.out.println(redisUtils.get("sas"));
+//            }
         }catch (Exception e)
         {
         }

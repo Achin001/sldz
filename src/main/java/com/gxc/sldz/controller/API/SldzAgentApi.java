@@ -6,7 +6,6 @@ import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
-import com.gxc.sldz.Utils.emojiUtil;
 import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.config.jwt.JWT;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
@@ -52,10 +51,6 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
 //        // 获取参数返回的
         String session_key = jsonObject.get("session_key").toString();
         String open_id = jsonObject.get("openid").toString();
-        //移除emoji
-        if (emojiUtil.exist(entity.getNickname())){
-            entity.setNickname(emojiUtil.remove(entity.getNickname()));
-        }
         //更改openid 及微信资料
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgent::getId, entity.getId());

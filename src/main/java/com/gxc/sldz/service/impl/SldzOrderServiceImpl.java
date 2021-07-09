@@ -527,6 +527,11 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return SldzOrderMapper.ChangeLogisticsNumber();
     }
 
+    @Override
+    public List<SldzOrder> GetOrderBeenDelivered() {
+        return SldzOrderMapper.GetOrderBeenDelivered();
+    }
+
 
     public Map getUser(String random) {
         Map map = new HashMap();

@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -138,6 +139,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("order_number", orderNumber);
         updateWrapper.set("logistics_number", LogisticsNumber);
+        updateWrapper.set("delivery_time", DateUtil.now());
         boolean s = sldzOrderService.updateEntity(updateWrapper);
         if (s){
             return JsonResult.OK().data("物流单号修改成功");

@@ -4,6 +4,8 @@ import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.entity.SldzOrder;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
 * 订单相关Service
 * @author Achin
@@ -40,4 +42,6 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     Integer ChangeLogisticsNumber();
 
+    //获取已发货的订单
+    List<SldzOrder> GetOrderBeenDelivered();
 }

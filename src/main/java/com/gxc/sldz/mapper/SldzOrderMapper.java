@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 /**
 * 订单Mapper
 * @author Achin
@@ -68,6 +70,12 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
     //获取未发货的数量
     @Select("SELECT COUNT(*) FROM sldz_order WHERE state = 2 AND logistics_number is NULL OR logistics_number ='' ")
     Integer ChangeLogisticsNumber();
+
+
+    //获取已发货的订单
+    @Select("SELECT * FROM sldz_order WHERE state = 2 AND logistics_number is not null")
+    List<SldzOrder> GetOrderBeenDelivered();
+
 
 
 

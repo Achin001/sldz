@@ -7,7 +7,6 @@ import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
-import com.gxc.sldz.Utils.emojiUtil;
 import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.config.jwt.JWT;
@@ -103,10 +102,6 @@ public class SldzLoginApi {
 
         LambdaQueryWrapper<SldzUser> wrapperUser = new LambdaQueryWrapper<>();
         wrapperUser.eq(SldzUser::getOpenid, entity.getOpenid());
-        //移除emoji
-        if (emojiUtil.exist(entity.getNickname())){
-            entity.setNickname(emojiUtil.remove(entity.getNickname()));
-        }
          //根据wrapper 查找对应数据
         SldzUser sldzUser =  SldzUserService.getSingleEntity(wrapperUser);
         Map map = new HashMap();
