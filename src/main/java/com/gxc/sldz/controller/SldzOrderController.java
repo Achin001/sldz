@@ -80,7 +80,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     @ApiOperation(value = "订单模糊搜索")
     @GetMapping("/keywords")
-    public JsonResult keywords(String  keyword, Pagination pagination) throws Exception {
+    public JsonResult keywords(int state,String  keyword, Pagination pagination) throws Exception {
         String orderNumber = "order_number";
         String buyersRandom = "buyers_random";
         String buyersName = "buyers_name";
@@ -174,6 +174,21 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         }else {
             return JsonResult.FAIL_OPERATION("运单号不能为空");
         }
+    }
+
+
+
+
+    @ApiOperation(value = "优惠券json解析")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "couponJson", value = "优惠券json", required = true, dataType = "String"),
+    })
+    @RequestMapping(value = "couponJsonUtil", method = RequestMethod.GET)
+    public JsonResult couponJsonUtil(String couponJson) throws Exception {
+        JSONObject rowData = JSONObject.parseObject(couponJson);
+        JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
+//        rowData2.getString("couponsTotal");
+        return JsonResult.OK().data(rowData2);
     }
 
 

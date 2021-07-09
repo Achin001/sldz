@@ -111,6 +111,20 @@ class SldzApplicationTests {
 
 
 
+    @Test
+        void contextLoadsssada() {
+        String s = "{\"couponJson\":\"{\\\"couponsFullPrice\\\":599,\\\"couponsTotal\\\":100,\\\"couponsReducePrice\\\":50,\\\"couponsName\\\":\\\"美肤节7.18\\\",\\\"couponsFailureTime\\\":1626623940000,\\\"primaryKeyVal\\\":10000027,\\\"couponsAppointProductIds\\\":\\\"[{\\\\\\\"productName\\\\\\\":\\\\\\\"尔特喏特\\\\\\\",\\\\\\\"id\\\\\\\":\\\\\\\"10000013\\\\\\\"},{\\\\\\\"productName\\\\\\\":\\\\\\\"保湿喷雾液\\\\\\\",\\\\\\\"id\\\\\\\":\\\\\\\"10000006\\\\\\\"}]\\\",\\\"couponsShowOrHide\\\":2,\\\"deleted\\\":false,\\\"createTime\\\":1625725377000,\\\"couponsDetails\\\":\\\"保湿喷雾可用\\\",\\\"id\\\":10000027}\"}";
+
+        JSONObject rowData = JSONObject.parseObject(s);
+        JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
+        rowData2.getString("couponsTotal");
+//        JSONArray tableData = JSONArray.parseArray(s);
+
+        System.out.println(rowData2.getString("couponsTotal"));
+    }
+
+
+
 
 
 
@@ -118,3 +132,4 @@ class SldzApplicationTests {
 
 
 }
+
