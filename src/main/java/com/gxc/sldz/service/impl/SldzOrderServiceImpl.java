@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.OrderUtil;
@@ -145,6 +146,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 payRequest.setOrderAmount(0.01);
                 payRequest.setOpenid(SldzUser.getOpenid());
                 PayResponse payResponse = bestPayService.pay(payRequest);
+                deleterCoupon(SldzOrder);
                 return JsonResult.OK().data(payResponse);
             } else if (paymentMethod == 2) {
                 //剩余积分
@@ -178,6 +180,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     }
                     //改订单状态  待收货  记录时间
                     SldzOrderMapper.ChangeOrderSigned(paymentMethod, AmountPayable, DateUtil.now(), SldzOrder.getOrderNumber());
+                    deleterCoupon(SldzOrder);
                     return JsonResult.OK().data("支付成功，积分扣除：" + AmountPayable);
                 }
 
@@ -214,6 +217,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     }
                     //改订单状态  待收货  记录时间
                     SldzOrderMapper.ChangeOrderSigned(paymentMethod, AmountPayable, DateUtil.now(), SldzOrder.getOrderNumber());
+                    deleterCoupon(SldzOrder);
                     return JsonResult.OK().data("支付成功，奖励金扣除：" + AmountPayable);
                 }
 
@@ -230,6 +234,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 payRequest.setOrderAmount(0.01);
                 payRequest.setOpenid(SldzAgen.getOpenid());
                 PayResponse payResponse = bestPayService.pay(payRequest);
+                deleterCoupon(SldzOrder);
                 return JsonResult.OK().data(payResponse);
             } else if (paymentMethod == 2) {
                 //积分支付
@@ -264,6 +269,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     }
                     //改订单状态  待收货  记录时间
                     SldzOrderMapper.ChangeOrderSigned(paymentMethod, AmountPayable, DateUtil.now(), SldzOrder.getOrderNumber());
+                    deleterCoupon(SldzOrder);
                     return JsonResult.OK().data("支付成功，积分扣除：" + AmountPayable);
                 }
 
@@ -301,7 +307,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     }
                     //改订单状态  待收货  记录时间 把支付方式改成相应的 记录实际支付
                     SldzOrderMapper.ChangeOrderSigned(paymentMethod, AmountPayable, DateUtil.now(), SldzOrder.getOrderNumber());
-
+                    deleterCoupon(SldzOrder);
                     return JsonResult.OK().data("支付成功，奖励金扣除：" + AmountPayable);
                 }
 
@@ -554,5 +560,19 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return map;
     }
 
+    public void  deleterCoupon(SldzOrder SldzOrder) {
+        if (StrUtil.isNotBlank(SldzOrder.getCouponJson())){
+            JSONObject rowData = JSONObject.parseObject(SldzOrder.getCouponJson());
+            JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
+            //得到优惠券id
+          String couponId =   rowData2.getString("primaryKeyVal");
+            //得到唯一编码
+           String Random =  SldzOrder.getBuyersRandom();
+            String _coupon= "_coupon";
+            redisUtils.delete(Random+_coupon+couponId);
+        }
+
+
+    }
 
 }
