@@ -1,26 +1,18 @@
 package com.gxc.sldz;
 
-import cn.hutool.core.date.DateUtil;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
-import com.gxc.sldz.Utils.wxUtil;
-import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.entity.SldzOrder;
-import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.vo.OrderProductJsonVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -30,6 +22,8 @@ class SldzApplicationTests {
     @Autowired
     private RedisUtils redisUtils;
 
+    @Autowired
+    private SldzOrderService sldzOrderService;
 
     @Test
     void contextLoads() {
@@ -111,6 +105,24 @@ class SldzApplicationTests {
 
     }
 
+    @Test
+    void contextLoads22sa() throws Exception {
+        String sake = "1000333";
+        String sake2 = "1000332";
+        String sake3 = "1000334";
+        SldzOrder s = GetOrderObjectByOrderNumbers("20210709102002476441964");
+
+        if (StrUtil.isBlank(s.getProductsIdReviewed())){
+            s.setProductsIdReviewed(sake);
+            System.out.println(s.getProductsIdReviewed());
+        }else {
+            System.out.println( s.getProductsIdReviewed()+","+sake2+","+sake2);
+        }
+
+
+    }
+
+
 
 
     @Test
@@ -127,6 +139,14 @@ class SldzApplicationTests {
 
 
 
+    //根据订单号获取已完成订单对象
+    public SldzOrder GetOrderObjectByOrderNumbers(String orderNumber) throws Exception {
+        LambdaQueryWrapper<SldzOrder> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzOrder::getOrderNumber, orderNumber);
+        wrapper.eq(SldzOrder::getState, 3);
+        SldzOrder s = sldzOrderService.getSingleEntity(wrapper);
+        return s;
+    }
 
 
 

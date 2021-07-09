@@ -464,3 +464,15 @@ ALTER TABLE `sldz_punch_clock` ADD COLUMN `points_gained` double DEFAULT 0.00 CO
 ALTER TABLE `sldz_punch_clock` ADD COLUMN `continuous_check_days` int(8) DEFAULT 0 COMMENT '连续签到天数' AFTER `points_gained`;
 -- 2021-07-06 21:07:12 by Achin
 ALTER TABLE `sldz_punch_clock` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `continuous_check_days`;
+-- 2021-07-09 14:38:48 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `products_id_reviewed` varchar(500) COMMENT '已评论产品id' AFTER `wx_pay_serial_num`;
+-- 2021-07-09 14:38:48 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `products_id_reviewed`;
+-- 2021-07-09 16:05:09 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `product_description_index` int(8) DEFAULT 5 COMMENT '产品描述指数' AFTER `reviewer_json`;
+-- 2021-07-09 16:05:09 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `service_index` int(8) DEFAULT 5 COMMENT '服务指数 ' AFTER `product_description_index`;
+-- 2021-07-09 16:05:09 by Achin
+ALTER TABLE `sldz_product_reviews` ADD COLUMN `logistics_index` int(8) DEFAULT 5 COMMENT '物流指数' AFTER `service_index`;
+-- 2021-07-09 16:05:09 by Achin
+ALTER TABLE `sldz_product_reviews` MODIFY COLUMN `comment_content` varchar(2000) COMMENT '评论内容 ' AFTER `logistics_index`;

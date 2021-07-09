@@ -12,11 +12,11 @@ import java.util.List;
 * 订单 DetailVO定义
 * @author Achin
 * @version 1.0
-* @date 2021-06-22
+* @date 2021-07-09
  * Copyright © MyCompany
 */
 @Getter @Setter @Accessors(chain = true)
 public class SldzOrderDetailVO extends SldzOrder  {
-    private static final long serialVersionUID = -2315487051370462196L;
+    private static final long serialVersionUID = 656526779636236605L;
 
 }

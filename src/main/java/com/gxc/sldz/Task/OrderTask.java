@@ -29,6 +29,7 @@ public class OrderTask {
     private SldzOrderService sldzOrderService;
 
 
+    //订单定时人任务15天后自动确认收货
     //每个小时执行一次
     @Scheduled(cron = "0 0/30 * * * ? ")
     public void execute() throws ParseException {
@@ -45,6 +46,7 @@ public class OrderTask {
                 UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
                 updateWrapper.eq("order_number", sldzOrder.getOrderNumber());
                 updateWrapper.set("state", 3);
+                updateWrapper.set("confirm_receiving_time", DateUtil.now());
                 sldzOrderService.updateEntity(updateWrapper);
             }
         }

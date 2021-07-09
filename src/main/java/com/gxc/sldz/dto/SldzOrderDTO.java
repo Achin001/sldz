@@ -11,11 +11,11 @@ import lombok.experimental.Accessors;
 * 订单 DTO定义
 * @author Achin
 * @version 1.0
-* @date 2021-06-22
+* @date 2021-07-09
  * Copyright © MyCompany
 */
 @Getter @Setter @Accessors(chain = true)
 public class SldzOrderDTO extends SldzOrder  {
-    private static final long serialVersionUID = 7687376419071941178L;
+    private static final long serialVersionUID = 241561816496731264L;
 
 }

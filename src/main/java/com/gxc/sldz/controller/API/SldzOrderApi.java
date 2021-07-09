@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller.API;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -251,6 +252,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("order_number", orderNumber);
         updateWrapper.set("state", 3);
+        updateWrapper.set("confirm_receiving_time", DateUtil.now());
         return JsonResult.OK().data(sldzOrderService.updateEntity(updateWrapper));
     }
 
