@@ -110,7 +110,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SldzApplication">
+  <component name="RunManager" selected="Shell Script.pushToGitHub.sh">
     <configuration name="console.sql (1)" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/a20f3b4c-d6ac-4449-9830-032419d43690/console.sql" />
       <script-mode>FILE</script-mode>

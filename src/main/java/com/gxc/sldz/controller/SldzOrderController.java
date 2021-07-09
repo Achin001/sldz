@@ -185,8 +185,8 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
     @ApiImplicitParams({
             @ApiImplicitParam(name = "couponJson", value = "优惠券json", required = true, dataType = "String"),
     })
-    @RequestMapping(value = "couponJsonUtil", method = RequestMethod.GET)
-    public JsonResult couponJsonUtil(String couponJson) throws Exception {
+    @RequestMapping(value = "couponJsonUtil", method = RequestMethod.POST)
+    public JsonResult couponJsonUtil(@RequestBody String couponJson) throws Exception {
         JSONObject rowData = JSONObject.parseObject(couponJson);
         JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
 //        rowData2.getString("couponsTotal");
