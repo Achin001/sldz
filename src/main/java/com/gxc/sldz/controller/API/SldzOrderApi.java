@@ -55,7 +55,8 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzOrder entity) throws Exception {
         entity.setOrderNumber(OrderNumberTimeUtil.getOrderIdByTime());
-        entity.getProductJson();
+        entity.setState(1);
+        entity.setPaymentMethod(1);
         return super.createEntity(entity);
     }
 
