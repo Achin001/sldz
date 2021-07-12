@@ -23,6 +23,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzPunchClockApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzPunchClockApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/impl/SldzOrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/impl/SldzOrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/gxc/sldz/SldzApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/gxc/sldz/SldzApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzPunchClockApi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzOrderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/HasordemoApplication.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/ServletInitializer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" />
@@ -111,7 +115,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SldzApplication">
+  <component name="RunManager" selected="Shell Script.pushToGitHub.sh">
     <configuration name="console.sql (1)" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/a20f3b4c-d6ac-4449-9830-032419d43690/console.sql" />
       <script-mode>FILE</script-mode>
@@ -256,7 +260,7 @@
       <workItem from="1625561607370" duration="3467000" />
       <workItem from="1625565115752" duration="24844000" />
       <workItem from="1625803092646" duration="14833000" />
-      <workItem from="1626071723786" duration="9325000" />
+      <workItem from="1626071723786" duration="11082000" />
     </task>
     <servers />
   </component>
@@ -341,34 +345,34 @@
       <screen x="0" y="23" width="1680" height="981" />
     </state>
     <state x="100" y="123" width="1454" height="749" key="DiffContextDialog/0.23.1680.981@0.23.1680.981" timestamp="1624253392305" />
-    <state width="1638" height="152" key="GridCell.Tab.0.bottom" timestamp="1626086966594">
+    <state width="1638" height="290" key="GridCell.Tab.0.bottom" timestamp="1626086974802">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
     <state width="1638" height="252" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
     <state width="1638" height="394" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1625729265307" />
-    <state width="1638" height="152" key="GridCell.Tab.0.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626086966594" />
-    <state width="1638" height="152" key="GridCell.Tab.0.center" timestamp="1626086966594">
+    <state width="1638" height="290" key="GridCell.Tab.0.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626086974802" />
+    <state width="1638" height="290" key="GridCell.Tab.0.center" timestamp="1626086974802">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554977" />
     <state width="1638" height="252" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
     <state width="1638" height="394" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1625729265306" />
-    <state width="1638" height="152" key="GridCell.Tab.0.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626086966594" />
-    <state width="1638" height="152" key="GridCell.Tab.0.left" timestamp="1626086966593">
+    <state width="1638" height="290" key="GridCell.Tab.0.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626086974802" />
+    <state width="1638" height="290" key="GridCell.Tab.0.left" timestamp="1626086974802">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554976" />
     <state width="1638" height="252" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515585" />
     <state width="1638" height="394" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1625729265305" />
-    <state width="1638" height="152" key="GridCell.Tab.0.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626086966593" />
-    <state width="1638" height="152" key="GridCell.Tab.0.right" timestamp="1626086966594">
+    <state width="1638" height="290" key="GridCell.Tab.0.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626086974802" />
+    <state width="1638" height="290" key="GridCell.Tab.0.right" timestamp="1626086974802">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
     <state width="1638" height="252" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
     <state width="1638" height="394" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1625729265306" />
-    <state width="1638" height="152" key="GridCell.Tab.0.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626086966594" />
+    <state width="1638" height="290" key="GridCell.Tab.0.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626086974802" />
     <state width="1638" height="152" key="GridCell.Tab.1.bottom" timestamp="1626086966595">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -461,6 +465,15 @@
     <state x="562" y="274" width="766" height="697" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1625804647652" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzPunchClockApi.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo typeName="java.lang.String" fieldName="value" />

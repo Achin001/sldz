@@ -206,7 +206,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                             .setRonusDate(DateUtil.now())
                             .setRonusEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
                             .setRonusMoney(AmountPayable)
-                            .setRonusType(1l));
+                            .setRonusType(2l));
                     //扣除库存
                     List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
                     for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
@@ -296,7 +296,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                             .setRonusDate(DateUtil.now())
                             .setRonusEvent("消费" + AmountPayable + "积分,订单号:" + SldzOrder.getOrderNumber())
                             .setRonusMoney(AmountPayable)
-                            .setRonusType(1l));
+                            .setRonusType(2l));
                     //扣除库存
                     List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
                     for (OrderProductJsonVo asfssa : getOrderProductJsonVo) {
