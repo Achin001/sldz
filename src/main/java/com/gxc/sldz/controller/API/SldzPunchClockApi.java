@@ -2,6 +2,7 @@ package com.gxc.sldz.controller.API;
 
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
@@ -19,9 +20,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -53,9 +56,18 @@ public class SldzPunchClockApi extends BaseCustomCrudRestController<SldzPunchClo
      * @return JsonResult
      * @throws Exception
      */
+    @Transactional
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzPunchClock entity) throws Exception {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        LambdaQueryWrapper<SldzPunchClock> wrapper1 = new LambdaQueryWrapper<>();
+//        wrapper1.eq(SldzPunchClock::getRandom, entity.getRandom());
+//        wrapper1.eq(SldzPunchClock::getClockDate, entity.getClockDate());
+//        //判断数据库有无当天签到数据
+//        if (ObjectUtil.isNotNull(sldzAgentIntegralLogService.getSingleEntity(wrapper1))){
+//            return JsonResult.FAIL_OPERATION("请勿重复签到");
+//        }
         entity.setPointsGained(1.00);
         LambdaQueryWrapper<SldzPunchClock> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzPunchClock::getRandom, entity.getRandom());
@@ -70,6 +82,21 @@ public class SldzPunchClockApi extends BaseCustomCrudRestController<SldzPunchClo
                 .setIntegralType(1l));
         return super.createEntity(entity);
     }
+
+//    @Transactional
+//    @ApiOperation(value = "判断本日有无签到")
+//    @GetMapping("/CheckToday")
+//    public JsonResult CheckToday(String Random) throws Exception {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        LambdaQueryWrapper<SldzPunchClock> wrapper1 = new LambdaQueryWrapper<>();
+//        wrapper1.eq(SldzPunchClock::getRandom, Random);
+//        wrapper1.eq(SldzPunchClock::getClockDate, sdf.format(new Date()));
+//        //判断数据库有无当天签到数据
+//        if (ObjectUtil.isNotNull(sldzAgentIntegralLogService.getSingleEntity(wrapper1))){
+//            return JsonResult.FAIL_OPERATION("请勿重复签到");
+//        }
+//        return null;
+//    }
 
 
 //    @ApiOperation(value = "获取本月签到数据")
