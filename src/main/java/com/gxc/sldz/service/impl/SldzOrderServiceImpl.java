@@ -323,9 +323,9 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     @Transactional
     @Override
     public JsonResult UndeliveredRefund(SldzOrder SldzOrder) {
-        String lo  = SldzOrder.getLogisticsNumber();
+        String lo = SldzOrder.getLogisticsNumber();
 
-        if (lo == null || "".equals(lo) || "null".equals(lo)){
+        if (lo == null || "".equals(lo) || "null".equals(lo)) {
             System.out.println("条件满足");
             lo = "";
         }
@@ -359,9 +359,8 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     //库存 = 库存 + 购买数量
                     SldzProductService.productStockById(stock, asfssa.getProductId());
                 }
-                return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
-            }
-            else if (SldzOrder.getPaymentMethod() == 2) {
+                return JsonResult.OK().data("退款退货成功,退款金额为：" + refundResponse.getOrderAmount());
+            } else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
                 //订单改为退款售后
                 SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
@@ -394,8 +393,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                             .setIntegralType(1l));
                 }
                 return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
-            }
-            else if (SldzOrder.getPaymentMethod() == 3) {
+            } else if (SldzOrder.getPaymentMethod() == 3) {
                 //奖励金支付
                 //订单改为退款售后
                 SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
@@ -451,10 +449,9 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     stock = (int) NumberUtil.add(stock, asfssa.getCartNum());
                     //库存 = 库存 + 购买数量
                     SldzProductService.productStockById(stock, asfssa.getProductId());
-                    }
-                return JsonResult.OK().data("退款退货成功,退款金额为：" +refundResponse.getOrderAmount());
-            }
-            else if (SldzOrder.getPaymentMethod() == 2) {
+                }
+                return JsonResult.OK().data("退款退货成功,退款金额为：" + refundResponse.getOrderAmount());
+            } else if (SldzOrder.getPaymentMethod() == 2) {
                 //积分支付
                 //订单改为退款售后
                 SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
@@ -487,8 +484,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                             .setIntegralType(1l));
                 }
                 return JsonResult.OK().data("退款退货成功，积分加回：" + AmountPayable);
-            }
-            else if (SldzOrder.getPaymentMethod() == 3) {
+            } else if (SldzOrder.getPaymentMethod() == 3) {
                 //奖励金支付
                 //订单改为退款售后
                 SldzOrderMapper.ChangeOrderAfterSales(SldzOrder.getOrderNumber());
@@ -509,7 +505,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
 
                 RemainingBonus = NumberUtil.add(Bonus, AmountPayable);
                 //加奖励金
-                if (SldzUserServic.ChangeBonus(RemainingBonus, SldzAgen.getAgentRandom())){
+                if (SldzUserServic.ChangeBonus(RemainingBonus, SldzAgen.getAgentRandom())) {
                     //记录积分消费记录
                     sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
                             .setAgentRandom(SldzAgen.getAgentRandom())
@@ -523,7 +519,6 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
             }
 
         }
-
 
 
         return null;
@@ -561,22 +556,23 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return map;
     }
 
-    public void  deleterCoupon(SldzOrder SldzOrder) {
-        if (StrUtil.isNotBlank(SldzOrder.getCouponJson())){
-            JSONObject rowData = JSONObject.parseObject(SldzOrder.getCouponJson());
-            JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
-            //得到优惠券id
-          String couponId =   rowData2.getString("primaryKeyVal");
-            //得到唯一编码
-           String Random =  SldzOrder.getBuyersRandom();
-            String _coupon= "_coupon";
-            String s = redisUtils.get(Random+_coupon+couponId);
-            if (StrUtil.isNotBlank(s)){
-                redisUtils.delete(Random+_coupon+couponId);
+    public void deleterCoupon(SldzOrder SldzOrder) {
+        if (SldzOrder.getDiscount() > 0.00) {
+            if (StrUtil.isNotBlank(SldzOrder.getCouponJson())) {
+                JSONObject rowData = JSONObject.parseObject(SldzOrder.getCouponJson());
+                JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
+                //得到优惠券id
+                String couponId = rowData2.getString("primaryKeyVal");
+                //得到唯一编码
+                String Random = SldzOrder.getBuyersRandom();
+                String _coupon = "_coupon";
+                String s = redisUtils.get(Random + _coupon + couponId);
+                if (StrUtil.isNotBlank(s)) {
+                    redisUtils.delete(Random + _coupon + couponId);
+                }
             }
         }
-
-
     }
 
 }
+
