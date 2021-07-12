@@ -146,6 +146,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 payRequest.setOrderAmount(0.01);
                 payRequest.setOpenid(SldzUser.getOpenid());
                 PayResponse payResponse = bestPayService.pay(payRequest);
+                //删除优惠券
                 deleterCoupon(SldzOrder);
                 return JsonResult.OK().data(payResponse);
             } else if (paymentMethod == 2) {
@@ -569,7 +570,10 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
             //得到唯一编码
            String Random =  SldzOrder.getBuyersRandom();
             String _coupon= "_coupon";
-            redisUtils.delete(Random+_coupon+couponId);
+            String s = redisUtils.get(Random+_coupon+couponId);
+            if (StrUtil.isNotBlank(s)){
+                redisUtils.delete(Random+_coupon+couponId);
+            }
         }
 
 
