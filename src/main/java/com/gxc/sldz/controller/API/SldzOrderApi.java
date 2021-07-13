@@ -150,7 +150,7 @@ public class SldzOrderApi extends BaseCustomCrudRestController<SldzOrder> {
 
         //写入库 优惠金额 应付金额
         UpdateWrapper<SldzOrder> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.eq(SldzOrder.getOrderNumber(), orderNumber);
+        updateWrapper.eq("order_number", orderNumber);
         updateWrapper.set("amount_payable", AmountOrderPayable);
 //        updateWrapper.set("discount",discount);
 //        updateWrapper.set("coupon_json",couponJson);
