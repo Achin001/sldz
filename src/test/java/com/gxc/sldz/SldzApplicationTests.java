@@ -36,7 +36,7 @@ class   SldzApplicationTests {
 
     @Test
     void contextLoawasads() {
-        System.out.println(encryptor.encrypt("3D3336TD"));
+//        System.out.println(encryptor.encrypt("3D3336TD"));
 
 //        KeyPair pair = SecureUtil.generateKeyPair("RSA");
 //        System.out.println(Base64.getEncoder().encodeToString(pair.getPublic().getEncoded()));

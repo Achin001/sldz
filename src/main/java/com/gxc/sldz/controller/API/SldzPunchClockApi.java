@@ -8,13 +8,13 @@ import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzPunchClockDTO;
-import com.gxc.sldz.entity.SldzAgentIntegralLog;
-import com.gxc.sldz.entity.SldzOrder;
-import com.gxc.sldz.entity.SldzPunchClock;
-import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.SldzAgentIntegralLogService;
+import com.gxc.sldz.service.SldzAgentService;
 import com.gxc.sldz.service.SldzPunchClockService;
+import com.gxc.sldz.service.SldzUserService;
 import com.gxc.sldz.service.impl.SldzAgentIntegralLogServiceImpl;
+import com.gxc.sldz.service.impl.SldzOrderServiceImpl;
 import com.gxc.sldz.vo.SldzPunchClockListVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 @Api(tags = {"签到前台接口"})
 @RestController
@@ -33,12 +34,21 @@ import java.util.Date;
 @Slf4j
 public class SldzPunchClockApi extends BaseCustomCrudRestController<SldzPunchClock> {
 
-
+    //用户服务
+    @Autowired
+    private SldzUserService SldzUserService;
+    //代理服务
+    @Autowired
+    private SldzAgentService sldzAgentService;
+    //签到服务
     @Autowired
     private SldzPunchClockService sldzPunchClockService;
     //积分记录服务
     @Autowired
     SldzAgentIntegralLogService sldzAgentIntegralLogService;
+    @Autowired
+    SldzOrderServiceImpl SldzOrderServiceImpl;
+
 
 
     @ApiOperation(value = "获取列表分页数据")
@@ -75,9 +85,21 @@ public class SldzPunchClockApi extends BaseCustomCrudRestController<SldzPunchClo
         sldzAgentIntegralLogService.createEntity(new SldzAgentIntegralLog()
                 .setAgentRandom(entity.getRandom())
                 .setIntegralDate(DateUtil.now())
-                .setIntegralEvent("签到获得积分：1.00,连续签到"+s+"天。")
+                .setIntegralEvent("签到获得积分：1.00,本月累计"+s+"天。")
                 .setIntegralMoney(1.00)
                 .setIntegralType(1l));
+        Map map  =  SldzOrderServiceImpl.getUser(entity.getRandom());
+        int type = (int) map.get("type");
+        if (type == 1){
+            //1消费者
+            SldzUser SldzUser  = (SldzUser) map.get("SldzUser");
+            SldzUser.setIntegral(SldzUser.getIntegral()+1);
+            SldzUserService.ChangePoints(SldzUser.getIntegral(),SldzUser.getRandom());
+        }else if (type == 2){
+            //2代理商
+            SldzAgent SldzAgent  = (SldzAgent) map.get("SldzAgent");
+            sldzAgentService.RechargeByRandom(1,SldzAgent.getAgentRandom());
+        }
         return super.createEntity(entity);
     }
 
