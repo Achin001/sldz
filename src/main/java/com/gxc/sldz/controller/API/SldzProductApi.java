@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller.API;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -51,9 +53,21 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
      */
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
-    public JsonResult getViewObjectListMapping(SldzProductDTO queryDto,Pagination pagination,Response response) throws Exception {
-
-        return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
+    public JsonResult getViewObjectListMapping(SldzProduct queryDto,String Random) throws Exception {
+        List<SldzProduct> SldzProducts  = SldzProductService.GetProductsByCategory(queryDto.getProductCategory());
+        if (StrUtil.isNotBlank(Random)){
+           for (SldzProduct s:SldzProducts){
+               LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
+               SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, s.getId());
+               SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom, Random);
+               SldzAgentProductPrice SldzAgentProductPrice =  SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
+               if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
+                   s.setFavorablePrice(SldzAgentProductPrice.getProductPrice());
+               }
+           }
+            return JsonResult.OK().data(SldzProducts);
+        }
+        return JsonResult.OK().data(SldzProducts);
     }
 
     /***
@@ -65,7 +79,7 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
     @ApiOperation(value = "根据ID获取详情数据")
     @GetMapping("/{id}")
     public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
-        return super.getViewObject(id, SldzOrderDetailVO.class);
+        return super.getViewObject(id, SldzProductListVO.class);
     }
 
 //

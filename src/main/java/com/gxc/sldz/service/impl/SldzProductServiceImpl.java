@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * 产品相关Service实现
 * @author Achin
@@ -33,4 +35,12 @@ public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMap
     public boolean productStockByIdloa(long stock, long id) {
         return SldzProductMapper.productStockByIdloa(stock,id);
     }
+
+    @Override
+    public List<SldzProduct> GetProductsByCategory(long productCategory) {
+        return SldzProductMapper.GetProductsByCategory(productCategory);
+    }
+
+
+
 }

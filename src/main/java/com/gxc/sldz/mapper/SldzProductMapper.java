@@ -4,7 +4,10 @@ import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzProduct;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
 * 产品Mapper
@@ -24,6 +27,12 @@ public interface SldzProductMapper extends BaseCrudMapper<SldzProduct> {
     //根据产品id减改产品库存
     @Update("UPDATE sldz_product SET product_stock = product_stock - #{stock}  WHERE id = #{id}")
     boolean productStockByIdloa (@Param("stock") long stock,@Param("id") long id);
+
+
+    //根据分类ID获取产品
+    @Select("SELECT * FROM sldz_product WHERE  product_category = #{productCategory}")
+    List<SldzProduct> GetProductsByCategory (@Param("productCategory") long productCategory);
+
 
 
 }

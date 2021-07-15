@@ -1,12 +1,15 @@
 package com.gxc.sldz.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.diboot.core.binding.annotation.*;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.entity.SldzProductCategory;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -25,5 +28,7 @@ public class SldzProductListVO extends SldzProduct  {
     */
     @BindField(entity = SldzProductCategory.class, field = "categoryName", condition = "this.product_category=id")
     private String sldzProductCategoryCategoryName;
-    
+
+
+
 }
