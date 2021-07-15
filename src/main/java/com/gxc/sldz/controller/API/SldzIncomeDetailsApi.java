@@ -4,6 +4,7 @@ package com.gxc.sldz.controller.API;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
+import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.entity.SldzAgentBonusLog;
 import com.gxc.sldz.entity.SldzAgentIntegralLog;
 import com.gxc.sldz.entity.SldzUser;
@@ -53,21 +54,21 @@ public class SldzIncomeDetailsApi {
     public JsonResult GetiIncomeDetails(String random,
                                         int type,
                                         int pol,
-                                        String date) throws Exception {
+                                        String date, Pagination pagination) throws Exception {
         if (pol ==1 ){
             //1奖励金
             LambdaQueryWrapper<SldzAgentBonusLog> wrapperUser = new LambdaQueryWrapper<>();
             wrapperUser.eq(SldzAgentBonusLog::getRonusType, type);
             wrapperUser.eq(SldzAgentBonusLog::getAgentRandom, random);
             wrapperUser.likeRight(SldzAgentBonusLog::getRonusDate,date);
-            return JsonResult.OK().data(SldzAgentBonusLogService.getEntityList(wrapperUser));
+            return JsonResult.OK().data(SldzAgentBonusLogService.getEntityList(wrapperUser,pagination));
         }else if (pol == 2 ){
             //2积分
             LambdaQueryWrapper<SldzAgentIntegralLog> wrapperUser = new LambdaQueryWrapper<>();
             wrapperUser.eq(SldzAgentIntegralLog::getIntegralType, type);
             wrapperUser.eq(SldzAgentIntegralLog::getAgentRandom, random);
             wrapperUser.likeRight(SldzAgentIntegralLog::getIntegralDate,date);
-            return JsonResult.OK().data(sldzAgentIntegralLogService.getEntityList(wrapperUser));
+            return JsonResult.OK().data(sldzAgentIntegralLogService.getEntityList(wrapperUser,pagination));
         }
         return null;
     }
