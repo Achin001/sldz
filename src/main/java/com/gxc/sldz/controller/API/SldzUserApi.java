@@ -6,6 +6,7 @@ import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzUserDTO;
 import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.vo.SldzAgentDetailVO;
 import com.gxc.sldz.vo.SldzUserDetailVO;
 import com.gxc.sldz.vo.SldzUserListVO;
 import io.swagger.annotations.Api;
@@ -17,10 +18,9 @@ import javax.validation.Valid;
 
 @Api(tags = {"消费者/客户前台接口"})
 @RestController
-@RequestMapping("api/sldzUser")
+@RequestMapping("api/sldzUserl")
 @Slf4j
 public class SldzUserApi extends BaseCustomCrudRestController<SldzUser> {
-
 
 
 

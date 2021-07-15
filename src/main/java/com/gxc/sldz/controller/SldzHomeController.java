@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.handler.ServiceException;
+import com.gxc.sldz.service.TokenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Api(tags = {"首页管理后台接口"})
 @RestController
@@ -23,6 +25,8 @@ public class SldzHomeController {
 
     @Autowired
     private RedisUtils redisUtils;
+    @Autowired
+    TokenService tokenService;
 
 
     @ApiOperation(value = "添加今日折扣")
@@ -62,6 +66,8 @@ public class SldzHomeController {
     public JsonResult GetSelectedRecommendation() throws Exception {
         return JsonResult.OK().data(redisUtils.get("SelectedRecommendation"));
     }
+
+
 
 
 }

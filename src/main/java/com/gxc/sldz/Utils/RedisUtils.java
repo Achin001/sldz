@@ -106,5 +106,14 @@ public class RedisUtils {
         return result;
     }
 
+    /**
+     * 判断key是否存在
+     * @param key
+     * @return
+     */
+    public Boolean exists(String key) {
+        Boolean exists = redisTemplate.hasKey(key);
+        return exists;
+    }
 
 }

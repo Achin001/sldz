@@ -476,3 +476,13 @@ ALTER TABLE `sldz_product_reviews` ADD COLUMN `service_index` int(8) DEFAULT 5 C
 ALTER TABLE `sldz_product_reviews` ADD COLUMN `logistics_index` int(8) DEFAULT 5 COMMENT '物流指数' AFTER `service_index`;
 -- 2021-07-09 16:05:09 by Achin
 ALTER TABLE `sldz_product_reviews` MODIFY COLUMN `comment_content` varchar(2000) COMMENT '评论内容 ' AFTER `logistics_index`;
+-- 2021-07-15 11:45:28 by Achin
+CREATE TABLE `sldz_user_binding`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '客户绑定';
+-- 2021-07-15 11:49:07 by Achin
+CREATE TABLE `sldz_user_rel`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '用户绑定';
+-- 2021-07-15 11:51:37 by Achin
+ALTER TABLE `sldz_user_rel` ADD COLUMN `sup_random` varchar(100) COMMENT '上级编号' AFTER `id`;
+-- 2021-07-15 11:51:38 by Achin
+ALTER TABLE `sldz_user_rel` ADD COLUMN `sub_random` varchar(100) COMMENT '下级编号' AFTER `sup_random`;
+-- 2021-07-15 11:51:38 by Achin
+ALTER TABLE `sldz_user_rel` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `sub_random`;

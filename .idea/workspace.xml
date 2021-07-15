@@ -14,15 +14,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a819d119-c04c-4a31-85e1-bbf3a8278165" name="Default Changelist" comment="第一次提交">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/Utils/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/Utils/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/Utils/ResponseCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzUserRelApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/handler/MyControllerAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/handler/ServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/ApiIdempotent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/TokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/impl/TokenServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/miniapp.siliandingzhi.com.pfx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/pfx-password.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website/src/main/java/com/gxc/website/Config/test.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website/toGitHub.sh" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website2/Dockerfile" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website2/toGitHub.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sldz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sldz.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/Utils/RedisUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/Utils/RedisUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/CorsInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/CorsInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/JwtInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/JwtInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/config/jwt/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzProductApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzPunchClockApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzPunchClockApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzUserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/SldzUserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/getUnlimited.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/API/getUnlimited.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/impl/SldzBonuSsettingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/service/impl/SldzBonuSsettingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/update_1.0.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/update_1.0.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/HasordemoApplication.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/ServletInitializer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" />
@@ -111,7 +132,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Shell Script.pushToGitHub.sh">
+  <component name="RunManager" selected="Spring Boot.SldzApplication">
     <configuration name="console.sql (1)" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/a20f3b4c-d6ac-4449-9830-032419d43690/console.sql" />
       <script-mode>FILE</script-mode>
@@ -256,7 +277,9 @@
       <workItem from="1625561607370" duration="3467000" />
       <workItem from="1625565115752" duration="24844000" />
       <workItem from="1625803092646" duration="14833000" />
-      <workItem from="1626071723786" duration="16108000" />
+      <workItem from="1626071723786" duration="25053000" />
+      <workItem from="1626239114011" duration="15614000" />
+      <workItem from="1626319732121" duration="3356000" />
     </task>
     <servers />
   </component>
@@ -306,12 +329,12 @@
     </state>
     <state x="593" y="285" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.981@0.23.1680.981" timestamp="1622273205728" />
     <state x="678" y="293" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1011@0.23.1920.1011" timestamp="1624616417599" />
-    <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser" timestamp="1625200488932">
+    <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser" timestamp="1626253979347">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="2472" y="230" key="#com.intellij.ide.util.MemberChooser/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1624081068126" />
+    <state x="2472" y="230" key="#com.intellij.ide.util.MemberChooser/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626251355799" />
     <state x="693" y="316" key="#com.intellij.ide.util.MemberChooser/0.23.1680.981@0.23.1680.981" timestamp="1625036870812" />
-    <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser/0.23.1920.1011@0.23.1920.1011" timestamp="1625200488932" />
+    <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser/0.23.1920.1011@0.23.1920.1011" timestamp="1626253979347" />
     <state x="631" y="475" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1625567916949">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -337,66 +360,67 @@
     </state>
     <state width="254" height="195" key="DatabaseViewActions_Filter/0.23.1680.981@0.23.1680.981" timestamp="1622873260974" />
     <state width="291" height="201" key="DatabaseViewActions_Filter/0.23.1920.1011@0.23.1920.1011" timestamp="1625806097333" />
-    <state x="100" y="123" width="1454" height="749" key="DiffContextDialog" timestamp="1624253392305">
-      <screen x="0" y="23" width="1680" height="981" />
+    <state x="114" y="126" width="1662" height="772" key="DiffContextDialog" timestamp="1626255975956">
+      <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="100" y="123" width="1454" height="749" key="DiffContextDialog/0.23.1680.981@0.23.1680.981" timestamp="1624253392305" />
-    <state width="1638" height="145" key="GridCell.Tab.0.bottom" timestamp="1626154507337">
+    <state x="114" y="126" width="1662" height="772" key="DiffContextDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1626255975956" />
+    <state width="1638" height="195" key="GridCell.Tab.0.bottom" timestamp="1626321309033">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
-    <state width="1638" height="252" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
+    <state width="1638" height="252" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729781" />
     <state width="1638" height="394" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1625729265307" />
-    <state width="1638" height="145" key="GridCell.Tab.0.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507337" />
-    <state width="1638" height="145" key="GridCell.Tab.0.center" timestamp="1626154507336">
+    <state width="1638" height="195" key="GridCell.Tab.0.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309033" />
+    <state width="1638" height="195" key="GridCell.Tab.0.center" timestamp="1626321309032">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554977" />
-    <state width="1638" height="252" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
+    <state width="1638" height="252" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729780" />
     <state width="1638" height="394" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1625729265306" />
-    <state width="1638" height="145" key="GridCell.Tab.0.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507336" />
-    <state width="1638" height="145" key="GridCell.Tab.0.left" timestamp="1626154507335">
+    <state width="1638" height="195" key="GridCell.Tab.0.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309032" />
+    <state width="1638" height="195" key="GridCell.Tab.0.left" timestamp="1626321309031">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554976" />
-    <state width="1638" height="252" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515585" />
+    <state width="1638" height="252" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729780" />
     <state width="1638" height="394" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1625729265305" />
-    <state width="1638" height="145" key="GridCell.Tab.0.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507335" />
-    <state width="1638" height="145" key="GridCell.Tab.0.right" timestamp="1626154507337">
+    <state width="1638" height="195" key="GridCell.Tab.0.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309031" />
+    <state width="1638" height="195" key="GridCell.Tab.0.right" timestamp="1626321309033">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
-    <state width="1638" height="252" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809515586" />
+    <state width="1638" height="252" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729781" />
     <state width="1638" height="394" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1625729265306" />
-    <state width="1638" height="145" key="GridCell.Tab.0.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507337" />
-    <state width="1638" height="145" key="GridCell.Tab.1.bottom" timestamp="1626154507338">
+    <state width="1638" height="195" key="GridCell.Tab.0.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309033" />
+    <state width="1638" height="195" key="GridCell.Tab.1.bottom" timestamp="1626321309035">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.1.bottom/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554980" />
-    <state width="1638" height="252" key="GridCell.Tab.1.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809511465" />
+    <state width="1638" height="252" key="GridCell.Tab.1.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729783" />
     <state width="1638" height="394" key="GridCell.Tab.1.bottom/0.23.1680.981@0.23.1680.981" timestamp="1625729265308" />
-    <state width="1638" height="145" key="GridCell.Tab.1.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507338" />
-    <state width="1638" height="145" key="GridCell.Tab.1.center" timestamp="1626154507338">
+    <state width="1638" height="195" key="GridCell.Tab.1.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309035" />
+    <state width="1638" height="195" key="GridCell.Tab.1.center" timestamp="1626321309034">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.1.center/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
-    <state width="1638" height="252" key="GridCell.Tab.1.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809511464" />
+    <state width="1638" height="252" key="GridCell.Tab.1.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729782" />
     <state width="1638" height="394" key="GridCell.Tab.1.center/0.23.1680.981@0.23.1680.981" timestamp="1625729265307" />
-    <state width="1638" height="145" key="GridCell.Tab.1.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507338" />
-    <state width="1638" height="145" key="GridCell.Tab.1.left" timestamp="1626154507337">
+    <state width="1638" height="195" key="GridCell.Tab.1.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309034" />
+    <state width="1638" height="195" key="GridCell.Tab.1.left" timestamp="1626321309034">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.1.left/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
-    <state width="1638" height="252" key="GridCell.Tab.1.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809511464" />
+    <state width="1638" height="252" key="GridCell.Tab.1.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729782" />
     <state width="1638" height="394" key="GridCell.Tab.1.left/0.23.1680.981@0.23.1680.981" timestamp="1625729265307" />
-    <state width="1638" height="145" key="GridCell.Tab.1.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507337" />
-    <state width="1638" height="145" key="GridCell.Tab.1.right" timestamp="1626154507338">
+    <state width="1638" height="195" key="GridCell.Tab.1.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309034" />
+    <state width="1638" height="195" key="GridCell.Tab.1.right" timestamp="1626321309034">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state width="1638" height="156" key="GridCell.Tab.1.right/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
-    <state width="1638" height="252" key="GridCell.Tab.1.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809511465" />
+    <state width="1638" height="252" key="GridCell.Tab.1.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729783" />
     <state width="1638" height="394" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1625729265308" />
-    <state width="1638" height="145" key="GridCell.Tab.1.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626154507338" />
+    <state width="1638" height="195" key="GridCell.Tab.1.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626321309034" />
     <state width="1638" height="294" key="GridCell.Tab.2.bottom" timestamp="1626091247491">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -449,6 +473,11 @@
       <screen x="1680" y="-86" width="1920" height="1057" />
     </state>
     <state x="2879" y="192" width="1209" height="682" key="dock-window-1/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1625809296730" />
+    <state x="866" y="298" key="refactoring.ChangeSignatureDialog" timestamp="1626254368835">
+      <screen x="0" y="23" width="1920" height="1011" />
+    </state>
+    <state x="2546" y="202" key="refactoring.ChangeSignatureDialog/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252428314" />
+    <state x="866" y="298" key="refactoring.ChangeSignatureDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1626254368835" />
     <state x="623" y="289" key="run.anything.popup" timestamp="1626083568748">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -461,6 +490,15 @@
     <state x="562" y="274" width="766" height="697" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1625804647652" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentGroupController.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo typeName="java.lang.String" fieldName="value" />

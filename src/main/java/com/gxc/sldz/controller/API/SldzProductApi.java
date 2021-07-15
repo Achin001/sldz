@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller.API;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
@@ -15,11 +16,14 @@ import com.gxc.sldz.vo.SldzProductListVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @Api(tags = { "产品前台接口" })
@@ -47,7 +51,8 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
      */
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
-    public JsonResult getViewObjectListMapping(SldzProductDTO queryDto, Pagination pagination) throws Exception {
+    public JsonResult getViewObjectListMapping(SldzProductDTO queryDto,String random, Pagination pagination,Response response) throws Exception {
+
         return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 

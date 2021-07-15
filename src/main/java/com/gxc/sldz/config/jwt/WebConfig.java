@@ -1,6 +1,7 @@
 package com.gxc.sldz.config.jwt;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
     private JwtInterceptor JwtInterceptor;
     @Autowired
     private CorsInterceptor corsInterceptor;
+
 
     /**
      * APP接口拦截器
@@ -38,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 
     }
+
 
 
 }

@@ -2,14 +2,25 @@ package com.gxc.sldz.config.jwt;
 
 
 import cn.hutool.core.util.StrUtil;
+import com.gxc.sldz.Utils.RedisUtils;
+import com.gxc.sldz.Utils.ResponseCode;
+import com.gxc.sldz.handler.ServiceException;
+import com.gxc.sldz.service.ApiIdempotent;
+import com.gxc.sldz.service.TokenService;
 import io.jsonwebtoken.Claims;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Method;
 
 @Slf4j
 @Component
@@ -18,12 +29,21 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     @Resource
     private JWT jwt;
 
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private RedisUtils redisUtil;
+
 
     public static final String USER_KEY = "userId";
 
+
+    @SneakyThrows
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+
         String servletPath = request.getServletPath();
 //        log.info("ServletPath: " + servletPath);
         // 不需要验证,直接放行
@@ -31,7 +51,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         if (isNotCheck) {
             return true;
         }
-        // 需要验证
+
+        // 需要验证 等于空401
         String token = getToken(request);
         if (StrUtil.isBlank(token)) {
             response.setContentType("text/html;charset=UTF-8");
@@ -52,8 +73,43 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             response.getWriter().print("<font size=6 color=red>登陆信息失效，请重新登录!</font>");
             return false;
         }
-        // 将签名中获取的用户信息放入request中;
         request.setAttribute(USER_KEY, claims.getSubject());
+
+
+
+//        //从请求头中获取token2
+//        String token2=request.getHeader("token2");
+//        if (StringUtils.isBlank(token2)){
+//            //如果请求头token为空就从参数中获取
+//            token=request.getParameter("token2");
+//            //如果都为空抛出参数异常的错误
+//            if (StringUtils.isBlank(token)){
+//                response.setContentType("text/html;charset=UTF-8");
+//                response.setCharacterEncoding("UTF-8");
+//                response.setStatus(201);
+//                response.getWriter().print("<font size=6 color=red>请勿重复提交!</font>");
+//                return false;
+//            }
+//        }
+//        //如果redis中不包含该token，说明token已经被删除了，抛出请求重复异常
+//        if (!redisUtil.exists(token2)){
+//            response.setContentType("text/html;charset=UTF-8");
+//            response.setCharacterEncoding("UTF-8");
+//            response.setStatus(201);
+//            response.getWriter().print("<font size=6 color=red>请勿重复提交!</font>");
+//            return false;
+//        }
+//        //删除token2
+//        Boolean del=redisUtil.delete(token2);
+//        //如果删除不成功（已经被其他请求删除），抛出请求重复异常
+//        if (!del){
+//            response.setContentType("text/html;charset=UTF-8");
+//            response.setCharacterEncoding("UTF-8");
+//            response.setStatus(201);
+//            response.getWriter().print("<font size=6 color=red>请勿重复提交!</font>");
+//            return false;
+//        }
+
         return true;
     }
 
@@ -111,5 +167,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             "/api/sldzProduct/**",//产品列表
             "/api/sldzProductCategory/**",//产品分类列表
     };
+
 
 }

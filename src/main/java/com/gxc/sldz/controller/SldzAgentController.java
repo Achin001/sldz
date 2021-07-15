@@ -2,10 +2,12 @@ package com.gxc.sldz.controller;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.*;
@@ -43,7 +45,12 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     //奖励金记录服务
     @Autowired
     private SldzAgentBonusLogService sldzAgentBonusLogService;
-
+    //产品价格服务
+    @Autowired
+    private SldzAgentProductPriceService sldzAgentProductPriceService;
+    //推广佣金服务
+    @Autowired
+    private SldzBonuSsettingService sldzBonuSsettingService;
 
     //代理商服务
     @Autowired
@@ -170,6 +177,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         return JsonResult.FAIL_OPERATION("充值失败");
     }
 
+
     @ApiOperation(value = "根据充值对象查询该上级应得奖励")
     @GetMapping("AccordingToRechargeObjectQuerySuperiorShouldBeRewarded")
     public JsonResult AccordingToRechargeObjectQuerySuperiorShouldBeRewarded(String Random, double RechargePoints) throws Exception {
@@ -207,6 +215,106 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         SuperiorShouldBeRewardedVOs.add(SuperiorShouldBeRewardedVO2);
         return JsonResult.OK().data(SuperiorShouldBeRewardedVOs);
     }
+
+
+    @ApiOperation(value = "根据唯一编码获取产品价格")
+    @GetMapping("/GetProductPriceByRandom")
+    public JsonResult GetProductPriceByRandom(Long prductId,String Random) throws Exception {
+        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
+        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, prductId);
+        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random );
+        return JsonResult.OK().data(sldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper));
+    }
+
+    @ApiOperation(value = "为代理商设置推广佣金")
+    @PutMapping("/AgentBonusSetting")
+    public JsonResult AgentBonusSetting(Long AgentId,
+                                        Long productId,
+                                        double Bonus) throws Exception {
+        //记录成功次数
+        int los = 0;
+        SldzAgent SldzAgent =  sldzAgentService.getEntity(AgentId);
+        LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+            //查询该代理商有无奖励金
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,SldzAgent.getAgentRandom());
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,productId);
+            SldzBonuSsetting SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+            if (ObjectUtil.isNotNull(SldzBonuSsettings)){
+                //有记录则更改
+                UpdateWrapper<SldzAgent> UpdatewrapperBonuSsetting = new UpdateWrapper();
+                UpdatewrapperBonuSsetting.set("bonus",Bonus);
+                UpdatewrapperBonuSsetting.eq("product_id",productId);
+                UpdatewrapperBonuSsetting.eq("agent_random",SldzAgent.getAgentRandom());
+                if(sldzBonuSsettingService. updateEntity(UpdatewrapperBonuSsetting)){
+                    los+=1;
+                }
+            }else {
+                //无记录则新增
+                if ( sldzBonuSsettingService.createEntity(
+                        new SldzBonuSsetting()
+                                .setAgentRandom(SldzAgent.getAgentRandom())
+                                .setBonus(Bonus)
+                                .setProductId(productId))){
+                    los+=1;
+                }
+            }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+Bonus);
+        return JsonResult.OK().data(map);
+    }
+
+
+
+    @ApiOperation(value = "根据唯一编码获取产品推广佣金")
+    @GetMapping("/GetProductPromotionCommissionByRandom")
+    public JsonResult GetProductPromotionCommissionByRandom(Long prductId,String Random) throws Exception {
+        LambdaQueryWrapper<SldzBonuSsetting> SldzBonuSsettingPricewrapper = new LambdaQueryWrapper<>();
+        SldzBonuSsettingPricewrapper.eq(SldzBonuSsetting::getProductId, prductId);
+        SldzBonuSsettingPricewrapper.eq(SldzBonuSsetting::getAgentRandom,Random );
+        return JsonResult.OK().data(sldzBonuSsettingService.getSingleEntity(SldzBonuSsettingPricewrapper));
+    }
+
+    @ApiOperation(value = "为代理设置产品价格")
+    @PutMapping("/AgentProductPriceSetting")
+    public JsonResult AgentProductPriceSetting(Long AgentId,
+                                               Long productId,
+                                               double price) throws Exception {
+        //记录成功次数
+        int los = 0;
+
+        SldzAgent SldzAgent  =  sldzAgentService.getEntity(AgentId);
+        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper();
+            //查询该代理商有无该产的价格
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,SldzAgent.getAgentRandom());
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId,productId);
+            SldzAgentProductPrice SldzAgentProductPrice = sldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
+            if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
+                //有记录则更改
+                UpdateWrapper<SldzAgentProductPrice> UpdatewrapperSldzAgentProductPrice = new UpdateWrapper();
+                UpdatewrapperSldzAgentProductPrice.set("product_price",price);
+                UpdatewrapperSldzAgentProductPrice.eq("product_id",productId);
+                UpdatewrapperSldzAgentProductPrice.eq("agent_random",SldzAgent.getAgentRandom());
+                if(sldzAgentProductPriceService. updateEntity(UpdatewrapperSldzAgentProductPrice)){
+                    los+=1;
+                }
+            }else {
+                //无记录则新增
+                if ( sldzAgentProductPriceService.createEntity(
+                        new SldzAgentProductPrice()
+                                .setAgentRandom(SldzAgent.getAgentRandom())
+                                .setProductPrice(price)
+                                .setProductId(productId))){
+                    los+=1;
+                }
+            }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+price);
+        return JsonResult.OK().data(map);
+    }
+
+
+
+
 
 
     /**
