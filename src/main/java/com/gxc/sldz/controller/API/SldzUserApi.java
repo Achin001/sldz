@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Api(tags = {"消费者/客户前台接口"})
+@Api(tags = {"客户前台接口"})
 @RestController
 @RequestMapping("api/sldzUserl")
 @Slf4j

@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * @date 2021-05-31
  * Copyright © MyCompany
  */
-@Api(tags = { "消费者/客户后台接口" })
+@Api(tags = { "客户后台接口" })
 @RestController
 @RequestMapping("admin/sldzUser")
 @Slf4j
