@@ -14,6 +14,7 @@ import com.gxc.sldz.entity.SldzAgentRel;
 import com.gxc.sldz.entity.SldzUser;
 import com.gxc.sldz.service.SldzAgentRelService;
 import com.gxc.sldz.service.SldzAgentService;
+import com.gxc.sldz.service.SldzUserService;
 import com.gxc.sldz.vo.SldzAgentDetailVO;
 import com.gxc.sldz.vo.SldzUserDetailVO;
 import io.swagger.annotations.Api;
@@ -40,17 +41,27 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
     private SldzAgentService sldzAgentService;
 
     @Autowired
+    private SldzUserService SldzUserService;
+
+    @Autowired
     private SldzAgentRelService sldzAgentRelService;
 
 
     @ApiOperation(value = "代理商账号绑定微信")
     @PostMapping("/AccountBindingWechat")
     public JsonResult AccountBindingWechat(@RequestBody  SldzUser entity) throws Exception {
+
         //先获取openid
         JSONObject jsonObject = wxUtil.wxLogin(entity.getOpenid());
 //        // 获取参数返回的
         String session_key = jsonObject.get("session_key").toString();
         String open_id = jsonObject.get("openid").toString();
+        entity.setOpenid(open_id);
+        //查询该openid在用户表有无
+        SldzUser getUserByOpenid =  SldzUserService.getUserByOpenid(entity.getOpenid());
+        if (ObjectUtil.isNotNull(getUserByOpenid)){
+            return JsonResult.FAIL_OPERATION("绑定失败,该账号已经是消费者");
+        }
         //更改openid 及微信资料
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgent::getId, entity.getId());

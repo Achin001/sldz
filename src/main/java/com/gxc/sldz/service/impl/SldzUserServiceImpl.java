@@ -35,7 +35,10 @@ public class SldzUserServiceImpl extends BaseCustomServiceImpl<SldzUserMapper, S
         return SldzUserService.ChangeBonus(bonus,random);
     }
 
-
+    @Override
+    public SldzUser getUserByOpenid(String openid) {
+        return SldzUserService.getUserByOpenid(openid);
+    }
 
 
 }

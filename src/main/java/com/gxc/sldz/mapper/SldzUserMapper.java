@@ -1,9 +1,11 @@
 package com.gxc.sldz.mapper;
 
 import com.diboot.core.mapper.BaseCrudMapper;
+import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -26,6 +28,11 @@ public interface SldzUserMapper extends BaseCrudMapper<SldzUser> {
     @Update("UPDATE sldz_user  SET bonus =#{bonus} WHERE random = #{random}")
     boolean ChangeBonus(@Param("bonus") double bonus,
                          @Param("random") String random);
+
+
+
+    @Select("SELECT * FROM sldz_user WHERE  openid = #{openid}")
+    SldzUser getUserByOpenid(@Param("openid") String openid);
 
 
 }

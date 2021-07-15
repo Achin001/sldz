@@ -19,4 +19,6 @@ public interface SldzUserService extends BaseCustomService<SldzUser> {
     boolean ChangeBonus(@Param("bonus") double bonus,
                         @Param("random") String random);
 
+    SldzUser getUserByOpenid(@Param("openid") String openid);
+
 }

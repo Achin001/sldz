@@ -86,6 +86,7 @@ public class SldzLoginApi {
         entity.setOpenid(open_id);
         //查找代理商表有没有该openid
         SldzAgent SldzAgent =  sldzAgentService.getAgentByOpenid(entity.getOpenid());
+        System.out.println(SldzAgent);
         if (ObjectUtil.isNotNull(SldzAgent)){
             //如果不等于空
             Map map = new HashMap();
@@ -126,7 +127,7 @@ public class SldzLoginApi {
             //返回token
             map.put("token",JWT.generateToken(entity.getId()));
             //返回user
-            map.put("entity",entity);
+            map.put("sldzUser",entity);
             //返回识别号
             map.put("Identification",2);
             map.put("IdentificationMsg","1：代理商。2：消费者");
