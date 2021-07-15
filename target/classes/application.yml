@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.110.145.210:6371/sldz?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: ENC(AFRNEauP1qL151B0ijaHK0G5nNnhN91FE+3ovhN2+W9uyJJHr5rIOl5V2YX9WwGO)
+    password: ENC(XU+h8Uws57rGxm1Ar6aJKQjfiSjzAPOR2iNrULeSPC9FtmWh4FqqhBu6g0XO2wpJ)
+    driver-class-name: com.mysql.jdbc.Driver
+
+    # 配置Druid的其他参数，以下配置必须增加一个配置文件才能有效
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat, wall
+    # 打开PSCache，并且指定每个连接上PSCache的小大
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+
+## JWT
+# header:凭证(校验的变量名), expire:有效期7天(单位:ms), secret:秘钥(普通字符串)
+jwt:
+  header: token
+  expire: 604800000
+  secret: ENC(UD1hw8ZwMTuYJaGZOLf6mES0kDS5hfOI11/b30POcVDjbg6oJaeB0KPH8LElk0lBnw4EyWIZRvOcHYAVukYEu50Y7JUx19Ii4D9OPiGGbUI=)
+
+
+aliyun:
+  #OSS
+  oss:
+    #此处填你自己创建oss的bucketName
+    bucketName: weixinshiguangyimei
+    accessKeyId: LTAI4GDruLvfCgcGTC1qqhAN
+    accessKeySecret: ENC(T5w/Z2yBkIkV3deIkNNRQSHTed7gbYzi7X2JPax3GHhYH3P5PuDo01A58ly/1JcMdB7Mtif5+KKToW2Ubsy6Fg==)
+    #OSS对应的区域
+    endpoint: http://oss-cn-shanghai.aliyuncs.com
+    #自定义的bucketName下的目录
+    filehost: imgs
+
+    policy:
+      # 签名有效期(S)
+      expire: 300
+      # 上传文件大小(M)
+      maxSize: 100
+      # 上传文件夹路径前缀
+      dir:
+        prefix: imgs/
+
+#开启sql打印
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath:mapper/*.xml
+
+
+jasypt:
+  encryptor:
+    password: opwsaL.afcfa18avC1

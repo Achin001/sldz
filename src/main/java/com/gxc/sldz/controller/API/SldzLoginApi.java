@@ -10,6 +10,7 @@ import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.Utils.wxUtil;
 import com.gxc.sldz.Utils.wxconfig;
 import com.gxc.sldz.config.jwt.JWT;
+import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzUser;
 import com.gxc.sldz.service.RandomServer;
@@ -84,9 +85,7 @@ public class SldzLoginApi {
         //替换openid
         entity.setOpenid(open_id);
         //查找代理商表有没有该openid
-        LambdaQueryWrapper<SldzAgent> wrapperAgent = new LambdaQueryWrapper<>();
-        wrapperAgent.eq(SldzAgent::getOpenid, entity.getOpenid());
-        SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapperAgent);
+        SldzAgent SldzAgent =  sldzAgentService.getAgentByOpenid(entity.getOpenid());
         if (ObjectUtil.isNotNull(SldzAgent)){
             //如果不等于空
             Map map = new HashMap();

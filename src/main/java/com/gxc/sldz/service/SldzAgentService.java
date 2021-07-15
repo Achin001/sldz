@@ -24,5 +24,6 @@ public interface SldzAgentService extends BaseCustomService<SldzAgent> {
     boolean ChangeBonus(@Param("bonus") double bonus,
                         @Param("random") String random);
 
+    SldzAgent getAgentByOpenid(@Param("openid") String openid);
 
 }

@@ -44,4 +44,9 @@ public class SldzAgentServiceImpl extends BaseCustomServiceImpl<SldzAgentMapper,
     public boolean ChangeBonus(double bonus, String random) {
         return SldzAgentMapper.ChangeBonus(bonus,random);
     }
+
+    @Override
+    public SldzAgent getAgentByOpenid(String openid) {
+        return SldzAgentMapper.getAgentByOpenid(openid);
+    }
 }

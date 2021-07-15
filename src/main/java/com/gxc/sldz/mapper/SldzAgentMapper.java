@@ -5,6 +5,7 @@ import com.diboot.core.util.S;
 import com.gxc.sldz.entity.SldzAgent;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -42,6 +43,10 @@ public interface SldzAgentMapper extends BaseCrudMapper<SldzAgent> {
     @Update("UPDATE sldz_agent  SET agent_bonus=#{bonus} WHERE agent_random = #{random}")
     boolean ChangeBonus(@Param("bonus") double bonus,
                         @Param("random") String random);
+
+
+    @Select("SELECT * FROM sldz_agent WHERE  openid = #{openid}")
+    SldzAgent getAgentByOpenid(@Param("openid") String openid);
 
 
 }
