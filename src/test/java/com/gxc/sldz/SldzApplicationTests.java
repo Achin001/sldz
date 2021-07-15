@@ -2,6 +2,7 @@ package com.gxc.sldz;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.gxc.sldz.Utils.OrderUtil;
@@ -9,22 +10,39 @@ import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.vo.OrderProductJsonVo;
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.security.KeyPair;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
 @SpringBootTest
-class SldzApplicationTests {
+class   SldzApplicationTests {
     @Autowired
     private RedisUtils redisUtils;
 
     @Autowired
     private SldzOrderService sldzOrderService;
+
+    @Autowired
+    private StringEncryptor encryptor;
+
+
+    @Test
+    void contextLoawasads() {
+        System.out.println(encryptor.encrypt("3D3336TD"));
+
+//        KeyPair pair = SecureUtil.generateKeyPair("RSA");
+//        System.out.println(Base64.getEncoder().encodeToString(pair.getPublic().getEncoded()));
+//        System.out.println(Base64.getEncoder().encodeToString(pair.getPrivate().getEncoded()));
+
+    }
 
     @Test
     void contextLoads() {

@@ -3,8 +3,8 @@ spring:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://47.110.145.210:6371/sldz?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-    username: sldz
-    password: 123456
+    username: ENC(AFRNEauP1qL151B0ijaHK0G5nNnhN91FE+3ovhN2+W9uyJJHr5rIOl5V2YX9WwGO)
+    password: ENC(XU+h8Uws57rGxm1Ar6aJKQjfiSjzAPOR2iNrULeSPC9FtmWh4FqqhBu6g0XO2wpJ)
     driver-class-name: com.mysql.jdbc.Driver
 
     # 配置Druid的其他参数，以下配置必须增加一个配置文件才能有效
@@ -37,7 +37,7 @@ spring:
 jwt:
   header: token
   expire: 604800000
-  secret: aHRLcHM6LyEtel5vc2NLAW5hLm9ldA91LNM5ODL4Cjg=
+  secret: ENC(UD1hw8ZwMTuYJaGZOLf6mES0kDS5hfOI11/b30POcVDjbg6oJaeB0KPH8LElk0lBnw4EyWIZRvOcHYAVukYEu50Y7JUx19Ii4D9OPiGGbUI=)
 
 
 aliyun:
@@ -46,7 +46,7 @@ aliyun:
     #此处填你自己创建oss的bucketName
     bucketName: weixinshiguangyimei
     accessKeyId: LTAI4GDruLvfCgcGTC1qqhAN
-    accessKeySecret: 3smg1uaEK8OCY0FEnm9CRLPmbNyYBE
+    accessKeySecret: ENC(T5w/Z2yBkIkV3deIkNNRQSHTed7gbYzi7X2JPax3GHhYH3P5PuDo01A58ly/1JcMdB7Mtif5+KKToW2Ubsy6Fg==)
     #OSS对应的区域
     endpoint: http://oss-cn-shanghai.aliyuncs.com
     #自定义的bucketName下的目录
@@ -67,3 +67,7 @@ aliyun:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #  mapper-locations: classpath:mapper/*.xml
 
+
+jasypt:
+  encryptor:
+    password: opwsaL.afcfa18avC1

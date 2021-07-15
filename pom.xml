@@ -33,9 +33,18 @@
         <best-pay-sdk.version>1.3.3</best-pay-sdk.version>
         <emoji.version>4.0.0</emoji.version>
         <lang3.version>3.4</lang3.version>
+        <jasypt.version>3.0.3</jasypt.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.version}</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.apache.commons</groupId>
