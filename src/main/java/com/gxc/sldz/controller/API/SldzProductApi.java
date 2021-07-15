@@ -63,6 +63,8 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
                SldzAgentProductPrice SldzAgentProductPrice =  SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
                if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
                    s.setFavorablePrice(SldzAgentProductPrice.getProductPrice());
+               }else {
+                   s.setFavorablePrice(s.getProductPrice());
                }
            }
             return JsonResult.OK().data(SldzProducts);

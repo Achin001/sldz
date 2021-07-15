@@ -56,9 +56,8 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
 //        // 获取参数返回的
         String session_key = jsonObject.get("session_key").toString();
         String open_id = jsonObject.get("openid").toString();
-        entity.setOpenid(open_id);
         //查询该openid在用户表有无
-        SldzUser getUserByOpenid =  SldzUserService.getUserByOpenid(entity.getOpenid());
+        SldzUser getUserByOpenid =  SldzUserService.getUserByOpenid(open_id);
         if (ObjectUtil.isNotNull(getUserByOpenid)){
             return JsonResult.FAIL_OPERATION("绑定失败,该账号已经是消费者");
         }
@@ -66,7 +65,7 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgent::getId, entity.getId());
         SldzAgent sldzAgent = new SldzAgent();
-        sldzAgent.setOpenid(entity.getOpenid());
+        sldzAgent.setOpenid(open_id);
         sldzAgent.setNickname(entity.getNickname());
         sldzAgent.setAvatarurl(entity.getAvatarurl());
         sldzAgent.setCity(entity.getCity());

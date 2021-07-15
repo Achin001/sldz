@@ -86,7 +86,6 @@ public class SldzLoginApi {
         entity.setOpenid(open_id);
         //查找代理商表有没有该openid
         SldzAgent SldzAgent =  sldzAgentService.getAgentByOpenid(entity.getOpenid());
-        System.out.println(SldzAgent);
         if (ObjectUtil.isNotNull(SldzAgent)){
             //如果不等于空
             Map map = new HashMap();
