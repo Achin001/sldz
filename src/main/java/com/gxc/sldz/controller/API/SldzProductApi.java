@@ -51,7 +51,7 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
      */
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
-    public JsonResult getViewObjectListMapping(SldzProductDTO queryDto,String random, Pagination pagination,Response response) throws Exception {
+    public JsonResult getViewObjectListMapping(SldzProductDTO queryDto,Pagination pagination,Response response) throws Exception {
 
         return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
@@ -68,15 +68,15 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
         return super.getViewObject(id, SldzOrderDetailVO.class);
     }
 
-
-    @ApiOperation(value = "根据唯一编码获取产品价格")
-    @GetMapping("/GetProductPriceByRandom")
-    public JsonResult GetProductPriceByRandom(Long prductId,String Random) throws Exception {
-        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
-        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, prductId);
-        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random );
-        return JsonResult.OK().data(SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper));
-    }
+//
+//    @ApiOperation(value = "根据唯一编码获取产品价格")
+//    @GetMapping("/GetProductPriceByRandom")
+//    public JsonResult GetProductPriceByRandom(Long prductId,String Random) throws Exception {
+//        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
+//        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, prductId);
+//        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random );
+//        return JsonResult.OK().data(SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper));
+//    }
 
 
 }
