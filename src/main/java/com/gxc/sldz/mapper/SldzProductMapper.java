@@ -2,6 +2,7 @@ package com.gxc.sldz.mapper;
 
 import com.diboot.core.mapper.BaseCrudMapper;
 import com.gxc.sldz.entity.SldzProduct;
+import com.gxc.sldz.vo.SldzProductListVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -31,7 +32,7 @@ public interface SldzProductMapper extends BaseCrudMapper<SldzProduct> {
 
     //根据分类ID获取产品
     @Select("SELECT * FROM sldz_product WHERE  product_category = #{productCategory}")
-    List<SldzProduct> GetProductsByCategory (@Param("productCategory") long productCategory);
+    List<SldzProductListVO> GetProductsByCategory (@Param("productCategory") long productCategory);
 
 
 

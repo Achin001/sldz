@@ -29,6 +29,13 @@ public class SldzProductListVO extends SldzProduct  {
     @BindField(entity = SldzProductCategory.class, field = "categoryName", condition = "this.product_category=id")
     private String sldzProductCategoryCategoryName;
 
+    /**
+     * 产品优惠价格
+     */
+    @ApiModelProperty(value = "产品优惠价格",  example = "0.0")
+    private Double favorablePrice = 0.00;
+
+
 
 
 }

@@ -92,12 +92,5 @@ public class SldzProduct extends BaseCustomEntity {
     private Long productStock;
 
 
-    /**
-     * 产品优惠价格
-     */
-    @ApiModelProperty(value = "产品优惠价格",  example = "0.0")
-    @TableField()
-    private Double favorablePrice = 0.00;
-
 
 }

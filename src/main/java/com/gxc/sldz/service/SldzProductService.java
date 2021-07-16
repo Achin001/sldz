@@ -1,6 +1,7 @@
 package com.gxc.sldz.service;
 
 import com.gxc.sldz.entity.SldzProduct;
+import com.gxc.sldz.vo.SldzProductListVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface SldzProductService extends BaseCustomService<SldzProduct> {
     boolean productStockByIdloa (@Param("stock") long stock,@Param("id") long id);
 
 
-    List<SldzProduct> GetProductsByCategory (@Param("productCategory") long productCategory);
+    List<SldzProductListVO> GetProductsByCategory (@Param("productCategory") long productCategory);
 
 }

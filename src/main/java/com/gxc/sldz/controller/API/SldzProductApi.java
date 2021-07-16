@@ -4,27 +4,21 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.diboot.core.vo.JsonResult;
-import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
-import com.gxc.sldz.dto.SldzProductDTO;
-import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgentProductPrice;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.service.SldzAgentProductPriceService;
 import com.gxc.sldz.service.SldzProductService;
-import com.gxc.sldz.vo.SldzOrderDetailVO;
 import com.gxc.sldz.vo.SldzProductListVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -54,9 +48,9 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzProduct queryDto,String Random) throws Exception {
-        List<SldzProduct> SldzProducts  = SldzProductService.GetProductsByCategory(queryDto.getProductCategory());
+        List<SldzProductListVO> SldzProducts  = SldzProductService.GetProductsByCategory(queryDto.getProductCategory());
         if (StrUtil.isNotBlank(Random)){
-           for (SldzProduct s:SldzProducts){
+           for (SldzProductListVO s:SldzProducts){
                LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
                SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, s.getId());
                SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom, Random);
@@ -70,6 +64,8 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
             return JsonResult.OK().data(SldzProducts);
         }
         return JsonResult.OK().data(SldzProducts);
+
+//        return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 
     /***

@@ -1,9 +1,9 @@
 package com.gxc.sldz.service.impl;
 
-import com.diboot.core.util.BeanUtils;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.mapper.SldzProductMapper;
 import com.gxc.sldz.service.SldzProductService;
+import com.gxc.sldz.vo.SldzProductListVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMap
     }
 
     @Override
-    public List<SldzProduct> GetProductsByCategory(long productCategory) {
+    public List<SldzProductListVO> GetProductsByCategory(long productCategory) {
         return SldzProductMapper.GetProductsByCategory(productCategory);
     }
 
