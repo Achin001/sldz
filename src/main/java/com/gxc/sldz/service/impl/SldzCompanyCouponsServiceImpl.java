@@ -42,6 +42,10 @@ public class SldzCompanyCouponsServiceImpl extends BaseCustomServiceImpl<SldzCom
             if (diff<0){
                 SldzCompanyCouponsMapper.deleteById(s.getId());
             }
+            if(s.getCouponsTotal() <= 0){
+                SldzCompanyCouponsMapper.deleteById(s.getId());
+            }
+
         }
     }
 

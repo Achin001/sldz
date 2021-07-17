@@ -45,9 +45,9 @@ public class SldzCompanyCoupons extends BaseCustomEntity {
     private String couponsName;
 
     /**
-     * 吱口令
+     * 口令
      */
-    @ApiModelProperty(value = "吱口令", example = "")
+    @ApiModelProperty(value = "口令", example = "")
     @Length(max = 100, message = "吱口令长度应小于100")
     @TableField()
     private String couponsSpwd;

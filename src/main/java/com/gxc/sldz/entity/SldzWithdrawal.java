@@ -70,7 +70,7 @@ public class SldzWithdrawal extends BaseCustomEntity {
     */
     @ApiModelProperty(value="状态  1处理中，2已发放,3驳回", example = "true")
     @TableField()
-    private Boolean state = true;
+    private int state;
 
     /**
     * 处理时间 

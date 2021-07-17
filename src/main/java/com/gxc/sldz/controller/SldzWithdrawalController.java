@@ -56,30 +56,31 @@ public class SldzWithdrawalController extends BaseCustomCrudRestController<SldzW
 //    public JsonResult getViewObjectMapping(@PathVariable("id")Long id) throws Exception{
 //        return super.getViewObject(id, SldzWithdrawalDetailVO.class);
 //    }
-
-    /***
-    * 创建资源对象
-    * @param entity
-    * @return JsonResult
-    * @throws Exception
-    */
-    @ApiOperation(value = "新建数据")
-    @PostMapping("/")
-    public JsonResult createEntityMapping(@Valid @RequestBody SldzWithdrawal entity) throws Exception {
-        return super.createEntity(entity);
-    }
-
+//
 //    /***
-//    * 根据ID更新资源对象
+//    * 创建资源对象
 //    * @param entity
 //    * @return JsonResult
 //    * @throws Exception
 //    */
-//    @ApiOperation(value = "根据ID更新数据")
-//    @PutMapping("/{id}")
-//    public JsonResult updateEntityMapping(@PathVariable("id")Long id, @Valid @RequestBody SldzWithdrawal entity) throws Exception {
-//        return super.updateEntity(id, entity);
+//    @ApiOperation(value = "新建数据")
+//    @PostMapping("/")
+//    public JsonResult createEntityMapping(@Valid @RequestBody SldzWithdrawal entity) throws Exception {
+//        return super.createEntity(entity);
 //    }
+
+    /***
+    * 根据ID更新资源对象
+    * @param
+    * @return JsonResult
+    * @throws Exception
+    */
+    @ApiOperation(value = "根据ID处理数据")
+    @PutMapping("/{id}")
+    public JsonResult updateEntityMapping(@PathVariable("id")Long id) throws Exception {
+
+        return null;
+    }
 
 //    /***
 //    * 根据id删除资源对象
