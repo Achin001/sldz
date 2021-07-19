@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.diboot.core.entity.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -15,6 +16,7 @@ import lombok.experimental.Accessors;
 * @date 2021-05-19
 * Copyright © MyCompany
 */
+@Data
 @Getter @Setter @Accessors(chain = true)
 public abstract class BaseCustomEntity extends BaseEntity {
     private static final long serialVersionUID = -7651466480138000162L;
