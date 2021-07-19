@@ -62,6 +62,10 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
                }
            }
             return JsonResult.OK().data(SldzProducts);
+        }else {
+            for (SldzProductListVO s:SldzProducts){
+                s.setFavorablePrice(s.getProductPrice());
+            }
         }
         return JsonResult.OK().data(SldzProducts);
 
@@ -76,8 +80,22 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
      */
     @ApiOperation(value = "根据ID获取详情数据")
     @GetMapping("/{id}")
-    public JsonResult getViewObjectMapping(@PathVariable("id") Long id) throws Exception {
-        return super.getViewObject(id, SldzProductListVO.class);
+    public JsonResult getViewObjectMapping(@PathVariable("id") Long id,String Random) throws Exception {
+        SldzProductListVO SldzProducts = SldzProductService.GetProductsById(id);
+        if (StrUtil.isNotBlank(Random)){
+            LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, SldzProducts.getId());
+            SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom, Random);
+            SldzAgentProductPrice SldzAgentProductPrice =  SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
+            if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
+                SldzProducts.setFavorablePrice(SldzAgentProductPrice.getProductPrice());
+            }else {
+                SldzProducts.setFavorablePrice(SldzProducts.getProductPrice());
+            }
+        }else {
+            SldzProducts.setFavorablePrice(SldzProducts.getProductPrice());
+        }
+        return JsonResult.OK().data(SldzProducts);
     }
 
 //

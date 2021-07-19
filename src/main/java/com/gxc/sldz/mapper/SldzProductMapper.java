@@ -35,6 +35,10 @@ public interface SldzProductMapper extends BaseCrudMapper<SldzProduct> {
     List<SldzProductListVO> GetProductsByCategory (@Param("productCategory") long productCategory);
 
 
+    //根据ID获取产品
+    @Select("SELECT * FROM sldz_product WHERE  id = #{id}")
+    SldzProductListVO GetProductsById (@Param("id") long id);
+
 
 }
 

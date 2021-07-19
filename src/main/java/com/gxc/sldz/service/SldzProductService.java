@@ -22,4 +22,8 @@ public interface SldzProductService extends BaseCustomService<SldzProduct> {
 
     List<SldzProductListVO> GetProductsByCategory (@Param("productCategory") long productCategory);
 
+
+    SldzProductListVO GetProductsById (@Param("id") long id);
+
+
 }

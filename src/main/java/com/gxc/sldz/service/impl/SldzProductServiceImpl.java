@@ -41,6 +41,10 @@ public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMap
         return SldzProductMapper.GetProductsByCategory(productCategory);
     }
 
+    @Override
+    public SldzProductListVO GetProductsById(long id) {
+        return SldzProductMapper.GetProductsById(id);
+    }
 
 
 }
