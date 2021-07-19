@@ -3,13 +3,17 @@ package com.gxc.sldz;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.vo.OrderProductJsonVo;
+import com.gxc.sldz.vo.SldzProductListVO;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,14 +150,20 @@ class   SldzApplicationTests {
 
     @Test
         void contextLoadsssada() {
-        String s = "{\"couponJson\":\"{\\\"couponsFullPrice\\\":599,\\\"couponsTotal\\\":100,\\\"couponsReducePrice\\\":50,\\\"couponsName\\\":\\\"美肤节7.18\\\",\\\"couponsFailureTime\\\":1626623940000,\\\"primaryKeyVal\\\":10000027,\\\"couponsAppointProductIds\\\":\\\"[{\\\\\\\"productName\\\\\\\":\\\\\\\"尔特喏特\\\\\\\",\\\\\\\"id\\\\\\\":\\\\\\\"10000013\\\\\\\"},{\\\\\\\"productName\\\\\\\":\\\\\\\"保湿喷雾液\\\\\\\",\\\\\\\"id\\\\\\\":\\\\\\\"10000006\\\\\\\"}]\\\",\\\"couponsShowOrHide\\\":2,\\\"deleted\\\":false,\\\"createTime\\\":1625725377000,\\\"couponsDetails\\\":\\\"保湿喷雾可用\\\",\\\"id\\\":10000027}\"}";
+        String s = "[{\"id\":\"10000016\",\"createTime\":\"2021-07-14 15:54:38\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-07-14/氨基酸洁面乳（主图）-1.jpg\",\"uid\":1626249268814,\"status\":\"success\"}],\"productName\":\"突然特特他\",\"productPrice\":563,\"productDetails\":\"<p>的非官方个</p>\",\"productStock\":\"155\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000014\",\"createTime\":\"2021-07-14 15:53:29\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-07-14/logo.png\",\"uid\":1626249197836,\"status\":\"success\"}],\"productName\":\"上点击富家大室\",\"productPrice\":231,\"productDetails\":\"<p>第三番的说法都是</p>\",\"productStock\":\"2312\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000012\",\"createTime\":\"2021-06-04 11:54:32\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778844458,\"status\":\"success\"}],\"productName\":\"耳朵软热特热他\",\"productPrice\":256,\"productDetails\":\"<p>人的特热特热他</p>\",\"productStock\":\"999986\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000011\",\"createTime\":\"2021-06-04 11:54:12\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778844458,\"status\":\"success\"}],\"productName\":\"的投入\",\"productPrice\":696,\"productDetails\":\"<p>尔尔</p>\",\"productStock\":\"999968\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000009\",\"createTime\":\"2021-06-04 11:53:39\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778800125,\"status\":\"success\"}],\"productName\":\"玻尿酸\",\"productPrice\":156,\"productDetails\":\"<p>问题热天热特特</p>\",\"productStock\":\"999978\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000005\",\"createTime\":\"2021-06-04 09:51:50\",\"productCategory\":\"10000004\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/logo.png\",\"uid\":1622771489833,\"status\":\"success\"}],\"productName\":\"瘦脸针\",\"productPrice\":158,\"productDetails\":\"<p>委任为特瑞特热特人</p>\",\"productStock\":\"1000000\",\"sldzProductCategoryCategoryName\":\"面膜\",\"favorablePrice\":0,\"checked\":true},{\"id\":\"10000006\",\"createTime\":\"2021-06-04 11:48:07\",\"productCategory\":\"10000005\",\"productImgs\":[{\"url\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/保湿修复喷雾.jpg\",\"uid\":1622778441869,\"status\":\"success\"}],\"productName\":\"保湿喷雾液\",\"productPrice\":189,\"productVideo\":\"http://wx1.shiguangyimei.com/imgs/2021-06-04/vedio2.mp4\",\"productDetails\":\" <p>真好，是真的好！</p>\",\"productStock\":\"999863\",\"sldzProductCategoryCategoryName\":\"梵莲娜\",\"favorablePrice\":0,\"checked\":true}]";
 
-        JSONObject rowData = JSONObject.parseObject(s);
-        JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
-        rowData2.getString("couponsTotal");
-//        JSONArray tableData = JSONArray.parseArray(s);
+        JSONArray tableData = JSONArray.parseArray(s);
+        for(int i=0;i<tableData.size();i++) {
+            SldzProductListVO SldzProductListVO = JSON.parseObject(String.valueOf(tableData.getJSONObject(i)), SldzProductListVO.class);
+            System.out.println(tableData.getJSONObject(i).getString("id"));
+            System.out.println(SldzProductListVO.getId());
+        }
 
-        System.out.println(rowData2.getString("couponsTotal"));
+//        JSONObject rowData2 = JSONObject.parseObject(rowData.getString("couponJson"));
+//        rowData2.getString("couponsTotal");
+//
+
+//        System.out.println(rowData2.getString("couponsTotal"));
     }
 
 

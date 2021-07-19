@@ -4,11 +4,14 @@ package com.gxc.sldz.Utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.vo.OrderProductJsonVo;
+import com.gxc.sldz.vo.SldzProductListVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -67,6 +70,19 @@ public class OrderUtil {
         JSONObject rowData = JSONObject.parseObject(s);
         String ConditionsCoupon = rowData.getString("couponsFullPrice");
         return ConditionsCoupon;
+    }
+
+
+    //解析首页产品
+    public static  List<SldzProductListVO> AnalysisHomeProducts(String s) {
+        List<SldzProductListVO> SldzProducts= new ArrayList<>();
+        JSONArray tableData = JSONArray.parseArray(s);
+        for(int i=0;i<tableData.size();i++) {
+            //转换为对象
+            SldzProductListVO SldzProductListVO = JSON.parseObject(String.valueOf(tableData.getJSONObject(i)), SldzProductListVO.class);
+            SldzProducts.add(SldzProductListVO);
+        }
+        return SldzProducts;
     }
 
 
