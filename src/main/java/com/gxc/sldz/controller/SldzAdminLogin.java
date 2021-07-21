@@ -36,6 +36,7 @@ public class SldzAdminLogin  extends BaseCustomCrudRestController<SldzAdmin>{
 
 
 
+    
     @ApiOperation(value = "登录")
     @PostMapping("login")
     public JsonResult login( @RequestBody SldzAdmin entity) throws Exception{

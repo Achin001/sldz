@@ -41,6 +41,7 @@ public class SldzProductController extends BaseCustomCrudRestController<SldzProd
     @ApiOperation(value = "获取列表分页数据")
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzProductDTO queryDto, Pagination pagination) throws Exception {
+
         return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 

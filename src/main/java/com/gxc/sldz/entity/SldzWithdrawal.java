@@ -61,7 +61,7 @@ public class SldzWithdrawal extends BaseCustomEntity {
     * 银行卡json 
     */
     @ApiModelProperty(value="银行卡json", example = "")
-    @Length(max=100, message="银行卡json长度应小于100")
+    @Length(max=3000, message="银行卡json长度应小于3000")
     @TableField()
     private String bankJson;
 
