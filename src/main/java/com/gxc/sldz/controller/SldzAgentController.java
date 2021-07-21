@@ -217,14 +217,18 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     }
 
 
+
     @ApiOperation(value = "根据唯一编码获取产品价格")
     @GetMapping("/GetProductPriceByRandom")
     public JsonResult GetProductPriceByRandom(Long prductId,String Random) throws Exception {
         LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
         SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, prductId);
-        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random );
+        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random);
         return JsonResult.OK().data(sldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper));
     }
+
+
+
 
     @ApiOperation(value = "为代理商设置推广佣金")
     @PutMapping("/AgentBonusSetting")

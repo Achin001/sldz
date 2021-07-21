@@ -35,7 +35,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/WeChatLogin",//微信登录
                         "/api/sldzOrder/notify", //微信支付回调
                         "/api/sldzProduct/**",//产品列表
-                        "/api/sldzProductCategory/**"//产品分类列表
+                        "/api/sldzProductCategory/**",//产品分类列表
+                        "/api/Home/**",//首页
+                        "/api/sldzBanner/**"//轮播图
                 );
 
 
