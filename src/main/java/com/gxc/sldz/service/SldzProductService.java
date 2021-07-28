@@ -27,7 +27,7 @@ public interface SldzProductService extends BaseCustomService<SldzProduct> {
 
     SldzProductListVO GetProductsById (@Param("id") long id);
 
-    JsonResult GetProductsByKeywords (@Param("keywords") String keywords);
+    JsonResult GetProductsByKeywords (@Param("keywords") String keywords,String Random);
 
 
 }

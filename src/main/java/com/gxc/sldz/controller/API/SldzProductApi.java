@@ -104,7 +104,7 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
 
     @ApiOperation(value = "产品模糊搜索")
     @GetMapping("/keywords")
-    public JsonResult keywords(String keywords, Pagination pagination) throws Exception {
+    public JsonResult keywords(String keywords,String Random) throws Exception {
 //        String product_name = "product_name";
 //        String product_price = "product_price";
 //        String product_details = "product_details";
@@ -113,7 +113,7 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
 //        wrapper.like(StrUtil.isNotBlank(keywords), product_price,keywords);
 //        wrapper.like(StrUtil.isNotBlank(keywords), product_details,keywords);
 //        // SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
-        return SldzProductService.GetProductsByKeywords(keywords);
+        return SldzProductService.GetProductsByKeywords(keywords,Random);
         // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
     }
 
