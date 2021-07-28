@@ -47,12 +47,12 @@ public class OrderTask {
                 updateWrapper.eq("order_number", sldzOrder.getOrderNumber());
                 updateWrapper.set("state", 3);
                 updateWrapper.set("confirm_receiving_time", DateUtil.now());
+                //订单已发货后的15天
+                //自动把订单改为已完成
                 sldzOrderService.updateEntity(updateWrapper);
             }
         }
 
-        //订单已发货后的一个月
-        //自动把订单改为已完成
 
 
 

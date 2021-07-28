@@ -3,8 +3,12 @@ package com.gxc.sldz.controller.API;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.diboot.core.vo.JsonResult;
+import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
+import com.gxc.sldz.dto.SldzAgentDTO;
+import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzAgentProductPrice;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.service.SldzAgentProductPriceService;
@@ -97,6 +101,22 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
         }
         return JsonResult.OK().data(SldzProducts);
     }
+
+    @ApiOperation(value = "产品模糊搜索")
+    @GetMapping("/keywords")
+    public JsonResult keywords(String keywords, Pagination pagination) throws Exception {
+//        String product_name = "product_name";
+//        String product_price = "product_price";
+//        String product_details = "product_details";
+//        QueryWrapper<SldzAgent> wrapper = new QueryWrapper();
+//        wrapper.like(StrUtil.isNotBlank(keywords), product_name,keywords);
+//        wrapper.like(StrUtil.isNotBlank(keywords), product_price,keywords);
+//        wrapper.like(StrUtil.isNotBlank(keywords), product_details,keywords);
+//        // SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
+        return SldzProductService.GetProductsByKeywords(keywords);
+        // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
+    }
+
 
 //
 //    @ApiOperation(value = "根据唯一编码获取产品价格")

@@ -1,5 +1,7 @@
 package com.gxc.sldz.service;
 
+import com.diboot.core.vo.JsonResult;
+import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.vo.SldzProductListVO;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +26,8 @@ public interface SldzProductService extends BaseCustomService<SldzProduct> {
 
 
     SldzProductListVO GetProductsById (@Param("id") long id);
+
+    JsonResult GetProductsByKeywords (@Param("keywords") String keywords);
 
 
 }

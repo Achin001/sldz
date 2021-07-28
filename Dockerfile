@@ -22,3 +22,5 @@ ENTRYPOINT ["java","-jar","-Duser.timezone=GMT+08","/app.jar"]
 
 ENTRYPOINT ["java","-Djasypt.encryptor.password=opwsaL.afcfa18avC1","-jar","app.jar"]
 ENTRYPOINT ["java","-jar","app.jar","--jasypt.encryptor.password=opwsaL.afcfa18avC1"]
+
+

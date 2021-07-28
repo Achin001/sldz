@@ -1,5 +1,6 @@
 package com.gxc.sldz.service.impl;
 
+import com.diboot.core.vo.JsonResult;
 import com.diboot.core.vo.Pagination;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.mapper.SldzProductMapper;
@@ -45,6 +46,12 @@ public class SldzProductServiceImpl extends BaseCustomServiceImpl<SldzProductMap
     @Override
     public SldzProductListVO GetProductsById(long id) {
         return SldzProductMapper.GetProductsById(id);
+    }
+
+    @Override
+    public JsonResult GetProductsByKeywords(String keywords) {
+        List<SldzProduct> GetProductsByKeywords = SldzProductMapper.GetProductsByKeywords(keywords);
+        return JsonResult.OK().data(GetProductsByKeywords);
     }
 
 

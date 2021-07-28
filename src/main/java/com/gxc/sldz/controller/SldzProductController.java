@@ -1,5 +1,6 @@
 package com.gxc.sldz.controller;
 
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -29,6 +30,8 @@ public class SldzProductController extends BaseCustomCrudRestController<SldzProd
 
     @Autowired
     private SldzProductService sldzProductService;
+
+
 
     /**
      * 查询ViewObject的分页数据

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Api(tags = {"用户绑定后台接口"})
+@Api(tags = {"用户绑定前台接口"})
 @RestController
 @RequestMapping("api/sldzUserRel")
 @Slf4j

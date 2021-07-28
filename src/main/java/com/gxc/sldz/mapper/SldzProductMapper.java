@@ -39,6 +39,10 @@ public interface SldzProductMapper extends BaseCrudMapper<SldzProduct> {
     @Select("SELECT * FROM sldz_product WHERE  id = #{id}")
     SldzProductListVO GetProductsById (@Param("id") long id);
 
+    //模糊搜索
+    @Select("SELECT * FROM sldz_product WHERE CONCAT" +
+            "(product_name,product_price,product_details)LIKE  '%${keywords}%' order by id desc")
+    List<SldzProduct> GetProductsByKeywords (@Param("keywords") String keywords);
 
 }
 
