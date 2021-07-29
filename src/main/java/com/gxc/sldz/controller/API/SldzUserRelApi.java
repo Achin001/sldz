@@ -47,7 +47,6 @@ public class SldzUserRelApi extends BaseCustomCrudRestController<SldzUserRel> {
             return super.createEntity(entity);
         }
         //有则不新建
-
         return JsonResult.OK();
     }
 

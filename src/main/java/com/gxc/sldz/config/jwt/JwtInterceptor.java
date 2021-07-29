@@ -125,6 +125,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             "/api/sldzProduct/**",//产品列表
             "/api/sldzProductCategory/**",//产品分类列表
             "/api/Home/**",//首页
+            "/api/sldzProductReviews/list",//产品评论
             "/api/sldzBanner/**",//轮播图
     };
 
