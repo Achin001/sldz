@@ -522,3 +522,19 @@ ALTER TABLE `sldz_withdrawal` ADD COLUMN `state` tinyint(1) DEFAULT 1 COMMENT '�
 ALTER TABLE `sldz_withdrawal` ADD COLUMN `date_after` timestamp NULL COMMENT '处理时间' AFTER `state`;
 -- 2021-07-15 20:00:53 by Achin
 ALTER TABLE `sldz_withdrawal` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `date_after`;
+-- 2021-07-29 14:27:30 by Achin
+CREATE TABLE `sldz_customer_profile`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '客户档案';
+-- 2021-07-29 14:32:29 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `customer_random` varchar(100) COMMENT '客户唯一编码' AFTER `id`;
+-- 2021-07-29 14:32:29 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `agent_random` varchar(100) COMMENT '代理商唯一编码' AFTER `customer_random`;
+-- 2021-07-29 14:32:29 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `pay_points` double DEFAULT 0.00 COMMENT '已扣积分' AFTER `agent_random`;
+-- 2021-07-29 14:32:30 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `customer_data_json` varchar(500) COMMENT '客户资料json' AFTER `pay_points`;
+-- 2021-07-29 14:32:30 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `customer_skin_data_json` varchar(1000) COMMENT '客户皮肤资料json' AFTER `customer_data_json`;
+-- 2021-07-29 14:32:30 by Achin
+ALTER TABLE `sldz_customer_profile` ADD COLUMN `state` tinyint(1) DEFAULT 1 COMMENT '状态 1意向客户,2,待审核客户,3,已通过客户,4,未通过客户' AFTER `customer_skin_data_json`;
+-- 2021-07-29 14:32:30 by Achin
+ALTER TABLE `sldz_customer_profile` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `state`;
