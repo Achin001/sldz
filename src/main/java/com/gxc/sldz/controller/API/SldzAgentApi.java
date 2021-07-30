@@ -174,7 +174,7 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
             @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
 //            @ApiImplicitParam(name = "state", value = "状态 1意向客户,2,待审核客户,3,已通过客户,4,未通过客户", required = true, dataType = "int"),
     })
-    @GetMapping("/GetCustomerList}")
+    @GetMapping("/GetCustomerList")
     public JsonResult GetCustomerList(String Random) throws Exception {
         LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzUserRel::getSupRandom, Random);
@@ -255,6 +255,24 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
         return JsonResult.OK(SldzCustomerProfile);
     }
 
+
+
+
+    @ApiOperation(value = "补充客户档案")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "random", value = "唯一编号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "userRandom", value = "客户/用户唯一编号", required = true, dataType = "String"),
+    })
+    @PostMapping("/SupplementCustomerFiles")
+    public JsonResult SupplementCustomerFiles(String Random, String userRandom) throws Exception {
+        LambdaQueryWrapper<SldzCustomerProfile> Customerwrapper = new LambdaQueryWrapper<>();
+        //用户唯一编号
+        Customerwrapper.eq(SldzCustomerProfile::getCustomerRandom,userRandom);
+        //唯一编号
+        Customerwrapper.eq(SldzCustomerProfile::getAgentRandom,Random);
+        SldzCustomerProfile SldzCustomerProfile = sldzCustomerProfileService.getSingleEntity(Customerwrapper);
+        return JsonResult.OK(SldzCustomerProfile);
+    }
 
 
 }
