@@ -241,7 +241,7 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
      */
     @ApiOperation(value = "获取客户档案")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "random", value = "唯一编号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "userRandom", value = "客户/用户唯一编号", required = true, dataType = "String"),
     })
     @GetMapping("/GetCustomerProfile}")
@@ -260,7 +260,7 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
 
     @ApiOperation(value = "补充客户档案")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "random", value = "唯一编号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "userRandom", value = "客户/用户唯一编号", required = true, dataType = "String"),
     })
     @PostMapping("/SupplementCustomerFiles")
