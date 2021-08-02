@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -29,8 +30,9 @@ import lombok.experimental.Accessors;
 * @date 2021-07-29
 * Copyright © MyCompany
 */
+@Data
 @ApiModel(value = "客户档案")
-@Getter @Setter @Accessors(chain = true)
+@Accessors(chain = true)
 public class SldzCustomerProfile extends BaseCustomEntity {
     private static final long serialVersionUID = 6392497825895892011L;
 
