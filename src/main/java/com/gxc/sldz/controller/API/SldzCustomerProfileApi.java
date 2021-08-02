@@ -3,7 +3,6 @@ package com.gxc.sldz.controller.API;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.diboot.core.util.S;
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.entity.SldzAgent;
@@ -52,7 +51,6 @@ public class SldzCustomerProfileApi  extends BaseCustomCrudRestController<SldzCu
     @ApiOperation(value = "新建档案")
     @PostMapping("/createFile")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzCustomerProfile entity) throws Exception {
-
         LambdaQueryWrapper<SldzUserRel> Customerwrapper = new LambdaQueryWrapper<>();
         Customerwrapper.eq(SldzUserRel::getSubRandom,entity.getCustomerRandom());
         SldzUserRel  SldzUserRel =  sldzUserRelService.getSingleEntity(Customerwrapper);
@@ -81,7 +79,6 @@ public class SldzCustomerProfileApi  extends BaseCustomCrudRestController<SldzCu
     })
     @GetMapping("/ViewFile")
     public JsonResult ViewFile(String Random) throws Exception {
-
         LambdaQueryWrapper<SldzCustomerProfile> Customerwrapper = new LambdaQueryWrapper<>();
         //用户唯一编号
         Customerwrapper.eq(SldzCustomerProfile::getCustomerRandom,Random);
