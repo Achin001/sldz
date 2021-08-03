@@ -181,38 +181,40 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @ApiOperation(value = "根据充值对象查询该上级应得奖励")
     @GetMapping("AccordingToRechargeObjectQuerySuperiorShouldBeRewarded")
     public JsonResult AccordingToRechargeObjectQuerySuperiorShouldBeRewarded(String Random, double RechargePoints) throws Exception {
-        SuperiorShouldBeRewardedVO SuperiorShouldBeRewardedVO1 = new SuperiorShouldBeRewardedVO();
+
         SuperiorShouldBeRewardedVO SuperiorShouldBeRewardedVO2 = new SuperiorShouldBeRewardedVO();
         List<SuperiorShouldBeRewardedVO> SuperiorShouldBeRewardedVOs = new ArrayList<>();
         // 获取上级对象
         SldzAgent AgentSup = getSup(Random);
-        LambdaQueryWrapper<SldzAgent> supReward = new LambdaQueryWrapper<>();
-        supReward.eq(SldzAgent::getAgentRandom, AgentSup.getAgentRandom());
-        //得到上级奖励比例
-        double SupRewardRatio = sldzAgentLevelRewardService.getSingleEntity(supReward).getRewardDirect();
-        //奖金=充值金额*比例
-        SuperiorShouldBeRewardedVO1.setAgentName(AgentSup.getAgentName());
-        SuperiorShouldBeRewardedVO1.setAgentRandom(AgentSup.getAgentRandom());
-        SuperiorShouldBeRewardedVO1.setProportion(SupRewardRatio);
-        SuperiorShouldBeRewardedVO1.setRelationship("上级");
-        SuperiorShouldBeRewardedVO1.setBonus(NumberUtil.mul(RechargePoints, SupRewardRatio));
-
-
+        if (ObjectUtil.isNotNull(AgentSup)){
+            SuperiorShouldBeRewardedVO SuperiorShouldBeRewardedVO1 = new SuperiorShouldBeRewardedVO();
+            LambdaQueryWrapper<SldzAgent> supReward = new LambdaQueryWrapper<>();
+            supReward.eq(SldzAgent::getAgentRandom, AgentSup.getAgentRandom());
+            //得到上级奖励比例
+            double SupRewardRatio = sldzAgentLevelRewardService.getSingleEntity(supReward).getRewardDirect();
+            //奖金=充值金额*比例
+            SuperiorShouldBeRewardedVO1.setAgentName(AgentSup.getAgentName());
+            SuperiorShouldBeRewardedVO1.setAgentRandom(AgentSup.getAgentRandom());
+            SuperiorShouldBeRewardedVO1.setProportion(SupRewardRatio);
+            SuperiorShouldBeRewardedVO1.setRelationship("上级");
+            SuperiorShouldBeRewardedVO1.setBonus(NumberUtil.mul(RechargePoints, SupRewardRatio));
+            SuperiorShouldBeRewardedVOs.add(SuperiorShouldBeRewardedVO1);
+        }
         /* 获取上上级对象 */
         SldzAgent AgentSupSup = getSupSup(Random);
-        LambdaQueryWrapper<SldzAgent> supsupReward = new LambdaQueryWrapper<>();
-        supsupReward.eq(SldzAgent::getAgentRandom, AgentSupSup.getAgentRandom());
-        //得到上上级奖励比例
-        double SupSupRewardRatio = sldzAgentLevelRewardService.getSingleEntity(supsupReward).getRewardIndirect();
-        //奖金=充值金额*比例
-        SuperiorShouldBeRewardedVO2.setAgentName(AgentSupSup.getAgentName());
-        SuperiorShouldBeRewardedVO2.setAgentRandom(AgentSupSup.getAgentRandom());
-        SuperiorShouldBeRewardedVO2.setProportion(SupSupRewardRatio);
-        SuperiorShouldBeRewardedVO2.setRelationship("上上级");
-        SuperiorShouldBeRewardedVO2.setBonus(NumberUtil.mul(RechargePoints, SupSupRewardRatio));
-
-        SuperiorShouldBeRewardedVOs.add(SuperiorShouldBeRewardedVO1);
-        SuperiorShouldBeRewardedVOs.add(SuperiorShouldBeRewardedVO2);
+        if (ObjectUtil.isNotNull(AgentSupSup)){
+            LambdaQueryWrapper<SldzAgent> supsupReward = new LambdaQueryWrapper<>();
+            supsupReward.eq(SldzAgent::getAgentRandom, AgentSupSup.getAgentRandom());
+            //得到上上级奖励比例
+            double SupSupRewardRatio = sldzAgentLevelRewardService.getSingleEntity(supsupReward).getRewardIndirect();
+            //奖金=充值金额*比例
+            SuperiorShouldBeRewardedVO2.setAgentName(AgentSupSup.getAgentName());
+            SuperiorShouldBeRewardedVO2.setAgentRandom(AgentSupSup.getAgentRandom());
+            SuperiorShouldBeRewardedVO2.setProportion(SupSupRewardRatio);
+            SuperiorShouldBeRewardedVO2.setRelationship("上上级");
+            SuperiorShouldBeRewardedVO2.setBonus(NumberUtil.mul(RechargePoints, SupSupRewardRatio));
+            SuperiorShouldBeRewardedVOs.add(SuperiorShouldBeRewardedVO2);
+        }
         return JsonResult.OK().data(SuperiorShouldBeRewardedVOs);
     }
 
@@ -330,10 +332,14 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
      */
     public SldzAgent getSup(String Random) {
         // 查询上级
+        try{
         SldzAgentRel SldzAgentRel = sldzAgentRelService.sub_find_sup(Random);
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgent::getAgentRandom, SldzAgentRel.getSupRandom());
         return sldzAgentService.getSingleEntity(wrapper);
+        }catch (Exception e){
+            return null;
+        }
     }
 
 
@@ -346,10 +352,16 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
      */
     public SldzAgent getSupSup(String Random) {
         // 查询上级
-        SldzAgentRel SldzAgentRel = sldzAgentRelService.sub_find_supsup(Random);
-        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SldzAgent::getAgentRandom, SldzAgentRel.getSupRandom());
-        return sldzAgentService.getSingleEntity(wrapper);
+        try{
+            SldzAgentRel SldzAgentRel = sldzAgentRelService.sub_find_supsup(Random);
+            LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(SldzAgent::getAgentRandom, SldzAgentRel.getSupRandom());
+            return sldzAgentService.getSingleEntity(wrapper);
+        }catch (Exception e){
+            return null;
+        }
+
+
     }
 
 

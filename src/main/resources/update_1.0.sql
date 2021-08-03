@@ -538,3 +538,21 @@ ALTER TABLE `sldz_customer_profile` ADD COLUMN `customer_skin_data_json` varchar
 ALTER TABLE `sldz_customer_profile` ADD COLUMN `state` tinyint(1) DEFAULT 1 COMMENT '状态 1意向客户,2,待审核客户,3,已通过客户,4,未通过客户' AFTER `customer_skin_data_json`;
 -- 2021-07-29 14:32:30 by Achin
 ALTER TABLE `sldz_customer_profile` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `state`;
+-- 2021-08-02 15:03:40 by Achin
+CREATE TABLE `sldz_customer_treatment_file`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '客户疗程档案';
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `customer_pro_file` bigint COMMENT '客户档案Id' AFTER `id`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `left_face_pic` varchar(200) COMMENT '左脸图片' AFTER `customer_pro_file`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `just_face_pic` varchar(200) COMMENT '正脸图片' AFTER `left_face_pic`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `right_face_pic` varchar(200) COMMENT '右脸图片' AFTER `just_face_pic`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `details` varchar(500) COMMENT '详情' AFTER `right_face_pic`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `logistics` varchar(100) COMMENT '运单号' AFTER `details`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `customer_in_time` timestamp NULL COMMENT '客户填写时间' AFTER `logistics`;
+-- 2021-08-02 15:08:18 by Achin
+ALTER TABLE `sldz_customer_treatment_file` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `customer_in_time`;
