@@ -104,15 +104,13 @@ public class SldzCustomerProfileApi extends BaseCustomCrudRestController<SldzCus
     }
 
 
-    @ApiOperation(value = "补充疗程档案")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "Random", value = "客户/用户唯一编号", required = true, dataType = "String"),
-    })
-    @GetMapping("/SupplementaryTreatmentFile")
-    public JsonResult SupplementaryTreatmentFile(String Random) throws Exception {
-
-
-        return JsonResult.OK();
+    @ApiOperation(value = "客户补充疗程档案")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "customerProFileId", value = "客户档案Id", required = true, dataType = "long"),
+//    })
+    @PostMapping("/SupplementaryTreatmentFile")
+    public JsonResult SupplementaryTreatmentFile(SldzCustomerTreatmentFile entity) throws Exception {
+        return JsonResult.OK().data(sldzCustomerTreatmentFileService.updateEntity(entity));
     }
 
 

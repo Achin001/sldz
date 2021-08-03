@@ -12,6 +12,8 @@ import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.*;
 import com.gxc.sldz.vo.SuperiorShouldBeRewardedVO;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -71,6 +73,17 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     @Autowired
     private SldzAgentIntegralLogService sldzAgentIntegralLogService;
 
+    //客户user rel
+    @Autowired
+    private SldzUserRelService sldzUserRelService;
+
+    //客户user
+    @Autowired
+    private SldzUserService SldzUserService;
+
+    //客户user
+    @Autowired
+    private SldzCustomerProfileService sldzCustomerProfileService;
 
     /**
      * 查询ViewObject的分页数据
@@ -317,6 +330,79 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         map.put("msg",los+"人已更改为："+price);
         return JsonResult.OK().data(map);
     }
+
+
+
+    /**
+     * 得到客户列表
+     *
+     * @param Random 随机
+    //     * @param state  状态
+     * @return {@link JsonResult}
+     * @throws Exception 异常
+     */
+    @ApiOperation(value = "获取客户列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "state", value = "状态 1意向客户,2,待审核客户,3,已通过客户,4,未通过客户", required = true, dataType = "int"),
+    })
+    @GetMapping("/GetCustomerList")
+    public JsonResult GetCustomerList(String Random) throws Exception {
+        LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzUserRel::getSupRandom, Random);
+        List<SldzUserRel> sldzUserRels = sldzUserRelService.getEntityList(wrapper);
+        //所有客户
+        List<SldzUser> sldzUsers = new ArrayList<>();
+
+        //1意向客户
+        List<SldzUser> IntendedCustomer = new ArrayList<>();
+        //2,待审核客户
+        List<SldzUser> CustomerReviewed = new ArrayList<>();
+        //3,已通过客户
+        List<SldzUser> PassedCustomer = new ArrayList<>();
+        //4,未通过客户
+        List<SldzUser> FailedCustomer = new ArrayList<>();
+
+        for (SldzUserRel rel : sldzUserRels) {
+            LambdaQueryWrapper<SldzUser> UserRelwrapper = new LambdaQueryWrapper<>();
+            UserRelwrapper.eq(SldzUser::getRandom, rel.getSubRandom());
+            sldzUsers.add(SldzUserService.getSingleEntity(UserRelwrapper));
+        }
+
+        for (SldzUser user : sldzUsers) {
+            LambdaQueryWrapper<SldzCustomerProfile> Customerwrapper = new LambdaQueryWrapper<>();
+            Customerwrapper.eq(SldzCustomerProfile::getCustomerRandom, user.getRandom());
+            SldzCustomerProfile SldzCustomerProfile = sldzCustomerProfileService.getSingleEntity(Customerwrapper);
+            if (ObjectUtil.isNull(SldzCustomerProfile)) {
+                //如果 == 空 则为意向客户
+                IntendedCustomer.add(user);
+            } else if (ObjectUtil.isNotNull(SldzCustomerProfile)) {
+                //如果 != 空
+                if (SldzCustomerProfile.getState() == 1) {
+                    IntendedCustomer.add(user);
+                }
+                if (SldzCustomerProfile.getState() == 2) {
+                    CustomerReviewed.add(user);
+                }
+                if (SldzCustomerProfile.getState() == 3) {
+                    PassedCustomer.add(user);
+                }
+                if (SldzCustomerProfile.getState() == 4) {
+                    FailedCustomer.add(user);
+                }
+            }
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("1",IntendedCustomer);
+        map.put("2",CustomerReviewed);
+        map.put("3",PassedCustomer);
+        map.put("4",FailedCustomer);
+        return JsonResult.OK(map);
+    }
+
+
+
 
 
 
