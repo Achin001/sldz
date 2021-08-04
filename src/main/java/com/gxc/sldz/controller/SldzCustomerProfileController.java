@@ -25,7 +25,9 @@ import com.gxc.sldz.service.SldzCustomerProfileService;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * 客户档案 相关Controller
@@ -82,7 +84,15 @@ public class SldzCustomerProfileController extends BaseCustomCrudRestController<
         //唯一编号
         Customerwrapper.eq(SldzCustomerProfile::getAgentRandom,Random);
         SldzCustomerProfile SldzCustomerProfile = sldzCustomerProfileService.getSingleEntity(Customerwrapper);
-        return JsonResult.OK(SldzCustomerProfile);
+
+        LambdaQueryWrapper<SldzCustomerTreatmentFile> SldzCustomerTreatmentFilewrapper = new LambdaQueryWrapper<>();
+        SldzCustomerTreatmentFilewrapper.eq(SldzCustomerTreatmentFile::getCustomerProFile,SldzCustomerProfile.getId());
+        //获取疗程档案列表
+        List<SldzCustomerTreatmentFile>  SldzCustomerTreatmentFiles = sldzCustomerTreatmentFileService.getEntityList(SldzCustomerTreatmentFilewrapper);
+        Map<String, Object> map = new HashMap<>();
+        map.put("SldzCustomerProfile",SldzCustomerProfile);
+        map.put("SldzCustomerTreatmentFiles",SldzCustomerTreatmentFiles);
+        return JsonResult.OK(map);
     }
 
 
