@@ -109,7 +109,7 @@ public class SldzCustomerProfileApi extends BaseCustomCrudRestController<SldzCus
 //            @ApiImplicitParam(name = "customerProFileId", value = "客户档案Id", required = true, dataType = "long"),
 //    })
     @PostMapping("/SupplementaryTreatmentFile")
-    public JsonResult SupplementaryTreatmentFile(SldzCustomerTreatmentFile entity) throws Exception {
+    public JsonResult SupplementaryTreatmentFile(@Valid @RequestBody SldzCustomerTreatmentFile entity) throws Exception {
         return JsonResult.OK().data(sldzCustomerTreatmentFileService.updateEntity(entity));
     }
 
