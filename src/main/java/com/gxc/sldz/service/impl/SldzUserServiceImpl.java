@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * 用户相关Service实现
 * @author Achin
@@ -38,6 +40,11 @@ public class SldzUserServiceImpl extends BaseCustomServiceImpl<SldzUserMapper, S
     @Override
     public SldzUser getUserByOpenid(String openid) {
         return SldzUserService.getUserByOpenid(openid);
+    }
+
+    @Override
+    public List<SldzUser> UserAll() {
+        return SldzUserService.UserAll();
     }
 
 

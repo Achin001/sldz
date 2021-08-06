@@ -3,6 +3,8 @@ package com.gxc.sldz.service;
 import com.gxc.sldz.entity.SldzUser;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
 * 用户相关Service
 * @author Achin
@@ -20,5 +22,7 @@ public interface SldzUserService extends BaseCustomService<SldzUser> {
                         @Param("random") String random);
 
     SldzUser getUserByOpenid(@Param("openid") String openid);
+
+    List<SldzUser> UserAll();
 
 }

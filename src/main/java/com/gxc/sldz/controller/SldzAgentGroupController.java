@@ -161,8 +161,9 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
         wrapper.eq(SldzAgent::getAgentGroupId,groupId);
         List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
-        LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+
         for (SldzAgent s :SldzAgents){
+            LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
             //查询该代理商有无奖励金
             BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,s.getAgentRandom());
             BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,productId);
@@ -204,8 +205,8 @@ public class SldzAgentGroupController extends BaseCustomCrudRestController<SldzA
         LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper();
         wrapper.eq(SldzAgent::getAgentGroupId,groupId);
         List<SldzAgent> SldzAgents =  sldzAgentService.getEntityList(wrapper);
-        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper();
         for (SldzAgent s :SldzAgents){
+            LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper();
             //查询该代理商有无该产的价格
             SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,s.getAgentRandom());
             SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId,productId);

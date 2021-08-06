@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 /**
 * 用户Mapper
 * @author Achin
@@ -34,6 +36,10 @@ public interface SldzUserMapper extends BaseCrudMapper<SldzUser> {
     @Select("SELECT * FROM sldz_user WHERE  openid = #{openid}")
     SldzUser getUserByOpenid(@Param("openid") String openid);
 
+
+    //获取所有user
+    @Select("SELECT * FROM sldz_user")
+    List<SldzUser> UserAll();
 
 }
 
