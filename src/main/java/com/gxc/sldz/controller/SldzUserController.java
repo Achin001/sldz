@@ -1,5 +1,9 @@
 package com.gxc.sldz.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.entity.SldzUserRel;
+import com.gxc.sldz.service.SldzUserRelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -12,6 +16,8 @@ import com.gxc.sldz.vo.SldzUserDetailVO;
 import com.gxc.sldz.service.SldzUserService;
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户 相关Controller
@@ -28,6 +34,10 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
 
     @Autowired
     private SldzUserService sldzUserService;
+
+
+    @Autowired
+    private SldzUserRelService sldzUserRelService;
 
     /**
      * 查询ViewObject的分页数据
@@ -89,6 +99,50 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
     @DeleteMapping("/{id}")
     public JsonResult deleteEntityMapping(@PathVariable("id") Long id) throws Exception {
         return super.deleteEntity(id);
+    }
+
+
+    /**
+     * 查询ViewObject的分页数据
+     * <p>
+     * url请求参数示例: /list?field=abc&pageIndex=1&orderBy=abc:DESC
+     * </p>
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "获取客户推广列表数据")
+    @GetMapping("/GetMembership")
+    public JsonResult GetMembership(String Random) throws Exception {
+        LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzUserRel::getSupRandom, Random);
+        //所有一级
+        List<SldzUserRel> SldzAgentRel = sldzUserRelService.getEntityList(wrapper);
+        List<SldzUser> SldzAgentsList = new ArrayList<>();
+        for (SldzUserRel s : SldzAgentRel) {
+            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
+            SldzUser SldzAgent = sldzUserService.getSingleEntity(wrappersubs);
+            SldzAgentsList.add(SldzAgent);
+        }
+        return JsonResult.OK().data(SldzAgentsList);
+    }
+
+
+
+    /**
+     * 查询ViewObject的分页数据
+     * <p>
+     * url请求参数示例: /list?field=abc&pageIndex=1&orderBy=abc:DESC
+     * </p>
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "批量设置产品价格")
+    @PostMapping("/SetProductPriceBatchByuser")
+    public JsonResult SetProductPriceBatchByuser(String Random) throws Exception {
+        //获取所有用户/客户
+//        sldzUserService.get
+        return JsonResult.OK();
     }
 
 

@@ -60,16 +60,17 @@ public class SldzUserApi extends BaseCustomCrudRestController<SldzUser> {
     @ApiOperation(value = "客户获取会员列表")
     @GetMapping("/GetMembership}")
     public JsonResult GetMembership(String Random) throws Exception {
+
         LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzUserRel::getSupRandom, Random);
         //所有一级
         List<SldzUserRel> SldzAgentRel = sldzUserRelService.getEntityList(wrapper);
         List<SldzUser> SldzAgentsList = new ArrayList<>();
         for (SldzUserRel s : SldzAgentRel) {
-            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
-            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
-            SldzUser SldzAgent = sldzUserService.getSingleEntity(wrappersubs);
-            SldzAgentsList.add(SldzAgent);
+            LambdaQueryWrapper<SldzUser> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzUser::getRandom, s.getSubRandom());
+            SldzUser SldzUser = sldzUserService.getSingleEntity(wrappersubs);
+            SldzAgentsList.add(SldzUser);
         }
         return JsonResult.OK().data(SldzAgentsList);
     }
