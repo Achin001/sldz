@@ -139,7 +139,7 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
      * @return {@link JsonResult}
      * @throws Exception 异常
      */
-    @ApiOperation(value = "获取会员列表")
+    @ApiOperation(value = "代理商获取会员列表")
     @GetMapping("/GetMembership}")
     public JsonResult GetMembership(String Random) throws Exception {
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
