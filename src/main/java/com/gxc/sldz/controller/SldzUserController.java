@@ -130,14 +130,14 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
         wrapper.eq(SldzUserRel::getSupRandom, Random);
         //所有一级
         List<SldzUserRel> SldzAgentRel = sldzUserRelService.getEntityList(wrapper);
-        List<SldzUser> SldzAgentsList = new ArrayList<>();
+        List<SldzUser> SldzUserList = new ArrayList<>();
         for (SldzUserRel s : SldzAgentRel) {
-            LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
-            wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
-            SldzUser SldzAgent = sldzUserService.getSingleEntity(wrappersubs);
-            SldzAgentsList.add(SldzAgent);
+            LambdaQueryWrapper<SldzUser> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzUser::getRandom, s.getSubRandom());
+            SldzUser SldzUser = sldzUserService.getSingleEntity(wrappersubs);
+            SldzUserList.add(SldzUser);
         }
-        return JsonResult.OK().data(SldzAgentsList);
+        return JsonResult.OK().data(SldzUserList);
     }
 
 

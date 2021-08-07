@@ -204,7 +204,6 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
             UserRelwrapper.eq(SldzUser::getRandom, rel.getSubRandom());
             sldzUsers.add(SldzUserService.getSingleEntity(UserRelwrapper));
         }
-
         for (SldzUser user : sldzUsers) {
             LambdaQueryWrapper<SldzCustomerProfile> Customerwrapper = new LambdaQueryWrapper<>();
             Customerwrapper.eq(SldzCustomerProfile::getCustomerRandom, user.getRandom());

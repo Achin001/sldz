@@ -39,12 +39,14 @@ public class SldzUserRelApi extends BaseCustomCrudRestController<SldzUserRel> {
     @ApiOperation(value = "新建数据")
     @PostMapping("/")
     public JsonResult createEntityMapping(@Valid @RequestBody SldzUserRel entity) throws Exception {
-        //查询当前下级有无绑定
-        LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(SldzUserRel::getSubRandom, entity.getSubRandom());
-        int SubCount =   sldzUserRelService.getEntityListCount(wrapper);
-        if (SubCount<=0){
-            return super.createEntity(entity);
+        if (!entity.getSubRandom().equals(entity.getSupRandom())){
+            //查询当前下级有无绑定
+            LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(SldzUserRel::getSubRandom, entity.getSubRandom());
+            int SubCount =   sldzUserRelService.getEntityListCount(wrapper);
+            if (SubCount<=0){
+                return super.createEntity(entity);
+            }
         }
         //有则不新建
         return JsonResult.OK();
