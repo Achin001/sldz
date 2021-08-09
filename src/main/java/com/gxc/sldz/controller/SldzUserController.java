@@ -234,4 +234,82 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
 
 
 
+    @ApiOperation(value = "为客户/用户设置推广佣金")
+    @PutMapping("/AgentBonusSetting")
+    public JsonResult AgentBonusSetting(Long UserId,
+                                        Long productId,
+                                        double Bonus) throws Exception {
+        //记录成功次数
+        int los = 0;
+        SldzUser SldzUser =  sldzUserService.getEntity(UserId);
+        LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+        //查询该代理商有无奖励金
+        BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,SldzUser.getRandom());
+        BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,productId);
+        SldzBonuSsetting SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+        if (ObjectUtil.isNotNull(SldzBonuSsettings)){
+            //有记录则更改
+            UpdateWrapper<SldzAgent> UpdatewrapperBonuSsetting = new UpdateWrapper();
+            UpdatewrapperBonuSsetting.set("bonus",Bonus);
+            UpdatewrapperBonuSsetting.eq("product_id",productId);
+            UpdatewrapperBonuSsetting.eq("agent_random",SldzUser.getRandom());
+            if(sldzBonuSsettingService. updateEntity(UpdatewrapperBonuSsetting)){
+                los+=1;
+            }
+        }else {
+            //无记录则新增
+            if ( sldzBonuSsettingService.createEntity(
+                    new SldzBonuSsetting()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setBonus(Bonus)
+                            .setProductId(productId))){
+                los+=1;
+            }
+        }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+Bonus);
+        return JsonResult.OK().data(map);
+    }
+
+
+
+    @ApiOperation(value = "为客户/用户设置产品价格")
+    @PutMapping("/AgentProductPriceSetting")
+    public JsonResult AgentProductPriceSetting(Long UserId,
+                                               Long productId,
+                                               double price) throws Exception {
+        //记录成功次数
+        int los = 0;
+
+        SldzUser SldzUser  =  sldzUserService.getEntity(UserId);
+        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper();
+        //查询该代理商有无该产的价格
+        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,SldzUser.getRandom());
+        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId,productId);
+        SldzAgentProductPrice SldzAgentProductPrice = sldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper);
+        if (ObjectUtil.isNotNull(SldzAgentProductPrice)){
+            //有记录则更改
+            UpdateWrapper<SldzAgentProductPrice> UpdatewrapperSldzAgentProductPrice = new UpdateWrapper();
+            UpdatewrapperSldzAgentProductPrice.set("product_price",price);
+            UpdatewrapperSldzAgentProductPrice.eq("product_id",productId);
+            UpdatewrapperSldzAgentProductPrice.eq("agent_random",SldzUser.getRandom());
+            if(sldzAgentProductPriceService. updateEntity(UpdatewrapperSldzAgentProductPrice)){
+                los+=1;
+            }
+        }else {
+            //无记录则新增
+            if ( sldzAgentProductPriceService.createEntity(
+                    new SldzAgentProductPrice()
+                            .setAgentRandom(SldzUser.getRandom())
+                            .setProductPrice(price)
+                            .setProductId(productId))){
+                los+=1;
+            }
+        }
+        Map map = new HashMap();
+        map.put("msg",los+"人已更改为："+price);
+        return JsonResult.OK().data(map);
+    }
+
+
 }
