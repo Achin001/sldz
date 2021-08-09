@@ -10,8 +10,10 @@ import com.gxc.sldz.controller.BaseCustomCrudRestController;
 import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.entity.SldzAgentProductPrice;
+import com.gxc.sldz.entity.SldzBonuSsetting;
 import com.gxc.sldz.entity.SldzProduct;
 import com.gxc.sldz.service.SldzAgentProductPriceService;
+import com.gxc.sldz.service.SldzBonuSsettingService;
 import com.gxc.sldz.service.SldzProductService;
 import com.gxc.sldz.vo.SldzProductListVO;
 import io.swagger.annotations.Api;
@@ -41,6 +43,9 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
     @Autowired
     SldzAgentProductPriceService SldzAgentProductPriceService;
 
+    @Autowired
+    SldzBonuSsettingService sldzBonuSsettingService;
+
     /**
      * 查询ViewObject的分页数据
      * <p>
@@ -49,7 +54,7 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
      * @return
      * @throws Exception
      */
-    @ApiOperation(value = "获取列表分页数据")
+    @ApiOperation(value = "获取列表数据")
     @GetMapping("/list")
     public JsonResult getViewObjectListMapping(SldzProduct queryDto,String Random) throws Exception {
         List<SldzProductListVO> SldzProducts  = SldzProductService.GetProductsByCategory(queryDto.getProductCategory());
@@ -72,8 +77,6 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
             }
         }
         return JsonResult.OK().data(SldzProducts);
-
-//        return super.getViewObjectList(queryDto, pagination, SldzProductListVO.class);
     }
 
     /***
@@ -105,28 +108,36 @@ public class SldzProductApi  extends BaseCustomCrudRestController<SldzProduct> {
     @ApiOperation(value = "产品模糊搜索")
     @GetMapping("/keywords")
     public JsonResult keywords(String keywords,String Random) throws Exception {
-//        String product_name = "product_name";
-//        String product_price = "product_price";
-//        String product_details = "product_details";
-//        QueryWrapper<SldzAgent> wrapper = new QueryWrapper();
-//        wrapper.like(StrUtil.isNotBlank(keywords), product_name,keywords);
-//        wrapper.like(StrUtil.isNotBlank(keywords), product_price,keywords);
-//        wrapper.like(StrUtil.isNotBlank(keywords), product_details,keywords);
-//        // SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
         return SldzProductService.GetProductsByKeywords(keywords,Random);
-        // return super.getViewObjectList(queryDto, pagination, SldzAgentListVO.class);
     }
 
 
-//
-//    @ApiOperation(value = "根据唯一编码获取产品价格")
-//    @GetMapping("/GetProductPriceByRandom")
-//    public JsonResult GetProductPriceByRandom(Long prductId,String Random) throws Exception {
-//        LambdaQueryWrapper<SldzAgentProductPrice> SldzAgentProductPricewrapper = new LambdaQueryWrapper<>();
-//        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getProductId, prductId);
-//        SldzAgentProductPricewrapper.eq(SldzAgentProductPrice::getAgentRandom,Random );
-//        return JsonResult.OK().data(SldzAgentProductPriceService.getSingleEntity(SldzAgentProductPricewrapper));
-//    }
+    /**
+     * 查询ViewObject的分页数据
+     * <p>
+     * url请求参数示例: /list?field=abc&pageIndex=1&orderBy=abc:DESC
+     * </p>
+     * @return
+     * @throws Exception
+     */
+    @ApiOperation(value = "获取产品推广佣金")
+    @GetMapping("/PromotionCommission")
+    public JsonResult PromotionCommission(SldzProduct queryDto,String Random) throws Exception {
+        List<SldzProductListVO> SldzProducts  = SldzProductService.GetProductsByCategory(queryDto.getProductCategory());
+        for (SldzProductListVO s:SldzProducts){
+            LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+            //查询该代理商有无奖励金
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,Random);
+            BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,s.getId());
+            SldzBonuSsetting SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+            if (ObjectUtil.isNotNull(SldzBonuSsettings)){
+                s.setFavorablePrice(SldzBonuSsettings.getBonus());
+            }else {
+                s.setFavorablePrice(0.00);
+            }
+        }
+        return JsonResult.OK().data(SldzProducts);
+    }
 
 
 }
