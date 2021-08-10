@@ -177,7 +177,7 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
 
     @ApiOperation(value = "已完成订单发放奖励金-预览")
     @ApiImplicitParams({ @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String") })
-    @RequestMapping(value = "AwardCompletedCrdersPreview", method = RequestMethod.POST)
+    @RequestMapping(value = "AwardCompletedCrdersPreview", method = RequestMethod.GET)
     public JsonResult AwardCompletedCrdersPreview(@RequestBody String orderNumber) throws Exception {
         return sldzOrderService.AwardCompletedCrdersPreview(orderNumber);
     }
