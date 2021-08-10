@@ -179,4 +179,11 @@ public class SldzOrder extends BaseCustomEntity {
     private String productsIdReviewed;
 
 
+    /**
+     * 是否发放奖励金.1否,2是
+     */
+    @ApiModelProperty(value="是否发放奖励金.1否,2是", example = "1")
+    @TableField()
+    private int commissionPayment ;
+
 } 

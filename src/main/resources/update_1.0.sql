@@ -556,3 +556,9 @@ ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `logistics` varchar(100) C
 ALTER TABLE `sldz_customer_treatment_file` ADD COLUMN `customer_in_time` timestamp NULL COMMENT '客户填写时间' AFTER `logistics`;
 -- 2021-08-02 15:08:18 by Achin
 ALTER TABLE `sldz_customer_treatment_file` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `customer_in_time`;
+-- 2021-08-09 16:56:50 by Achin
+ALTER TABLE `sldz_order` ADD COLUMN `commission_payment` int(8) COMMENT '是否发放奖励金' AFTER `products_id_reviewed`;
+-- 2021-08-09 16:56:50 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `commission_payment`;
+-- 2021-08-09 17:10:22 by Achin
+ALTER TABLE `sldz_order` MODIFY COLUMN `commission_payment` int(8) DEFAULT 1 COMMENT '是否发放奖励金' AFTER `products_id_reviewed`;

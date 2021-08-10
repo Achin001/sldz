@@ -326,7 +326,6 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         String lo = SldzOrder.getLogisticsNumber();
 
         if (lo == null || "".equals(lo) || "null".equals(lo)) {
-            System.out.println("条件满足");
             lo = "";
         }
         //如果运单号为空允许退款
@@ -532,6 +531,28 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     @Override
     public List<SldzOrder> GetOrderBeenDelivered() {
         return SldzOrderMapper.GetOrderBeenDelivered();
+    }
+
+    @Override
+    public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
+        //获取订单
+        SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
+        if(SldzOrder.getCommissionPayment() ==1){//否
+            //查询该客户是用户还是消费者
+            Map map =  getUser(SldzOrder.getBuyersRandom());
+            int type= (int) map.get("type");
+            if (type== 1 ){
+                //1代表消费者
+                SldzUser SldzUser =  (SldzUser) map.get("SldzUser");
+
+            }else if (type== 2 ){
+                //2代理商
+                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
+            }
+        }
+
+
+        return null;
     }
 
 

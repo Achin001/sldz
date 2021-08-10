@@ -56,7 +56,7 @@ public class OrderUtil {
             OrderProductJsonVo OrderProductJsonVo = new OrderProductJsonVo();
             rowData = tableData.getJSONObject(i);
             JSONObject jsonObject = JSON.parseObject(rowData.getString("productJson"));
-            OrderProductJsonVo.setProductPrice(Double.parseDouble(jsonObject.getString("productPrice")));
+            OrderProductJsonVo.setProductPrice(Double.parseDouble(jsonObject.getString("favorablePrice")));
             OrderProductJsonVo.setCartNum(Integer.parseInt(rowData.getString("cartNum")));
             OrderProductJsonVo.setProductId(Long.parseLong(jsonObject.getString("id")));
             orderProductJsonVos.add(OrderProductJsonVo);

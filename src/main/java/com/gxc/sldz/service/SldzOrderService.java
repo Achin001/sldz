@@ -44,4 +44,8 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     //获取已发货的订单
     List<SldzOrder> GetOrderBeenDelivered();
+
+
+    //已完成订单发放奖励金-预览
+    JsonResult AwardCompletedCrdersPreview(String orderNumber);
 }
