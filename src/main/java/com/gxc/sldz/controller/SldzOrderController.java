@@ -175,12 +175,12 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         return JsonResult.OK().data(rowData2);
     }
 
-    @ApiOperation(value = "已完成订单发放奖励金-预览")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String") })
-    @RequestMapping(value = "AwardCompletedCrdersPreview", method = RequestMethod.GET)
-    public JsonResult AwardCompletedCrdersPreview(@RequestBody String orderNumber) throws Exception {
-        return sldzOrderService.AwardCompletedCrdersPreview(orderNumber);
-    }
+//    @ApiOperation(value = "已完成订单发放奖励金-预览")
+//    @ApiImplicitParams({ @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String") })
+//    @RequestMapping(value = "AwardCompletedCrdersPreview", method = RequestMethod.GET)
+//    public JsonResult AwardCompletedCrdersPreview(@RequestBody String orderNumber) throws Exception {
+//        return sldzOrderService.AwardCompletedCrdersPreview(orderNumber);
+//    }
 
     // 根据订单号获取已付款订单对象
     public SldzOrder GetOrderObjectByOrderNumbers(String orderNumber) throws Exception {

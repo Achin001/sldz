@@ -533,27 +533,27 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return SldzOrderMapper.GetOrderBeenDelivered();
     }
 
-    @Override
-    public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
-        //获取订单
-        SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
-        if(SldzOrder.getCommissionPayment() ==1){//否
-            //查询该客户是用户还是消费者
-            Map map =  getUser(SldzOrder.getBuyersRandom());
-            int type= (int) map.get("type");
-            if (type== 1 ){
-                //1代表消费者
-                SldzUser SldzUser =  (SldzUser) map.get("SldzUser");
-
-            }else if (type== 2 ){
-                //2代理商
-                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
-            }
-        }
-
-
-        return null;
-    }
+//    @Override
+//    public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
+//        //获取订单
+//        SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
+//        if(SldzOrder.getCommissionPayment() ==1){//否
+//            //查询该客户是用户还是消费者
+//            Map map =  getUser(SldzOrder.getBuyersRandom());
+//            int type= (int) map.get("type");
+//            if (type== 1 ){
+//                //1代表消费者
+//                SldzUser SldzUser =  (SldzUser) map.get("SldzUser");
+//
+//            }else if (type== 2 ){
+//                //2代理商
+//                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
+//            }
+//        }
+//
+//
+//        return null;
+//    }
 
 
     public Map getUser(String random) {
