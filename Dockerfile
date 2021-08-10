@@ -17,6 +17,7 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 
 
 VOLUME /tmp
+
 EXPOSE 83
 ENTRYPOINT ["java","-jar","-Duser.timezone=GMT+08","/app.jar"]
 
