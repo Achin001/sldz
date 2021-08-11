@@ -5,6 +5,7 @@ import java.lang.Double;
 import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -29,8 +30,7 @@ import lombok.experimental.Accessors;
  * Copyright © MyCompany
  */
 @ApiModel(value = "用户")
-@Getter
-@Setter
+@Data
 @Accessors(chain = true)
 public class SldzUser extends BaseCustomEntity {
 
@@ -117,4 +117,7 @@ public class SldzUser extends BaseCustomEntity {
     @ApiModelProperty(value = "积分", example = "")
     @TableField()
     private Double integral;
+
+
+
 }

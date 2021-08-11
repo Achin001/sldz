@@ -47,5 +47,5 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
 
     //已完成订单发放奖励金-预览
-//    JsonResult AwardCompletedCrdersPreview(String orderNumber);
+    JsonResult AwardCompletedCrdersPreview(String orderNumber);
 }

@@ -28,6 +28,8 @@ import java.util.List;
 @RequestMapping("admin/sldzUserRel")
 @Slf4j
 public class SldzUserRelController extends BaseCustomCrudRestController<SldzUserRel> {
+
+
     @Autowired
     private SldzUserRelService sldzUserRelService;
 

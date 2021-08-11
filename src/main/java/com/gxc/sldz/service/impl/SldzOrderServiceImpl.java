@@ -67,6 +67,13 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     @Autowired
     private RedisUtils redisUtils;
 
+
+//    消费者rel
+    @Autowired
+    private SldzUserRelService sldzUserRelService;
+
+
+
     @Override
     public boolean ChangeShippingAddress(String addresJson, String orderNumber, String Random) {
         return SldzOrderMapper.ChangeShippingAddress(addresJson, orderNumber, Random);
@@ -143,7 +150,8 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
                 payRequest.setOrderId(SldzOrder.getOrderNumber());
                 payRequest.setOrderName("私脸小程序支付订单");
-                payRequest.setOrderAmount(0.01);
+                payRequest.setOrderAmount(SldzOrder.getAmountPayable());
+//                payRequest.setOrderAmount(0.01);
                 payRequest.setOpenid(SldzUser.getOpenid());
                 PayResponse payResponse = bestPayService.pay(payRequest);
                 //删除优惠券
@@ -232,7 +240,8 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 payRequest.setPayTypeEnum(BestPayTypeEnum.WXPAY_MINI);
                 payRequest.setOrderId(SldzOrder.getOrderNumber());
                 payRequest.setOrderName("私脸小程序支付订单");
-                payRequest.setOrderAmount(0.01);
+//                payRequest.setOrderAmount(0.01);
+                payRequest.setOrderAmount(SldzOrder.getAmountPayable());
                 payRequest.setOpenid(SldzAgen.getOpenid());
                 PayResponse payResponse = bestPayService.pay(payRequest);
                 deleterCoupon(SldzOrder);
@@ -533,27 +542,40 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return SldzOrderMapper.GetOrderBeenDelivered();
     }
 
-//    @Override
-//    public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
-//        //获取订单
-//        SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
-//        if(SldzOrder.getCommissionPayment() ==1){//否
-//            //查询该客户是用户还是消费者
-//            Map map =  getUser(SldzOrder.getBuyersRandom());
-//            int type= (int) map.get("type");
-//            if (type== 1 ){
-//                //1代表消费者
-//                SldzUser SldzUser =  (SldzUser) map.get("SldzUser");
-//
-//            }else if (type== 2 ){
-//                //2代理商
-//                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
-//            }
-//        }
-//
-//
-//        return null;
-//    }
+    @Override
+    public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
+        //获取订单
+        SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
+        if(SldzOrder.getCommissionPayment() ==1){//否
+            //查询该客户是用户还是消费者
+            Map map =  getUser(SldzOrder.getBuyersRandom());
+            int type= (int) map.get("type");
+            if (type== 1 ){
+                //1代表下单人user
+                SldzUser mapSldzUser =  (SldzUser) map.get("SldzUser");
+                //获取消费者的上级
+                LambdaQueryWrapper<SldzUserRel> SldzUserRelwrapper = new LambdaQueryWrapper<>();
+                SldzUserRelwrapper.eq(SldzUserRel::getSubRandom, mapSldzUser.getRandom());
+                //所有一级
+                SldzUserRel SldzUserRel = sldzUserRelService.getSingleEntity(SldzUserRelwrapper);
+                //上级user
+                SldzUser supSldzUser = new SldzUser();
+                if (ObjectUtil.isNotNull(SldzUserRel)){
+                    LambdaQueryWrapper<SldzUser> supSldzUserwrapper = new LambdaQueryWrapper<>();
+                    supSldzUserwrapper.eq(SldzUser::getRandom, SldzUserRel.getSupRandom());
+                    supSldzUser = SldzUserServic.getSingleEntity(supSldzUserwrapper);
+                }
+
+
+            }else if (type== 2 ){
+                //2下单人代理商
+                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
+            }
+        }
+
+
+        return null;
+    }
 
 
     public Map getUser(String random) {

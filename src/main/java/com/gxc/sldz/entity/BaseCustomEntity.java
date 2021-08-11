@@ -30,4 +30,5 @@ public abstract class BaseCustomEntity extends BaseEntity {
     @TableField("is_deleted")
     private boolean deleted = false;
 
+
 }
