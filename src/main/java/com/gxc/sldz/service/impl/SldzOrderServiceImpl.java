@@ -14,6 +14,7 @@ import com.gxc.sldz.entity.*;
 import com.gxc.sldz.mapper.SldzOrderMapper;
 import com.gxc.sldz.service.*;
 import com.gxc.sldz.vo.OrderProductJsonVo;
+import com.gxc.sldz.vo.OrderRewardDueVo;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.PayRequest;
 import com.lly835.bestpay.model.PayResponse;
@@ -284,6 +285,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 }
 
             } else if (paymentMethod == 3) {
+
                 //奖励金支付
                 //剩余奖励金
                 double RemainingBonus = 0.00;
@@ -298,7 +300,7 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
 
                 RemainingBonus = NumberUtil.sub(Bonus, AmountPayable);
                 //扣除奖励金
-                if (SldzUserServic.ChangeBonus(RemainingBonus, SldzAgen.getAgentRandom())) {
+                if (SldzAgentService.ChangeBonus(RemainingBonus, SldzAgen.getAgentRandom())) {
                     //记录奖励金消费记录
                     SldzAgentBonusLogService.createEntity(new SldzAgentBonusLog()
                             .setAgentRandom(SldzAgen.getAgentRandom())
@@ -546,6 +548,9 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     public JsonResult AwardCompletedCrdersPreview(String orderNumber) {
         //获取订单
         SldzOrder SldzOrder  =  SldzOrderMapper.GetOrderAccordingByOrderNumber(orderNumber);
+        //得到订单产品列表
+        List<OrderProductJsonVo> getOrderProductJsonVo = OrderUtil.getOrderProductJsonVo(SldzOrder.getProductJson());
+        List<OrderRewardDueVo> OrderRewardDueVos = new ArrayList<>();
         if(SldzOrder.getCommissionPayment() ==1){//否
             //查询该客户是用户还是消费者
             Map map =  getUser(SldzOrder.getBuyersRandom());
@@ -564,6 +569,23 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     LambdaQueryWrapper<SldzUser> supSldzUserwrapper = new LambdaQueryWrapper<>();
                     supSldzUserwrapper.eq(SldzUser::getRandom, SldzUserRel.getSupRandom());
                     supSldzUser = SldzUserServic.getSingleEntity(supSldzUserwrapper);
+                }
+                //查询该上级该产品的推广奖励
+                for(OrderProductJsonVo ProductJsonVo : getOrderProductJsonVo){
+                    ProductJsonVo.getProductId();
+                    supSldzUser.getId();
+
+                    OrderRewardDueVo OrderRewardDueVo = new OrderRewardDueVo();
+                    //写入名称
+                    OrderRewardDueVo.setName(supSldzUser.getNickname());
+                    //写入Random
+                    OrderRewardDueVo.setRandom(supSldzUser.getRandom());
+                    OrderRewardDueVo.setRelationship("上级");
+                    //写入产品id
+                    OrderRewardDueVo.setProductId(ProductJsonVo.getProductId());
+                    //写入产品id
+                    OrderRewardDueVo.setProductId(ProductJsonVo.getProductId());
+
                 }
 
 
