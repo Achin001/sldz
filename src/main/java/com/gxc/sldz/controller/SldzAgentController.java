@@ -5,6 +5,7 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.MD5;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -138,6 +139,14 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
         entity.setAgentPasword(SecureUtil.md5(entity.getAgentPhone()));
         entity.setAgentRandom(RandomServer.getRandom());
         return super.createEntity(entity);
+    }
+
+    @ApiOperation(value = "重置密码")
+    @PutMapping("/resetPassword")
+    public JsonResult resetPassword(@Valid @RequestBody int agentId) throws Exception {
+        SldzAgent  entity = sldzAgentService.getEntity(agentId);
+        entity.setAgentPasword(SecureUtil.md5(entity.getAgentPhone()));
+        return super.updateEntity(agentId,entity);
     }
 
     /**

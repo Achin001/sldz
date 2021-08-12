@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,12 +92,24 @@ public class SldzCustomerProfileApi extends BaseCustomCrudRestController<SldzCus
         LambdaQueryWrapper<SldzCustomerProfile> Customerwrapper = new LambdaQueryWrapper<>();
         //用户唯一编号
         Customerwrapper.eq(SldzCustomerProfile::getCustomerRandom, Random);
-        SldzCustomerProfile SldzCustomerProfile = sldzCustomerProfileService.getSingleEntity(Customerwrapper);
+        SldzCustomerProfile SldzCustomerProfile = new SldzCustomerProfile();
+        try{
+             SldzCustomerProfile = sldzCustomerProfileService.getSingleEntity(Customerwrapper);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-        UpdateWrapper<SldzCustomerTreatmentFile> CustomerTreatmentFilewrapper = new UpdateWrapper<>();
-        CustomerTreatmentFilewrapper.eq("customer_pro_file", SldzCustomerProfile.getId());
-        List<SldzCustomerTreatmentFile> SldzCustomerTreatmentFiles = sldzCustomerTreatmentFileService.getEntityList(CustomerTreatmentFilewrapper);
+
+        List<SldzCustomerTreatmentFile>  SldzCustomerTreatmentFiles = new ArrayList<>();
+        try{
+            UpdateWrapper<SldzCustomerTreatmentFile> CustomerTreatmentFilewrapper = new UpdateWrapper<>();
+            CustomerTreatmentFilewrapper.eq("customer_pro_file", SldzCustomerProfile.getId());
+            SldzCustomerTreatmentFiles = sldzCustomerTreatmentFileService.getEntityList(CustomerTreatmentFilewrapper);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Map<String, Object> map = new HashMap<>();
         map.put("SldzCustomerProfile",SldzCustomerProfile);
         map.put("SldzCustomerTreatmentFiles",SldzCustomerTreatmentFiles);

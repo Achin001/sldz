@@ -68,11 +68,18 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
     @Autowired
     private RedisUtils redisUtils;
 
+    //推广奖励金服务
+    @Autowired
+    SldzBonuSsettingService sldzBonuSsettingService;
+
 
 //    消费者rel
     @Autowired
     private SldzUserRelService sldzUserRelService;
 
+    //代理商rel
+    @Autowired
+    private SldzAgentRelService sldzAgentRelService;
 
 
     @Override
@@ -572,8 +579,13 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                 }
                 //查询该上级该产品的推广奖励
                 for(OrderProductJsonVo ProductJsonVo : getOrderProductJsonVo){
-                    ProductJsonVo.getProductId();
-                    supSldzUser.getId();
+                    LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+                    //查询该代理商有无奖励金
+                    BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,supSldzUser.getRandom());
+                    BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,ProductJsonVo.getProductId());
+                    SldzBonuSsetting SldzBonuSsettings = new SldzBonuSsetting();
+                    SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+
 
                     OrderRewardDueVo OrderRewardDueVo = new OrderRewardDueVo();
                     //写入名称
@@ -583,15 +595,58 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
                     OrderRewardDueVo.setRelationship("上级");
                     //写入产品id
                     OrderRewardDueVo.setProductId(ProductJsonVo.getProductId());
-                    //写入产品id
-                    OrderRewardDueVo.setProductId(ProductJsonVo.getProductId());
-
+                    //写入产品价格
+                    OrderRewardDueVo.setProductPrice(ProductJsonVo.getProductPrice());
+                    //加购数量
+                    OrderRewardDueVo.setCartNum(ProductJsonVo.getCartNum());
+                    //应得奖励金
+                    OrderRewardDueVo.setDueReward(SldzBonuSsettings.getBonus());
+                    OrderRewardDueVos.add(OrderRewardDueVo);
                 }
-
+                return JsonResult.OK().data(OrderRewardDueVos);
 
             }else if (type== 2 ){
                 //2下单人代理商
-                SldzAgent SldzAgent= (SldzAgent) map.get("SldzAgent");
+                SldzAgent mapSldzAgent= (SldzAgent) map.get("SldzAgent");
+                //获取代理商的上级
+                LambdaQueryWrapper<SldzAgentRel> SldzUserRelwrapper = new LambdaQueryWrapper<>();
+                SldzUserRelwrapper.eq(SldzAgentRel::getSubRandom, mapSldzAgent.getAgentRandom());
+                //所有一级
+                SldzAgentRel SldzAgentRel = sldzAgentRelService.getSingleEntity(SldzUserRelwrapper);
+                //上级Agent
+                SldzAgent supSldzAgent = new SldzAgent();
+                if (ObjectUtil.isNotNull(SldzAgentRel)){
+                    LambdaQueryWrapper<SldzAgent> supSldzAgentrwrapper = new LambdaQueryWrapper<>();
+                    supSldzAgentrwrapper.eq(SldzAgent::getAgentRandom, SldzAgentRel.getSupRandom());
+                    supSldzAgent = SldzAgentService.getSingleEntity(supSldzAgentrwrapper);
+                }
+                //查询该上级该产品的推广奖励
+                for(OrderProductJsonVo ProductJsonVo : getOrderProductJsonVo){
+                    LambdaQueryWrapper<SldzBonuSsetting> BonuSsettingwrapper = new LambdaQueryWrapper();
+                    //查询该代理商有无奖励金
+                    BonuSsettingwrapper.eq(SldzBonuSsetting::getAgentRandom,supSldzAgent.getAgentRandom());
+                    BonuSsettingwrapper.eq(SldzBonuSsetting::getProductId,ProductJsonVo.getProductId());
+                    SldzBonuSsetting SldzBonuSsettings = new SldzBonuSsetting();
+                    SldzBonuSsettings =  sldzBonuSsettingService.getSingleEntity(BonuSsettingwrapper);
+
+
+                    OrderRewardDueVo OrderRewardDueVo = new OrderRewardDueVo();
+                    //写入名称
+                    OrderRewardDueVo.setName(supSldzAgent.getAgentName());
+                    //写入Random
+                    OrderRewardDueVo.setRandom(supSldzAgent.getAgentRandom());
+                    OrderRewardDueVo.setRelationship("上级");
+                    //写入产品id
+                    OrderRewardDueVo.setProductId(ProductJsonVo.getProductId());
+                    //写入产品价格
+                    OrderRewardDueVo.setProductPrice(ProductJsonVo.getProductPrice());
+                    //加购数量
+                    OrderRewardDueVo.setCartNum(ProductJsonVo.getCartNum());
+                    //应得奖励金
+                    OrderRewardDueVo.setDueReward(SldzBonuSsettings.getBonus());
+                    OrderRewardDueVos.add(OrderRewardDueVo);
+                }
+                return JsonResult.OK().data(OrderRewardDueVos);
             }
         }
 

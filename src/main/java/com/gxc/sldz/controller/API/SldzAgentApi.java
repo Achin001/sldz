@@ -132,6 +132,29 @@ public class SldzAgentApi extends BaseCustomCrudRestController<SldzAgent> {
     }
 
 
+
+    @ApiOperation(value = "修改密码")
+    @PutMapping("/ChangePassword")
+    public JsonResult ChangePassword(String random,String oldPassword,String newPassword) throws Exception {
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgent::getAgentRandom, random);
+        wrapper.eq(SldzAgent::getAgentPasword, SecureUtil.md5(oldPassword));
+        SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgent)){
+            UpdateWrapper<SldzAgent> SldzAgentWrapper = new UpdateWrapper<>();
+            SldzAgentWrapper.set("agent_pasword", SecureUtil.md5(newPassword));
+            SldzAgentWrapper.eq("agent_random", random);
+            if (sldzAgentService.updateEntity(SldzAgentWrapper)) {
+                return JsonResult.OK().msg("修改成功");
+            }else {
+                return JsonResult.FAIL_OPERATION("修改失败");
+            }
+        }else {
+            return JsonResult.FAIL_OPERATION("旧密码错误");
+        }
+    }
+
+
     /**
      * 获得会员资格
      *
