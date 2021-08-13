@@ -79,7 +79,7 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
 
 
     //根据订单号获取订单
-    @Select("USELECT * FROM sldz_order WHERE  order_number =#{orderNumber}")
+    @Select("SELECT * FROM sldz_order WHERE  order_number =#{orderNumber}")
     SldzOrder GetOrderAccordingByOrderNumber(@Param("orderNumber") String orderNumber);
 
 

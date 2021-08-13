@@ -46,6 +46,11 @@ public class SldzAgentServiceImpl extends BaseCustomServiceImpl<SldzAgentMapper,
     }
 
     @Override
+    public SldzAgent getAgentByagentRandom(String agentRandom) {
+        return SldzAgentMapper.getAgentByagentRandom(agentRandom);
+    }
+
+    @Override
     public SldzAgent getAgentByOpenid(String openid) {
         return SldzAgentMapper.getAgentByOpenid(openid);
     }

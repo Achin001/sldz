@@ -41,5 +41,11 @@ public interface SldzUserMapper extends BaseCrudMapper<SldzUser> {
     @Select("SELECT * FROM sldz_user")
     List<SldzUser> UserAll();
 
+
+    //根据random查询user
+    @Select("SELECT * FROM sldz_user WHERE  random = #{random}")
+    SldzUser getUserByrandom(@Param("random") String random);
+
+
 }
 

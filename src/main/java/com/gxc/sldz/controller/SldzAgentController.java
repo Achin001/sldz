@@ -9,6 +9,7 @@ import cn.hutool.crypto.digest.MD5;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.*;
@@ -411,7 +412,14 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     }
 
 
-
+    @ApiOperation(value = "根据本级Random获取上级对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
+    })
+    @GetMapping("/GetSup")
+    public JsonResult GetSup(String Random) throws Exception {
+        return JsonResult.OK(getSup(Random));
+    }
 
 
 

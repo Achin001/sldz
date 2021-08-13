@@ -7,6 +7,8 @@ import com.gxc.sldz.entity.*;
 import com.gxc.sldz.service.SldzAgentProductPriceService;
 import com.gxc.sldz.service.SldzBonuSsettingService;
 import com.gxc.sldz.service.SldzUserRelService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -311,5 +313,38 @@ public class SldzUserController extends BaseCustomCrudRestController<SldzUser> {
         return JsonResult.OK().data(map);
     }
 
+
+
+    @ApiOperation(value = "根据本级Random获取上级对象")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "Random", value = "唯一编号", required = true, dataType = "String"),
+    })
+    @GetMapping("/GetSup")
+    public JsonResult GetSup(String Random) throws Exception {
+        return JsonResult.OK(getSup(Random));
+    }
+
+
+    /**
+     * 根据本级Random获取上级对象
+     *
+     * @param Random
+     * @return SldzAgent 上级对象
+     * @throws Exception
+     */
+    public SldzUser getSup(String Random) {
+        // 查询上级
+        try{
+            SldzUserRel SldzUserRel = sldzUserRelService.sub_find_sup(Random);
+            LambdaQueryWrapper<SldzUser> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(SldzUser::getRandom, SldzUserRel.getSupRandom());
+            return sldzUserService.getSingleEntity(wrapper);
+        }catch (Exception e){
+            return null;
+        }
+
+
+
+        }
 
 }

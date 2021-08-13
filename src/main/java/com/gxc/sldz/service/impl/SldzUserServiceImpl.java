@@ -43,6 +43,11 @@ public class SldzUserServiceImpl extends BaseCustomServiceImpl<SldzUserMapper, S
     }
 
     @Override
+    public SldzUser getUserByrandom(String random) {
+        return SldzUserService.getUserByrandom(random);
+    }
+
+    @Override
     public List<SldzUser> UserAll() {
         return SldzUserService.UserAll();
     }

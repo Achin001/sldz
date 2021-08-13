@@ -23,6 +23,8 @@ public interface SldzUserService extends BaseCustomService<SldzUser> {
 
     SldzUser getUserByOpenid(@Param("openid") String openid);
 
+    SldzUser getUserByrandom(@Param("random") String random);
+
     List<SldzUser> UserAll();
 
 }

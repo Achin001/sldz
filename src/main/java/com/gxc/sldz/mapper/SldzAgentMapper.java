@@ -45,6 +45,9 @@ public interface SldzAgentMapper extends BaseCrudMapper<SldzAgent> {
                         @Param("random") String random);
 
 
+    @Select("SELECT * FROM sldz_agent WHERE  agent_random = #{agentRandom}")
+    SldzAgent getAgentByagentRandom(@Param("agentRandom") String agentRandom);
+
     @Select("SELECT * FROM sldz_agent WHERE  openid = #{openid}")
     SldzAgent getAgentByOpenid(@Param("openid") String openid);
 
