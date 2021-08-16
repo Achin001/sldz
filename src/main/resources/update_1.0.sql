@@ -562,3 +562,25 @@ ALTER TABLE `sldz_order` ADD COLUMN `commission_payment` int(8) COMMENT '是否�
 ALTER TABLE `sldz_order` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `commission_payment`;
 -- 2021-08-09 17:10:22 by Achin
 ALTER TABLE `sldz_order` MODIFY COLUMN `commission_payment` int(8) DEFAULT 1 COMMENT '是否发放奖励金' AFTER `products_id_reviewed`;
+-- 2021-08-16 15:24:44 by Achin
+CREATE TABLE `sldz_order_reward_due_log`( `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',`is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记',`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',PRIMARY KEY (`id`))AUTO_INCREMENT=10000002 DEFAULT CHARSET=utf8mb4 COMMENT '订单奖励金发放记录';
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `order_number` varchar(100) COMMENT '订单号' AFTER `id`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `sup_random` varchar(100) COMMENT '上级Random' AFTER `order_number`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `sup_name` varchar(100) COMMENT '上级姓名' AFTER `sup_random`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `relationship` varchar(100) COMMENT '关系' AFTER `sup_name`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `product_id` bigint COMMENT '产品id' AFTER `relationship`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `product_price` double COMMENT '产品价格' AFTER `product_id`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `cart_num` varchar(100) COMMENT '加购数量' AFTER `product_price`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` ADD COLUMN `due_reward` double COMMENT '应得奖励金' AFTER `cart_num`;
+-- 2021-08-16 15:31:03 by Achin
+ALTER TABLE `sldz_order_reward_due_log` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `due_reward`;
+-- 2021-08-16 15:43:36 by Achin
+ALTER TABLE `sldz_order_reward_due_log` MODIFY COLUMN `cart_num` int(8) COMMENT '加购数量' AFTER `product_price`;

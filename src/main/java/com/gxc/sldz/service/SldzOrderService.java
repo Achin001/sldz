@@ -2,6 +2,7 @@ package com.gxc.sldz.service;
 
 import com.diboot.core.vo.JsonResult;
 import com.gxc.sldz.entity.SldzOrder;
+import com.gxc.sldz.vo.OrderRewardDueVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -48,4 +49,11 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
 
     //已完成订单发放奖励金-预览
     JsonResult AwardCompletedCrdersPreview(String orderNumber);
+
+    //已完成订单发放奖励金-发放
+    JsonResult AwardCompletedCrdersPreviewGrant(String orderNumber,List<OrderRewardDueVo> OrderRewardDueVo);
+
+    //已完成订单发放奖励金-查询
+    JsonResult AwardCompletedCrdersPreviewQuery(String orderNumber);
+
 }

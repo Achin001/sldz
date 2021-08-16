@@ -67,6 +67,10 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
     @Update("UPDATE sldz_order SET state = 4  WHERE  order_number =#{orderNumber}")
     boolean ChangeOrderAfterSales(@Param("orderNumber") String orderNumber);
 
+    //改订单奖励金发放状态 改成 已发放
+    @Update("UPDATE sldz_order SET commission_payment = 2  WHERE  order_number =#{orderNumber} and commission_payment = 1")
+    boolean AwardCompletedCrdersPreviewGrant(@Param("orderNumber") String orderNumber);
+
     //获取未发货的数量
     @Select("SELECT COUNT(*) FROM sldz_order WHERE state = 2 AND logistics_number is NULL OR logistics_number ='' ")
     Integer ChangeLogisticsNumber();

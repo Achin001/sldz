@@ -14,6 +14,7 @@ import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.vo.OrderRewardDueVo;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
@@ -182,12 +183,23 @@ public class SldzOrderController extends BaseCustomCrudRestController<SldzOrder>
         return sldzOrderService.AwardCompletedCrdersPreview(orderNumber);
     }
 
-//    @ApiOperation(value = "已完成订单发放奖励金-发放")
+    @ApiOperation(value = "已完成订单发放奖励金-发放")
 //    @ApiImplicitParams({ @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String") })
-//    @RequestMapping(value = "AwardCompletedCrdersPreview", method = RequestMethod.GET)
-//    public JsonResult AwardCompletedCrdersPreview(@RequestBody String orderNumber) throws Exception {
-//        return sldzOrderService.AwardCompletedCrdersPreview(orderNumber);
-//    }
+    @PutMapping("AwardCompletedCrdersPreviewGrant")
+    public JsonResult AwardCompletedCrdersPreviewGrant(
+            String orderNumber,
+            @RequestBody List<OrderRewardDueVo> OrderRewardDueVo) throws Exception {
+        return sldzOrderService.AwardCompletedCrdersPreviewGrant(orderNumber,OrderRewardDueVo);
+    }
+
+
+    @ApiOperation(value = "已完成订单发放奖励金-查询")
+//    @ApiImplicitParams({ @ApiImplicitParam(name = "orderNumber", value = "订单号", required = true, dataType = "String") })
+    @PutMapping("AwardCompletedCrdersPreviewQuery")
+    public JsonResult AwardCompletedCrdersPreviewQuery(String orderNumber) throws Exception {
+        return sldzOrderService.AwardCompletedCrdersPreviewQuery(orderNumber);
+    }
+
 
     // 根据订单号获取已付款订单对象
     public SldzOrder GetOrderObjectByOrderNumbers(String orderNumber) throws Exception {
