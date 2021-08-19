@@ -139,6 +139,7 @@ public class SldzAgentController extends BaseCustomCrudRestController<SldzAgent>
     public JsonResult createEntityMapping(@Valid @RequestBody SldzAgent entity) throws Exception {
         entity.setAgentPasword(SecureUtil.md5(entity.getAgentPhone()));
         entity.setAgentRandom(RandomServer.getRandom());
+
         return super.createEntity(entity);
     }
 

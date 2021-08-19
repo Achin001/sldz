@@ -1,6 +1,7 @@
 package com.gxc.sldz;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.alibaba.fastjson.JSON;
@@ -11,6 +12,7 @@ import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
 import com.gxc.sldz.entity.SldzOrder;
 import com.gxc.sldz.entity.SldzProduct;
+import com.gxc.sldz.service.SendSmsService;
 import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.vo.OrderProductJsonVo;
 import com.gxc.sldz.vo.SldzProductListVO;
@@ -28,20 +30,37 @@ import java.util.List;
 
 @SpringBootTest
 class   SldzApplicationTests {
+    private static String  VerificationCode = "_VerificationCode";
 
-//    @Autowired
-//    private RedisUtils redisUtils;
+
+    @Autowired
+    private RedisUtils redisUtils;
 //
 //    @Autowired
 //    private SldzOrderService sldzOrderService;
 //
 //    @Autowired
 //    private StringEncryptor encryptor;
-//
+    @Autowired
+    private SendSmsService SendSmsService;
+
+
+    @Test
+    void contextLoawasads() {
+        String phone = "18687065139";
+        String name= "郭祥初";
+        String agentname= "张三";
+        String num= "二";
+        String randomNumbers =  RandomUtil.randomNumbers(6);
+
+//        SendSmsService.EnteredSuccess(phone,name,agentname,num);
+
+    }
+
 
 //    @Test
 //    void contextLoawasads() {
-//        System.out.println(encryptor.encrypt("3D3336TD"));
+//        System.out.println(encryptor.encrypt("7kXlqNmiW2Js33mcTBFWh6S7QjB69B"));
 
 //        KeyPair pair = SecureUtil.generateKeyPair("RSA");
 //        System.out.println(Base64.getEncoder().encodeToString(pair.getPublic().getEncoded()));

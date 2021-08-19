@@ -34,6 +34,7 @@
         <emoji.version>4.0.0</emoji.version>
         <lang3.version>3.4</lang3.version>
         <jasypt.version>3.0.3</jasypt.version>
+        <dysmsapi20170525.version>2.0.4</dysmsapi20170525.version>
     </properties>
 
     <dependencies>
@@ -65,6 +66,14 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+
+        <!--短信sdk-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>dysmsapi20170525</artifactId>
+            <version>${dysmsapi20170525.version}</version>
+        </dependency>
+
 
 
         <!-- 阿里oss -->

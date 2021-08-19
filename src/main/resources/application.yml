@@ -40,7 +40,17 @@ jwt:
   secret: ENC(UD1hw8ZwMTuYJaGZOLf6mES0kDS5hfOI11/b30POcVDjbg6oJaeB0KPH8LElk0lBnw4EyWIZRvOcHYAVukYEu50Y7JUx19Ii4D9OPiGGbUI=)
 
 
+
+
+
+
 aliyun:
+  # 私脸定治短信
+  sms:
+    accessKeyID: ENC(YFEhM7gj0XMC8wfszxPcvuwIXg03gdhw9zTpuMeHtY2s1NOWKLdwirbRrg3BgFjO2x+iitADISCASPgHMrUGNg==)
+    accessKeySecret: ENC(8zBWKUWKRj0NdYzr1mOI/Zxr1doPEL/cmetRP2zfaVZIy7PjlUWEacu78x6nzQOudDd65LdoO6Q8ACfKdES5rg==)
+
+
   #OSS
   oss:
     #此处填你自己创建oss的bucketName

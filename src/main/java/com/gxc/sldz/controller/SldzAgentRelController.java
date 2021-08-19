@@ -7,6 +7,7 @@ import com.gxc.sldz.dto.SldzAgentDTO;
 import com.gxc.sldz.entity.SldzAdmin;
 import com.gxc.sldz.entity.SldzAgent;
 import com.gxc.sldz.service.RandomServer;
+import com.gxc.sldz.service.SendSmsService;
 import com.gxc.sldz.service.SldzAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,11 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     @Autowired
     private SldzAgentService sldzAgentService;
 
+    //阿里云短信服务
+    @Autowired
+    private SendSmsService SendSmsService;
+
+
     /**
      * 创建资源对象
      * @param entity
@@ -57,10 +63,46 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
         // 查询该下级是否有上级
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgentRel::getSubRandom, entity.getSubRandom());
-        SldzAgentRel SldzAgentRel = sldzAgentRelService.getSingleEntity(wrapper);
-        if (ObjectUtil.isNotNull(SldzAgentRel)) {
+        SldzAgentRel SldzAgentRelp = sldzAgentRelService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgentRelp)) {
             return JsonResult.FAIL_OPERATION("该代理商有上级");
         }
+        //获取上级代理商的agennt
+        SldzAgent SupSldzAgent = sldzAgentService.getAgentByagentRandom(entity.getSupRandom());
+        //获取添加的代理商的agennt
+        SldzAgent SubSldzAgent =  sldzAgentService.getAgentByagentRandom(entity.getSubRandom());
+
+        //上级代理商的手机
+        String phone = SupSldzAgent.getAgentPhone();
+        //上级代理商的名称
+        String name= SupSldzAgent.getAgentName();
+        //添加的代理商名称
+        String agentname= SubSldzAgent.getAgentName();
+        //关系
+        String num= "一";
+        //发送短信 一级
+        SendSmsService.EnteredSuccess(phone,name,agentname,num);
+
+
+        // 查询该上级是否有上级
+        LambdaQueryWrapper<SldzAgentRel> supwrapper = new LambdaQueryWrapper<>();
+        supwrapper.eq(SldzAgentRel::getSubRandom, SupSldzAgent.getAgentRandom());
+        SldzAgentRel SldzAgentRela = sldzAgentRelService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgentRela)) {
+            //获取上上级代理商的agennt
+            SldzAgent SupSupSldzAgent = sldzAgentService.getAgentByagentRandom(SldzAgentRela.getSupRandom());
+            //上级代理商的手机
+            String phone1 = SupSupSldzAgent.getAgentPhone();
+            //上级代理商的名称
+            String name1= SupSupSldzAgent.getAgentName();
+            //添加的代理商名称
+            String agentname1= SubSldzAgent.getAgentName();
+            //关系
+            String num1= "二";
+            //发送短信 二级
+            SendSmsService.EnteredSuccess(phone1,name1,agentname1,num1);
+        }
+
         return super.createEntity(entity);
     }
 
