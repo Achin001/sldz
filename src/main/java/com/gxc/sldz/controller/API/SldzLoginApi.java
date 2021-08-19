@@ -161,26 +161,33 @@ public class SldzLoginApi {
 
 
     @ApiOperation(value = "代理商短信验证码登录-发送验证码")
-    @ApiImplicitParams({
+//    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
-    })
+//    })
     @PostMapping("/VerificationCodeLoginSendCode")
     public JsonResult VerificationCodeLoginSendCode(@RequestBody String phone) throws Exception {
-        String randomNumbers =  RandomUtil.randomNumbers(6);
-        //5分钟 300秒
-        redisUtils.set(phone+VerificationCode,randomNumbers,300);
+        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzAgent::getAgentPhone, phone);
+        SldzAgent SldzAgent =  sldzAgentService.getSingleEntity(wrapper);
+        if (ObjectUtil.isNotNull(SldzAgent)){
+            String randomNumbers =  RandomUtil.randomNumbers(6);
+            //5分钟 300秒
+            redisUtils.set(phone+VerificationCode,randomNumbers,300);
 //        正式环境打开
-        return JsonResult.OK().data(SendSmsService.LoginConfirmationVerificationCode(phone,randomNumbers));
-        //测试打开
+            return JsonResult.OK().data(SendSmsService.LoginConfirmationVerificationCode(phone,randomNumbers));
+            //测试打开
 //        return JsonResult.OK().data(true);
+        }
+        return JsonResult.OK().data(false);
+
     }
 
 
     @ApiOperation(value = "代理商短信验证码登录-登录")
-    @ApiImplicitParams({
+//    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
 //            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
-    })
+//    })
     @PostMapping("/VerificationCodeLogin")
     public JsonResult VerificationCodeLogin(@Valid @RequestBody SldzAgent entity) throws Exception {
         //拿到手机号去redis查询有无验证码
@@ -223,9 +230,9 @@ public class SldzLoginApi {
 
 
     @ApiOperation(value = "代理商忘记密码-发送验证码")
-    @ApiImplicitParams({
+//    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
-    })
+//    })
     @PostMapping("/AgentForgotPasswordSendCode")
     public JsonResult AgentForgotPasswordSendCode(@RequestBody String phone) throws Exception {
         String randomNumbers =  RandomUtil.randomNumbers(6);
@@ -238,12 +245,12 @@ public class SldzLoginApi {
     }
 
 
-    @ApiOperation(value = "代理商短信验证码登录-确定修改")
-    @ApiImplicitParams({
+    @ApiOperation(value = "代理商忘记密码-确定修改")
+//    @ApiImplicitParams({
 //            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
 //            @ApiImplicitParam(name = "agentPasword", value = "新密码", required = true, dataType = "String"),
 //            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
-    })
+//    })
     @PostMapping("/AgentForgotPasswordSendCodeDetermine")
     public JsonResult AgentForgotPasswordSendCodeDetermine(@Valid @RequestBody SldzAgent entity) throws Exception {
         //拿到手机号去redis查询有无验证码

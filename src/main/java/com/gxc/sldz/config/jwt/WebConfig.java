@@ -38,7 +38,11 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/sldzProductCategory/**",//产品分类列表
                         "/api/Home/**",//首页
                         "/api/sldzProductReviews/list",//产品评论
-                        "/api/sldzBanner/**"//轮播图
+                        "/api/sldzBanner/**",//轮播图
+                        "/api/VerificationCodeLoginSendCode",//代理商短信验证码登录-发送验证码
+                        "/api/VerificationCodeLogin",//代理商短信验证码登录-登录
+                        "/api/AgentForgotPasswordSendCode",//代理商忘记密码-发送验证码
+                        "/api/AgentForgotPasswordSendCodeDetermine"//代理商忘记密码-确定修改
 
                 );
 
