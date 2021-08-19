@@ -129,16 +129,20 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
     public JsonResult relAgentListClassA(SldzAgentRel queryDto) throws Exception {
         LambdaQueryWrapper<SldzAgentRel> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(SldzAgentRel::getSupRandom, queryDto.getSupRandom());
-        List<SldzAgentRel>  SldzAgentRel = sldzAgentRelService.getEntityList(wrapper);
+        List<SldzAgentRel>  SldzAgentRel1 = sldzAgentRelService.getEntityList(wrapper);
         List<SldzAgent> SldzAgentsList = new ArrayList<>();
-        for(SldzAgentRel s :SldzAgentRel){
+        for(SldzAgentRel s :SldzAgentRel1){
             LambdaQueryWrapper<SldzAgent> wrappersubs = new LambdaQueryWrapper<>();
             wrappersubs.eq(SldzAgent::getAgentRandom, s.getSubRandom());
             SldzAgent  SldzAgent  = sldzAgentService.getSingleEntity(wrappersubs);
             SldzAgentsList.add(SldzAgent);
         }
+
         for(SldzAgent s :SldzAgentsList){
-            s.setAgentPasword("");
+            LambdaQueryWrapper<SldzAgentRel> swrapper = new LambdaQueryWrapper<>();
+            swrapper.eq(SldzAgentRel::getSupRandom, s.getAgentRandom());
+            //查出下级个数 写入密码字段
+            s.setAgentPasword(sldzAgentRelService.getEntityListCount(swrapper)+"");
         }
         return JsonResult.OK().data(SldzAgentsList);
     }

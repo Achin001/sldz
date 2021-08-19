@@ -1,5 +1,10 @@
 package com.gxc.sldz.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.gxc.sldz.entity.SldzAgent;
+import com.gxc.sldz.entity.SldzAgentRel;
+import com.gxc.sldz.entity.SldzUser;
+import com.gxc.sldz.service.SldzUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
@@ -14,6 +19,7 @@ import com.gxc.sldz.service.SldzUserRelService;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +38,11 @@ public class SldzUserRelController extends BaseCustomCrudRestController<SldzUser
 
     @Autowired
     private SldzUserRelService sldzUserRelService;
+
+
+    @Autowired
+    private SldzUserService SldzUserService;
+
 
     /***
     * 查询ViewObject的分页数据
@@ -94,5 +105,31 @@ public class SldzUserRelController extends BaseCustomCrudRestController<SldzUser
     public JsonResult deleteEntityMapping(@PathVariable("id")Long id) throws Exception {
         return super.deleteEntity(id);
     }
+
+
+
+    @ApiOperation(value = "根据唯一编码获取一级客户列表")
+    @GetMapping("/relUserListClassA")
+    public JsonResult relUserListClassA(SldzUserRel queryDto) throws Exception {
+        LambdaQueryWrapper<SldzUserRel> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(SldzUserRel::getSupRandom, queryDto.getSupRandom());
+        List<SldzUserRel>  SldzUserRel1 = sldzUserRelService.getEntityList(wrapper);
+        List<SldzUser> SldzUserList = new ArrayList<>();
+        for(SldzUserRel s :SldzUserRel1){
+            LambdaQueryWrapper<SldzUser> wrappersubs = new LambdaQueryWrapper<>();
+            wrappersubs.eq(SldzUser::getRandom, s.getSubRandom());
+            SldzUser  SldzUser  = SldzUserService.getSingleEntity(wrappersubs);
+            SldzUserList.add(SldzUser);
+        }
+
+        for(SldzUser s :SldzUserList){
+            LambdaQueryWrapper<SldzUserRel> swrapper = new LambdaQueryWrapper<>();
+            swrapper.eq(SldzUserRel::getSupRandom, s.getRandom());
+            //查出下级个数 写入密码字段
+            s.setCity(sldzUserRelService.getEntityListCount(swrapper)+"");
+        }
+        return JsonResult.OK().data(SldzUserList);
+    }
+
 
 } 

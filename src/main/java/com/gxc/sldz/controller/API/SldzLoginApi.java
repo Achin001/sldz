@@ -94,12 +94,6 @@ public class SldzLoginApi {
 
 
 
-
-
-
-
-    //@RequestParam(value = "code", required = true) String code,
-//    @RequestParam(value = "SldzUsers", required = true) SldzUser SldzUsers
     @ApiOperation(value = "微信登录")
     @PostMapping("/WeChatLogin")
     public JsonResult WeChatLogin(@RequestBody SldzUser entity) throws Exception {
@@ -168,7 +162,7 @@ public class SldzLoginApi {
 
     @ApiOperation(value = "代理商短信验证码登录-发送验证码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
     })
     @PostMapping("/VerificationCodeLoginSendCode")
     public JsonResult VerificationCodeLoginSendCode(@RequestBody String phone) throws Exception {
@@ -184,8 +178,8 @@ public class SldzLoginApi {
 
     @ApiOperation(value = "代理商短信验证码登录-登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
     })
     @PostMapping("/VerificationCodeLogin")
     public JsonResult VerificationCodeLogin(@Valid @RequestBody SldzAgent entity) throws Exception {
@@ -230,7 +224,7 @@ public class SldzLoginApi {
 
     @ApiOperation(value = "代理商忘记密码-发送验证码")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "phone", value = "账号/手机号", required = true, dataType = "String"),
     })
     @PostMapping("/AgentForgotPasswordSendCode")
     public JsonResult AgentForgotPasswordSendCode(@RequestBody String phone) throws Exception {
@@ -246,12 +240,10 @@ public class SldzLoginApi {
 
     @ApiOperation(value = "代理商短信验证码登录-确定修改")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "agentPasword", value = "新密码", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
-
+//            @ApiImplicitParam(name = "agentPhone", value = "账号/手机号", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "agentPasword", value = "新密码", required = true, dataType = "String"),
+//            @ApiImplicitParam(name = "agentRandom", value = "验证码写在agentRandom", required = true, dataType = "String"),
     })
-
     @PostMapping("/AgentForgotPasswordSendCodeDetermine")
     public JsonResult AgentForgotPasswordSendCodeDetermine(@Valid @RequestBody SldzAgent entity) throws Exception {
         //拿到手机号去redis查询有无验证码
