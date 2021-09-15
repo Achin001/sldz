@@ -81,7 +81,7 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
         //关系
         String num= "一";
         //发送短信 一级
-        SendSmsService.EnteredSuccess(phone,name,agentname,num);
+//        SendSmsService.EnteredSuccess(phone,name,agentname,num);
 
 
         // 查询该上级是否有上级
@@ -100,7 +100,7 @@ public class SldzAgentRelController extends BaseCustomCrudRestController<SldzAge
             //关系
             String num1= "二";
             //发送短信 二级
-            SendSmsService.EnteredSuccess(phone1,name1,agentname1,num1);
+//            SendSmsService.EnteredSuccess(phone1,name1,agentname1,num1);
         }
 
         return super.createEntity(entity);

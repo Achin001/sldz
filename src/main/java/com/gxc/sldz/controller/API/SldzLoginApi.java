@@ -174,9 +174,9 @@ public class SldzLoginApi {
             //5分钟 300秒
             redisUtils.set(phone+VerificationCode,randomNumbers,300);
 //        正式环境打开
-            return JsonResult.OK().data(SendSmsService.LoginConfirmationVerificationCode(phone,randomNumbers));
+//            return JsonResult.OK().data(SendSmsService.LoginConfirmationVerificationCode(phone,randomNumbers));
             //测试打开
-//        return JsonResult.OK().data(true);
+        return JsonResult.OK().data(true);
         }
         return JsonResult.OK().data(false);
 
@@ -239,9 +239,9 @@ public class SldzLoginApi {
         //5分钟 300秒
         redisUtils.set(phone+ForgetPassword,randomNumbers,300);
 //        正式环境打开
-        return JsonResult.OK().data(SendSmsService.ModifyPasswordVerificationCode(phone,randomNumbers));
+//        return JsonResult.OK().data(SendSmsService.ModifyPasswordVerificationCode(phone,randomNumbers));
         //测试打开
-//        return JsonResult.OK().data(true);
+        return JsonResult.OK().data(true);
     }
 
 

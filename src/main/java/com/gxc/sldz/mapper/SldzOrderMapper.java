@@ -88,6 +88,22 @@ public interface SldzOrderMapper extends BaseCrudMapper<SldzOrder> {
 
 
 
+    //根据订单状态获取月份订单数量
+    @Select("SELECT COUNT(*) FROM sldz_order WHERE state = #{state}   and DATE_FORMAT( payment_time, '%Y-%m' ) = #{time}")
+    int ObtainMonthlyOrderQuantityAccordingOrderStatus(@Param("state") int state,@Param("time") String time);
+
+
+
+
+    //根据订单状态获取月份订单实付金额总和
+    @Select("SELECT SUM(amount_actually_paid) FROM sldz_order WHERE state = #{state}   and DATE_FORMAT( payment_time, '%Y-%m' ) = #{time}")
+    Double GetAmountPaidInOrdersInTheMonthAccordingOrderStatus(@Param("state") int state,@Param("time") String time);
+
+
+
+
+
+
 
 }
 

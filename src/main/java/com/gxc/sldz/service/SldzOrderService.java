@@ -56,4 +56,10 @@ public interface SldzOrderService extends BaseCustomService<SldzOrder> {
     //已完成订单发放奖励金-查询
     JsonResult AwardCompletedCrdersPreviewQuery(String orderNumber);
 
+    //根据订单状态获取月份订单数量
+    int ObtainMonthlyOrderQuantityAccordingOrderStatus(@Param("state") int state,@Param("time") String time);
+
+    //根据订单状态获取月份订单实付金额总和
+    double GetAmountPaidInOrdersInTheMonthAccordingOrderStatus(@Param("state") int state,@Param("time") String time);
+
 }

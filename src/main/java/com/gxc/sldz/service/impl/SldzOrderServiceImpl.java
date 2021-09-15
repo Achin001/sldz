@@ -667,6 +667,21 @@ public class SldzOrderServiceImpl extends BaseCustomServiceImpl<SldzOrderMapper,
         return JsonResult.OK().data(SldzOrderRewardDueLogService.getEntityList(SldzOrderRewardDueLogwrapper));
     }
 
+    @Override
+    public int ObtainMonthlyOrderQuantityAccordingOrderStatus(int state, String time) {
+        return SldzOrderMapper.ObtainMonthlyOrderQuantityAccordingOrderStatus(state,time);
+    }
+
+    @Override
+    public double GetAmountPaidInOrdersInTheMonthAccordingOrderStatus(int state, String time) {
+        Double s =   SldzOrderMapper.GetAmountPaidInOrdersInTheMonthAccordingOrderStatus(state,time);
+        if (s== null ){
+            return 0.00;
+        }
+
+        return s;
+    }
+
 
     public Map getUser(String random) {
         Map map = new HashMap();

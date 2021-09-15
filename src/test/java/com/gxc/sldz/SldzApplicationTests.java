@@ -8,11 +8,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.gxc.sldz.Utils.DateUtils;
 import com.gxc.sldz.Utils.OrderUtil;
 import com.gxc.sldz.Utils.RedisUtils;
-import com.gxc.sldz.entity.SldzOrder;
-import com.gxc.sldz.entity.SldzProduct;
+import com.gxc.sldz.entity.*;
+import com.gxc.sldz.service.RandomServer;
 import com.gxc.sldz.service.SendSmsService;
+import com.gxc.sldz.service.SldzAgentService;
 import com.gxc.sldz.service.SldzOrderService;
 import com.gxc.sldz.vo.OrderProductJsonVo;
 import com.gxc.sldz.vo.SldzProductListVO;
@@ -24,6 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.security.KeyPair;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -41,21 +45,33 @@ class   SldzApplicationTests {
 //
 //    @Autowired
 //    private StringEncryptor encryptor;
-    @Autowired
-    private SendSmsService SendSmsService;
+//    @Autowired
+//    private SendSmsService SendSmsService;
+
+//    @Autowired
+//    SldzAgentService SldzAgentService;
+//    @Autowired
+//    RandomServer RandomServer;
 
 
-    @Test
-    void contextLoawasads() {
-        String phone = "18687065139";
-        String name= "郭祥初";
-        String agentname= "张三";
-        String num= "二";
-        String randomNumbers =  RandomUtil.randomNumbers(6);
-
-//        SendSmsService.EnteredSuccess(phone,name,agentname,num);
-
-    }
+//    @Test
+//    void contextLoawasads() throws ParseException {
+//        LambdaQueryWrapper<SldzAgent> wrapper = new LambdaQueryWrapper<>();
+//
+//     List<SldzAgent> s =   SldzAgentService.getEntityList(wrapper);
+//     for (SldzAgent s1 :s){
+//         UpdateWrapper<SldzAgent> SldzCustomerProfileupdateWrapper = new UpdateWrapper<>();
+//         SldzCustomerProfileupdateWrapper.set("agent_grade_id", 1);
+//         SldzCustomerProfileupdateWrapper.set("agent_random", RandomServer.getRandom());
+//         SldzCustomerProfileupdateWrapper.set("agent_pasword", SecureUtil.md5(s1.getAgentPhone()));
+//         SldzCustomerProfileupdateWrapper.set("agent_gender",2);
+//         SldzCustomerProfileupdateWrapper.eq("id",s1.getId());
+//         SldzAgentService.updateEntity(SldzCustomerProfileupdateWrapper);
+//     }
+//
+//        System.out.println(s);
+//
+//    }
 
 
 //    @Test

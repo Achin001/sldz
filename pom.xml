@@ -31,7 +31,6 @@
         <bouncycastle.version>1.46</bouncycastle.version>
         <fastjson.version>1.2.47</fastjson.version>
         <best-pay-sdk.version>1.3.3</best-pay-sdk.version>
-        <emoji.version>4.0.0</emoji.version>
         <lang3.version>3.4</lang3.version>
         <jasypt.version>3.0.3</jasypt.version>
         <dysmsapi20170525.version>2.0.4</dysmsapi20170525.version>
@@ -53,12 +52,6 @@
             <version>${lang3.version}</version>
         </dependency>
 
-        <!--emoji过滤-->
-        <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-            <version>${emoji.version}</version>
-        </dependency>
 
         <!-- fastjson -->
         <dependency>

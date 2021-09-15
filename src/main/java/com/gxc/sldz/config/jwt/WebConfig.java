@@ -42,8 +42,9 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/VerificationCodeLoginSendCode",//代理商短信验证码登录-发送验证码
                         "/api/VerificationCodeLogin",//代理商短信验证码登录-登录
                         "/api/AgentForgotPasswordSendCode",//代理商忘记密码-发送验证码
-                        "/api/AgentForgotPasswordSendCodeDetermine"//代理商忘记密码-确定修改
+                        "/api/AgentForgotPasswordSendCodeDetermine",//代理商忘记密码-确定修改
 
+                        "/common/**"//公共服务接口
                 );
 
 
