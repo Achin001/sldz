@@ -33,6 +33,398 @@
       <change afterPath="$PROJECT_DIR$/../Util/appservice_log/info/info_chargebox_mc-2021-07-22.0.log" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/miniapp.siliandingzhi.com.pfx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/pfx-password.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/SldzApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Task/OrderTask.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/AliyunOssUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Constant$Redis.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Constant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/DateUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Logistics.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/OrderNumberTimeUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/OrderUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/RandomChangeUsers.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/RedisUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Response.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/ResponseCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/StringRandomUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/wxUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/wxconfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Druid/DruidConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/OssConfiguration.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/PayConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Swagger2Configuration.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/BaseController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/CorsInterceptor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JWT.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JwtInterceptor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/WebConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzAgentApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBankApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBannerApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzCompanyCouponsApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzCustomerProfileApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzHomeApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzIncomeDetailsApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzLoginApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzOrderApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzOrderPayApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductCategoryApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductReviewsApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzPunchClockApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzShopCartApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzUserApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzUserRelApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzWithdrawalApi.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/getUnlimited.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/BaseCustomCrudRestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/DictionaryController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/OssController/OssController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAdminController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAdminLogin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentBonusLogController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentGradeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentGroupController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentIntegralLogController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzBannerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzCompanyCouponsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzCustomerProfileController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzHomeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzHomePageController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzOrderController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductCategoryController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductReviewsController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzPunchClockController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzUserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzUserRelController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzWithdrawalController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAdminDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentBonusLogDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentGradeDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentGroupDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentIntegralLogDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentLevelRewardDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentProductPriceDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentRelDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBankDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBannerDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBonuSsettingDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCompanyCouponsDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCustomerProfileDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCustomerTreatmentFileDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzOrderDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzOrderRewardDueLogDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductCategoryDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductReviewsDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzPunchClockDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzShopCartDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzUserDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzUserRelDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzWithdrawalDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/BaseCustomEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/ProductSsalesaTem.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAdmin.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentBonusLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentGrade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentGroup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentIntegralLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentLevelReward.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentProductPrice.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentRel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBank.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBanner.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBonuSsetting.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCompanyCoupons.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCustomerProfile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCustomerTreatmentFile.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzOrder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzOrderRewardDueLog.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProduct.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductCategory.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductReviews.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzPunchClock.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzShopCart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzUser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzUserRel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzWithdrawal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/handler/GeneralExceptionHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAdminMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentBonusLogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentGradeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentGroupMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentIntegralLogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentLevelRewardMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentProductPriceMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentRelMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBankMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBannerMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBonuSsettingMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCompanyCouponsMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCustomerProfileMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCustomerTreatmentFileMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzOrderMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzOrderRewardDueLogMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductCategoryMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductReviewsMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzPunchClockMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzShopCartMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzUserMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzUserRelMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzWithdrawalMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/BaseCustomService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/OssServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/RandomServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SendSmsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAdminService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentBonusLogService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentGradeService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentGroupService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentIntegralLogService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentLevelRewardService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentProductPriceService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentRelService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBankService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBannerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBonuSsettingService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCompanyCouponsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCustomerProfileService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCustomerTreatmentFileService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzOrderRewardDueLogService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzOrderService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductCategoryService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductReviewsService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzPunchClockService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzShopCartService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzUserRelService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzUserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzWithdrawalService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/BaseCustomServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/OssServerImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/RandomServerImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SendSmsServiceimpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAdminServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentBonusLogServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentGradeServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentGroupServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentIntegralLogServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentLevelRewardServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentProductPriceServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentRelServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBankServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBannerServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBonuSsettingServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCompanyCouponsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCustomerProfileServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCustomerTreatmentFileServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzOrderRewardDueLogServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzOrderServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductCategoryServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductReviewsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzPunchClockServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzShopCartServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzUserRelServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzUserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzWithdrawalServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/wxUtilServerImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/wxUtilServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/OrderProductJsonVo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/OrderRewardDueVo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAdminDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAdminListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentBonusLogDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentBonusLogListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGradeDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGradeListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGroupDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGroupListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentIntegralLogDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentIntegralLogListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentLevelRewardDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentLevelRewardListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentProductPriceDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentProductPriceListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentRelDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentRelListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBankDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBankListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBonuSsettingDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBonuSsettingListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCompanyCouponsDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCompanyCouponsListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerProfileDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerProfileListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerTreatmentFileDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerTreatmentFileListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderRewardDueLogDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderRewardDueLogListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductReviewsDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductReviewsListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzPunchClockDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzPunchClockListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzShopCartDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzShopCartListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserRelDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserRelListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzWithdrawalDetailVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzWithdrawalListVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SuperiorShouldBeRewardedVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/miniapp.siliandingzhi.com.pfx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/pfx-password.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/app.77d96836.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-19e9e40b.9126409c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-344e89be.77f9a9c2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-41b001c4.2a5152ce.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-43e918a4.09b3e056.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-4bd6d997.e480b2d8.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-7fcdd0aa.6a9b1b6b.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-e2635862.4cee3080.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/chunk-vendors.ff6dfb82.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule0.63d05d7c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule0~designerModule3.ff50d398.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule1.fa34cb1b.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule10.a54f9aa8.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule11.742b8c42.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule12.9d759e6d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule13.e064d139.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule14.74c76a4e.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule2.c033d033.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule2~designerModule4.d1f6b854.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule3.a2df0975.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule4.38720f2b.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule5.36bf99a3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule5~designerModule7.c04cdeee.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule6.7890c88e.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule7.5ebafd2c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule8.6a88906f.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModule9.1ff72c9a.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig0.1515424d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig0~designerModuleConfig11~designerModuleConfig3~designerModuleConfig5~designerMod~f49b3302.fe0edd46.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig1.6e0d88d1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig10.9e1dea77.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig11.4b635d10.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig11~designerModuleConfig14.45fe22cf.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig11~designerModuleConfig3~designerModuleConfig5.902f1746.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig12.2641f3ae.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig13.5fdb3c73.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig14.3cae9b2c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig2.8955d90a.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig3.bcae22e6.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig4.3012cc92.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig5.69ecfb3d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig6.bc83439a.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig7.c7d2ec7f.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig8.187cef15.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/designerModuleConfig9.fbbedc96.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/css/fail.e56c45a7.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/fonts/element-icons.535877f5.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/fonts/element-icons.732389de.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/img/logo.4a809e4c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/app.60a7c65d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-19e9e40b.cc1def99.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-344e89be.44585da7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-41b001c4.a2d5aa10.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-43e918a4.949c5cea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-4bd6d997.6603a2da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-7fcdd0aa.65cfdad5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-c7b3780e.08fad9da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-d7873b00.55e3d42c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-e2635862.1ec849a1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/chunk-vendors.82c0edfe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule0.aef89413.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule0~designerModule3.2dd38c11.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule1.cf452ff2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule10.cba37654.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule11.fe69bf0f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule12.6c2d76a0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule13.2b29acca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule14.e33e43cd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule2.fe8a1ec3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule2~designerModule4.d839686a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule3.6136dc1f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule4.6d8ebc5c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule5.be8c5a79.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule5~designerModule7.c44104c5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule6.e7f791ac.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule7.5609843a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule8.caedc35d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModule9.9d392124.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig0.8c9a23b7.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig0~designerModuleConfig11~designerModuleConfig3~designerModuleConfig5~designerMod~f49b3302.5fb761b5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig1.f0ced4f4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig10.70f52557.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig11.c248fff2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig11~designerModuleConfig14.cedb0337.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig11~designerModuleConfig3~designerModuleConfig5.b767e10d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig12.2da72b80.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig13.eff9c183.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig14.099661e6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig2.af9fbc8a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig3.706e2f57.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig4.d5f42a10.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig5.fa41293d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig6.a65e4e73.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig7.88f7648a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig8.a814cdb4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/designerModuleConfig9.cbdb99d5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/fail.a4c556e2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata0.e53640e5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata1.52d310ff.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata10.366f8a09.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata11.c38cacb8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata12.25b09a9f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata13.0d3e5ccf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata14.05450e1b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata2.825b484b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata3.7d7ad311.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata4.a3781faa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata5.aa192747.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata6.d516e8d3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata7.bf8be7d1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata8.6fb582da.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/metadata9.c7337dfe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata0.86d96132.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata1.5c4d913c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata10.2acdc830.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata11.2aad6981.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata12.9ec36916.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata13.f606f55d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata2.5323dd7d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata3.e2e88701.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata4.c140b52b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata5.a581a827.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata6.1b635aaa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata7.d2b4c0f2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata8.6d9a260f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/diboot/js/panel_metadata9.331b9e8f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/update_1.0.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website/src/main/java/com/gxc/website/Config/test.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website/toGitHub.sh" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../website2/Dockerfile" afterDir="false" />
@@ -42,271 +434,7 @@
       <change beforePath="$PROJECT_DIR$/../mvnw.cmd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/SldzApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Task/OrderTask.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/AliyunOssUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Constant$Redis.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Constant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/DateUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Logistics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/OrderNumberTimeUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/OrderUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/RandomChangeUsers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/RedisUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/ResponseCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/StringRandomUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/wxUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/Utils/wxconfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Druid/DruidConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/OssConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/PayConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/Swagger2Configuration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/BaseController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/CorsInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JWT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/JwtInterceptor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/config/jwt/WebConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzAgentApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBankApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzBannerApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzCompanyCouponsApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzCustomerProfileApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzHomeApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzIncomeDetailsApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzLoginApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzOrderApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzOrderPayApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductCategoryApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzProductReviewsApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzPunchClockApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzShopCartApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzUserApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzUserRelApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/SldzWithdrawalApi.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/API/getUnlimited.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/BaseCustomCrudRestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/DictionaryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/OssController/OssController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAdminLogin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentBonusLogController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentGradeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentGroupController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentIntegralLogController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzAgentRelController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzBannerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzCompanyCouponsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzCustomerProfileController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzHomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzHomePageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzOrderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzProductReviewsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzPunchClockController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzUserRelController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/controller/SldzWithdrawalController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAdminDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentBonusLogDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentGradeDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentGroupDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentIntegralLogDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentLevelRewardDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentProductPriceDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzAgentRelDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBankDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBannerDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzBonuSsettingDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCompanyCouponsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCustomerProfileDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzCustomerTreatmentFileDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzOrderDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzOrderRewardDueLogDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductCategoryDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzProductReviewsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzPunchClockDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzShopCartDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzUserDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzUserRelDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/dto/SldzWithdrawalDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/BaseCustomEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/ProductSsalesaTem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAdmin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentBonusLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentGrade.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentGroup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentIntegralLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentLevelReward.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentProductPrice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzAgentRel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBanner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzBonuSsetting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCompanyCoupons.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCustomerProfile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzCustomerTreatmentFile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzOrder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzOrderRewardDueLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProduct.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzProductReviews.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzPunchClock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzShopCart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzUserRel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/entity/SldzWithdrawal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/handler/GeneralExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAdminMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentBonusLogMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentGradeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentGroupMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentIntegralLogMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentLevelRewardMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentProductPriceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzAgentRelMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBankMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBannerMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzBonuSsettingMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCompanyCouponsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCustomerProfileMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzCustomerTreatmentFileMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzOrderMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzOrderRewardDueLogMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductCategoryMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzProductReviewsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzPunchClockMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzShopCartMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzUserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzUserRelMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/mapper/SldzWithdrawalMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/BaseCustomService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/OssServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/RandomServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SendSmsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAdminService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentBonusLogService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentGradeService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentGroupService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentIntegralLogService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentLevelRewardService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentProductPriceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentRelService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzAgentService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBankService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBannerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzBonuSsettingService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCompanyCouponsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCustomerProfileService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzCustomerTreatmentFileService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzOrderRewardDueLogService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzOrderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductCategoryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductReviewsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzPunchClockService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzShopCartService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzUserRelService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzUserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/SldzWithdrawalService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/BaseCustomServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/OssServerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/RandomServerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SendSmsServiceimpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAdminServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentBonusLogServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentGradeServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentGroupServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentIntegralLogServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentLevelRewardServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentProductPriceServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentRelServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzAgentServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBankServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBannerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzBonuSsettingServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCompanyCouponsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCustomerProfileServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzCustomerTreatmentFileServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzOrderRewardDueLogServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzOrderServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductCategoryServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductReviewsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzProductServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzPunchClockServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzShopCartServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzUserRelServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzUserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/SldzWithdrawalServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/impl/wxUtilServerImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/service/wxUtilServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/OrderProductJsonVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/OrderRewardDueVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAdminDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAdminListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentBonusLogDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentBonusLogListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGradeDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGradeListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGroupDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentGroupListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentIntegralLogDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentIntegralLogListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentLevelRewardDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentLevelRewardListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentProductPriceDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentProductPriceListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentRelDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzAgentRelListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBankDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBankListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBannerListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBonuSsettingDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzBonuSsettingListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCompanyCouponsDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCompanyCouponsListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerProfileDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerProfileListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerTreatmentFileDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzCustomerTreatmentFileListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderRewardDueLogDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzOrderRewardDueLogListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductCategoryListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductReviewsDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzProductReviewsListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzPunchClockDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzPunchClockListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzShopCartDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzShopCartListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserRelDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzUserRelListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzWithdrawalDetailVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SldzWithdrawalListVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/gxc/sldz/vo/SuperiorShouldBeRewardedVO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/miniapp.siliandingzhi.com.pfx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pfx-password.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/update_1.0.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/gxc/sldz/SldzApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentRelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gxc/sldz/controller/SldzAgentRelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/HasordemoApplication.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/java/com/achin/hasor/ServletInitializer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" />
@@ -375,6 +503,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.4770115" />
@@ -582,7 +711,11 @@
       <workItem from="1631950360217" duration="4188000" />
       <workItem from="1632282702212" duration="47000" />
       <workItem from="1632282766594" duration="6692000" />
-      <workItem from="1632316711597" duration="4927000" />
+      <workItem from="1632316711597" duration="7705000" />
+      <workItem from="1632901974091" duration="7105000" />
+      <workItem from="1633680760598" duration="58000" />
+      <workItem from="1633680835689" duration="223000" />
+      <workItem from="1634106466176" duration="7007000" />
     </task>
     <servers />
   </component>
@@ -626,7 +759,6 @@
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state x="568" y="73" key="#Dockerfile/0.23.1680.980@0.23.1680.980" timestamp="1628590638657" />
-    <state x="649" y="75" key="#Dockerfile/0.23.1920.1011@0.23.1920.1011" timestamp="1624091455857" />
     <state x="377" y="142" width="1180" height="676" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1628679708752">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
@@ -636,13 +768,11 @@
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="678" y="293" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1010@0.23.1920.1010" timestamp="1629352367932" />
-    <state x="678" y="293" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1011@0.23.1920.1011" timestamp="1624616417599" />
     <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser" timestamp="1629787783025">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="693" y="316" key="#com.intellij.ide.util.MemberChooser/0.23.1680.980@0.23.1680.980" timestamp="1628499544741" />
     <state x="2472" y="230" key="#com.intellij.ide.util.MemberChooser/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626251355799" />
-    <state x="693" y="316" key="#com.intellij.ide.util.MemberChooser/0.23.1680.981@0.23.1680.981" timestamp="1625036870812" />
     <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser/0.23.1920.1010@0.23.1920.1010" timestamp="1629787783025" />
     <state x="792" y="325" key="#com.intellij.ide.util.MemberChooser/0.23.1920.1011@0.23.1920.1011" timestamp="1626689840171" />
     <state x="648" y="271" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1628673297637">
@@ -653,10 +783,6 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="631" y="475" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1625567916949" />
-    <state x="780" y="434" width="472" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1624884582680">
-      <screen x="0" y="23" width="1920" height="1011" />
-    </state>
-    <state x="780" y="434" width="472" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1920.1011@0.23.1920.1011" timestamp="1624884582680" />
     <state x="649" y="317" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1626341203823">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -676,145 +802,133 @@
     <state x="114" y="126" width="1662" height="772" key="DiffContextDialog" timestamp="1629788243215">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state x="100" y="123" width="1454" height="749" key="DiffContextDialog/0.23.1680.981@0.23.1680.981" timestamp="1624253392305" />
     <state x="114" y="126" width="1662" height="772" key="DiffContextDialog/0.23.1920.1010@0.23.1920.1010" timestamp="1629788243215" />
     <state x="114" y="126" width="1662" height="772" key="DiffContextDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1626255975956" />
     <state x="748" y="290" key="FileChooserDialogImpl" timestamp="1629187207809">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="748" y="290" key="FileChooserDialogImpl/0.23.1920.1010@0.23.1920.1010" timestamp="1629187207809" />
-    <state width="1638" height="253" key="GridCell.Tab.0.bottom" timestamp="1631705309733">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.0.bottom" timestamp="1634189612733">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="428" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1626343502341" />
-    <state width="1638" height="253" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1631705309733" />
+    <state width="1638" height="253" key="GridCell.Tab.0.bottom/0.23.1680.974@0.23.1680.974" timestamp="1632577707528" />
     <state width="1638" height="208" key="GridCell.Tab.0.bottom/0.23.1680.980@0.23.1680.980" timestamp="1629700168062" />
-    <state width="1638" height="156" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
     <state width="1638" height="252" key="GridCell.Tab.0.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729781" />
     <state width="1598" height="314" key="GridCell.Tab.0.bottom/0.23.1680.981@0.23.1680.981" timestamp="1626519220587" />
+    <state width="1638" height="253" key="GridCell.Tab.0.bottom/0.23.1680.989@0.23.1680.989" timestamp="1634189612733" />
     <state width="1878" height="179" key="GridCell.Tab.0.bottom/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152060" />
     <state width="1598" height="426" key="GridCell.Tab.0.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163632" />
-    <state width="1638" height="253" key="GridCell.Tab.0.center" timestamp="1631705309732">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.0.center" timestamp="1634189612733">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="428" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1626343502339" />
-    <state width="1638" height="253" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1631705309732" />
+    <state width="1638" height="253" key="GridCell.Tab.0.center/0.23.1680.974@0.23.1680.974" timestamp="1632577707526" />
     <state width="1638" height="208" key="GridCell.Tab.0.center/0.23.1680.980@0.23.1680.980" timestamp="1629700168061" />
-    <state width="1638" height="156" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554977" />
     <state width="1638" height="252" key="GridCell.Tab.0.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729780" />
     <state width="1598" height="314" key="GridCell.Tab.0.center/0.23.1680.981@0.23.1680.981" timestamp="1626519220586" />
+    <state width="1638" height="253" key="GridCell.Tab.0.center/0.23.1680.989@0.23.1680.989" timestamp="1634189612733" />
     <state width="1878" height="179" key="GridCell.Tab.0.center/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152059" />
     <state width="1598" height="426" key="GridCell.Tab.0.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163631" />
-    <state width="1638" height="253" key="GridCell.Tab.0.left" timestamp="1631705309731">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.0.left" timestamp="1634189612732">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="428" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1626343502338" />
-    <state width="1638" height="253" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1631705309731" />
+    <state width="1638" height="253" key="GridCell.Tab.0.left/0.23.1680.974@0.23.1680.974" timestamp="1632577707526" />
     <state width="1638" height="208" key="GridCell.Tab.0.left/0.23.1680.980@0.23.1680.980" timestamp="1629700168060" />
-    <state width="1638" height="156" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554976" />
     <state width="1638" height="252" key="GridCell.Tab.0.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729780" />
     <state width="1598" height="314" key="GridCell.Tab.0.left/0.23.1680.981@0.23.1680.981" timestamp="1626519220586" />
+    <state width="1638" height="253" key="GridCell.Tab.0.left/0.23.1680.989@0.23.1680.989" timestamp="1634189612732" />
     <state width="1878" height="179" key="GridCell.Tab.0.left/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152059" />
     <state width="1598" height="426" key="GridCell.Tab.0.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163631" />
-    <state width="1638" height="253" key="GridCell.Tab.0.right" timestamp="1631705309733">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.0.right" timestamp="1634189612733">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="428" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1626343502340" />
-    <state width="1638" height="253" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1631705309733" />
+    <state width="1638" height="253" key="GridCell.Tab.0.right/0.23.1680.974@0.23.1680.974" timestamp="1632577707527" />
     <state width="1638" height="208" key="GridCell.Tab.0.right/0.23.1680.980@0.23.1680.980" timestamp="1629700168061" />
-    <state width="1638" height="156" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554978" />
     <state width="1638" height="252" key="GridCell.Tab.0.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729781" />
     <state width="1598" height="314" key="GridCell.Tab.0.right/0.23.1680.981@0.23.1680.981" timestamp="1626519220587" />
+    <state width="1638" height="253" key="GridCell.Tab.0.right/0.23.1680.989@0.23.1680.989" timestamp="1634189612733" />
     <state width="1878" height="179" key="GridCell.Tab.0.right/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152060" />
     <state width="1598" height="426" key="GridCell.Tab.0.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163631" />
-    <state width="1638" height="253" key="GridCell.Tab.1.bottom" timestamp="1631701042939">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.1.bottom" timestamp="1634189612734">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="78" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1626343479696" />
     <state width="1638" height="253" key="GridCell.Tab.1.bottom/0.23.1680.974@0.23.1680.974" timestamp="1631701042939" />
     <state width="1638" height="208" key="GridCell.Tab.1.bottom/0.23.1680.980@0.23.1680.980" timestamp="1629700168064" />
-    <state width="1638" height="156" key="GridCell.Tab.1.bottom/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554980" />
     <state width="1638" height="252" key="GridCell.Tab.1.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729783" />
     <state width="1598" height="314" key="GridCell.Tab.1.bottom/0.23.1680.981@0.23.1680.981" timestamp="1626519214439" />
+    <state width="1638" height="253" key="GridCell.Tab.1.bottom/0.23.1680.989@0.23.1680.989" timestamp="1634189612734" />
     <state width="1878" height="179" key="GridCell.Tab.1.bottom/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152061" />
     <state width="1598" height="294" key="GridCell.Tab.1.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163625" />
-    <state width="1638" height="253" key="GridCell.Tab.1.center" timestamp="1631701042938">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.1.center" timestamp="1634189612734">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="78" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1626343479696" />
     <state width="1638" height="253" key="GridCell.Tab.1.center/0.23.1680.974@0.23.1680.974" timestamp="1631701042938" />
     <state width="1638" height="208" key="GridCell.Tab.1.center/0.23.1680.980@0.23.1680.980" timestamp="1629700168063" />
-    <state width="1638" height="156" key="GridCell.Tab.1.center/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
     <state width="1638" height="252" key="GridCell.Tab.1.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729782" />
     <state width="1598" height="314" key="GridCell.Tab.1.center/0.23.1680.981@0.23.1680.981" timestamp="1626519214438" />
+    <state width="1638" height="253" key="GridCell.Tab.1.center/0.23.1680.989@0.23.1680.989" timestamp="1634189612734" />
     <state width="1878" height="179" key="GridCell.Tab.1.center/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152060" />
     <state width="1598" height="294" key="GridCell.Tab.1.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163624" />
-    <state width="1638" height="253" key="GridCell.Tab.1.left" timestamp="1631701042938">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.1.left" timestamp="1634189612734">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="78" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1626343479695" />
     <state width="1638" height="253" key="GridCell.Tab.1.left/0.23.1680.974@0.23.1680.974" timestamp="1631701042938" />
     <state width="1638" height="208" key="GridCell.Tab.1.left/0.23.1680.980@0.23.1680.980" timestamp="1629700168063" />
-    <state width="1638" height="156" key="GridCell.Tab.1.left/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
     <state width="1638" height="252" key="GridCell.Tab.1.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729782" />
     <state width="1598" height="314" key="GridCell.Tab.1.left/0.23.1680.981@0.23.1680.981" timestamp="1626519214438" />
+    <state width="1638" height="253" key="GridCell.Tab.1.left/0.23.1680.989@0.23.1680.989" timestamp="1634189612734" />
     <state width="1878" height="179" key="GridCell.Tab.1.left/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152060" />
     <state width="1598" height="294" key="GridCell.Tab.1.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163624" />
-    <state width="1638" height="253" key="GridCell.Tab.1.right" timestamp="1631701042939">
-      <screen x="0" y="23" width="1680" height="974" />
+    <state width="1638" height="253" key="GridCell.Tab.1.right" timestamp="1634189612734">
+      <screen x="0" y="23" width="1680" height="989" />
     </state>
     <state width="1878" height="78" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1626343479696" />
     <state width="1638" height="253" key="GridCell.Tab.1.right/0.23.1680.974@0.23.1680.974" timestamp="1631701042939" />
     <state width="1638" height="208" key="GridCell.Tab.1.right/0.23.1680.980@0.23.1680.980" timestamp="1629700168064" />
-    <state width="1638" height="156" key="GridCell.Tab.1.right/0.23.1680.981/1680.-86.1920.1057@0.23.1680.981" timestamp="1624596554979" />
     <state width="1638" height="252" key="GridCell.Tab.1.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1626252729783" />
     <state width="1598" height="314" key="GridCell.Tab.1.right/0.23.1680.981@0.23.1680.981" timestamp="1626519214439" />
+    <state width="1638" height="253" key="GridCell.Tab.1.right/0.23.1680.989@0.23.1680.989" timestamp="1634189612734" />
     <state width="1878" height="179" key="GridCell.Tab.1.right/0.23.1920.1010@0.23.1920.1010" timestamp="1630062152061" />
     <state width="1598" height="294" key="GridCell.Tab.1.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163625" />
     <state width="1638" height="377" key="GridCell.Tab.2.bottom" timestamp="1628851566743">
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state width="1638" height="377" key="GridCell.Tab.2.bottom/0.23.1680.980@0.23.1680.980" timestamp="1628851566743" />
-    <state width="1877" height="171" key="GridCell.Tab.2.bottom/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1623994861048" />
-    <state width="1638" height="200" key="GridCell.Tab.2.bottom/0.23.1680.981@0.23.1680.981" timestamp="1625038994928" />
     <state width="1598" height="294" key="GridCell.Tab.2.bottom/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163626" />
     <state width="1638" height="377" key="GridCell.Tab.2.center" timestamp="1628851566742">
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state width="1638" height="377" key="GridCell.Tab.2.center/0.23.1680.980@0.23.1680.980" timestamp="1628851566742" />
-    <state width="1877" height="171" key="GridCell.Tab.2.center/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1623994861047" />
-    <state width="1638" height="200" key="GridCell.Tab.2.center/0.23.1680.981@0.23.1680.981" timestamp="1625038994928" />
     <state width="1598" height="294" key="GridCell.Tab.2.center/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163626" />
     <state width="1638" height="377" key="GridCell.Tab.2.left" timestamp="1628851566742">
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state width="1638" height="377" key="GridCell.Tab.2.left/0.23.1680.980@0.23.1680.980" timestamp="1628851566742" />
-    <state width="1877" height="171" key="GridCell.Tab.2.left/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1623994861047" />
-    <state width="1638" height="200" key="GridCell.Tab.2.left/0.23.1680.981@0.23.1680.981" timestamp="1625038994928" />
     <state width="1598" height="294" key="GridCell.Tab.2.left/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163625" />
     <state width="1638" height="377" key="GridCell.Tab.2.right" timestamp="1628851566743">
       <screen x="0" y="23" width="1680" height="980" />
     </state>
     <state width="1638" height="377" key="GridCell.Tab.2.right/0.23.1680.980@0.23.1680.980" timestamp="1628851566743" />
-    <state width="1877" height="171" key="GridCell.Tab.2.right/0.23.1680.981/1680.-86.1920.1057@1680.-86.1920.1057" timestamp="1623994861047" />
-    <state width="1638" height="200" key="GridCell.Tab.2.right/0.23.1680.981@0.23.1680.981" timestamp="1625038994928" />
     <state width="1598" height="294" key="GridCell.Tab.2.right/0.23.1920.1011@0.23.1920.1011" timestamp="1626693163626" />
     <state x="498" y="277" key="IDE.errors.dialog" timestamp="1628673405569">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
-    <state x="436" y="270" key="IDE.errors.dialog/0.23.1680.981@0.23.1680.981" timestamp="1623236659629" />
     <state x="498" y="277" key="IDE.errors.dialog/0.23.1920.1010@0.23.1920.1010" timestamp="1628673405569" />
     <state x="383" y="196" width="1256" height="722" key="SettingsEditor" timestamp="1630137764775">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="335" y="275" width="1256" height="722" key="SettingsEditor/0.23.1680.980@0.23.1680.980" timestamp="1628747665634" />
-    <state x="45" y="187" width="1435" height="722" key="SettingsEditor/0.23.1680.981@0.23.1680.981" timestamp="1624253535824" />
     <state x="383" y="196" key="SettingsEditor/0.23.1920.1010@0.23.1920.1010" timestamp="1630137764775" />
     <state x="786" y="351" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1627541746528">
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="786" y="351" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1920.1010@0.23.1920.1010" timestamp="1627541746528" />
-    <state x="786" y="351" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1624959334729" />
     <state x="2879" y="192" width="1209" height="682" key="dock-window-1" timestamp="1625809296730">
       <screen x="1680" y="-86" width="1920" height="1057" />
     </state>
@@ -838,7 +952,6 @@
       <screen x="0" y="23" width="1920" height="1010" />
     </state>
     <state x="492" y="267" width="670" height="158" key="search.everywhere.popup/0.23.1680.980@0.23.1680.980" timestamp="1628748341368" />
-    <state x="492" y="267" width="670" height="676" key="search.everywhere.popup/0.23.1680.981@0.23.1680.981" timestamp="1623216823219" />
     <state x="562" y="274" width="670" height="158" key="search.everywhere.popup/0.23.1920.1010@0.23.1920.1010" timestamp="1629786545493" />
     <state x="562" y="274" width="670" height="158" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1626691278053" />
   </component>
